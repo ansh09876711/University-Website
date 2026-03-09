@@ -3524,9 +3524,10 @@ def hr_employees():
 # EMAIL SETTINGS
 # =============================
 
-EMAIL = "collegeportal52@gmail.com"
-PASSWORD = "gmwdsbpfbhjwqvph"   # space ke bina
+import os
 
+EMAIL = os.getenv("EMAIL_USER")
+PASSWORD = os.getenv("EMAIL_PASS")
 # =============================
 # SEND STATUS EMAIL FUNCTION
 # =============================

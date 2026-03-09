@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>🎓 College Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/users">Users</a>
+        <a href="/admin/departments">Departments</a>
+        <a href="/admin/attendance">Attendance</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/logout" class="logout">Logout</a>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="content">
+        <h1>Admin Dashboard</h1>
+
+        <!-- STATS -->
+        <div class="cards">
+            <div class="card">👨‍🎓 Students<br><b>{{ students }}</b></div>
+            <div class="card">👩‍🏫 Teachers<br><b>{{ teachers }}</b></div>
+            <div class="card">🏫 Departments<br><b>5</b></div>
+        </div>
+
+        <!-- USER TABLE -->
+        <h2>User Management</h2>
+        <div class="table-wrap">
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for u in users %}
+            <tr>
+                <td>{{ u.username }}</td>
+                <td>{{ u.role }}</td>
+                <td>{{ "Locked" if u.locked else "Active" }}</td>
+                <td>
+                    {% if u.locked %}
+                    <a href="/admin/unlock/{{ u.username }}">Unlock</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+<h2 class="section-title">➕ Create New User</h2>
+<a href="/admin/users" class="btn-primary">
+    Manage Users
+</a>
+<a href="/admin/users" class="btn-primary">👥 Manage Users</a>
+<a href="/admin/departments" class="btn-primary">🏫 Departments</a>
+
+<div class="create-user-card">
+    <form method="post" action="/admin/create-user">
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" name="password" id="password" placeholder="Enter password" required>
+                <span onclick="togglePassword()">👁</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Role</label>
+            <select name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+
+                    <option value="accounts">Accounts</option>
+                    <option value="scholarship">Scholarship</option>
+                    <option value="Admission Cell">Admission Cell</option>
+                    <option value="HR">HR</option>
+                    <option value="Registrars">Registrar</option>
+                    <option value="Library">Library</option>
+                    <option value="department">Department</option>
+                    <option value="hod">HOD</option>
+                    <option value="principal">Principal</option>
+                    <option value="vice_principal">Vice Principal</option>
+                    <option value="director">Director</option>
+
+    <option value="admin">Admin</option>
+</select>
+
+        </div>
+
+        <button type="submit" class="btn-primary">
+            Create User
+        </button>
+
+    </form>
+</div>
+
+<script>
+function togglePassword() {
+    let p = document.getElementById("password");
+    p.type = p.type === "password" ? "text" : "password";
+}
+</script>
+{% if session.get("original_role") == "director" %}
+    <div class="badge badge-danger">Director View</div>
+{% endif %}
+
+    </main>
+</div>
+
+</body>
+</html>

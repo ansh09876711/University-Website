@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>HOD Device Management</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6f9;
+padding:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+gap:25px;
+}
+
+.device-card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.device-card:hover{
+transform:translateY(-5px);
+}
+
+.name{
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.tag{
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+margin-right:5px;
+display:inline-block;
+color:white;
+}
+
+.type{ background:#6c5ce7; }
+.class{ background:#1e73d8; }
+
+.online{ background:#00b894; }
+.offline{ background:#d63031; }
+
+</style>
+
+</head>
+
+<body>
+
+<h2>🖥️ Device Management</h2>
+
+<div class="grid">
+
+{% for d in devices %}
+
+<div class="device-card">
+
+<div class="name">{{ d[0] }}</div>
+
+<span class="tag type">{{ d[1] }}</span>
+<span class="tag class">{{ d[3] }}</span>
+
+<br><br>
+
+{% if d[2] == 'online' %}
+<span class="tag online">Online</span>
+{% else %}
+<span class="tag offline">Offline</span>
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

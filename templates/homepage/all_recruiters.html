@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Recruiters | EduStack University</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ===== RESET ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== HEADER ===== */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header h2{
+font-weight:700;
+letter-spacing:1px;
+}
+
+nav{
+display:flex;
+gap:25px;
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+padding:8px 18px;
+border-radius:25px;
+border:1px solid #ddd;
+transition:0.3s;
+font-size:14px;
+}
+
+nav a:hover{
+background:#6a11cb;
+color:white;
+border-color:#6a11cb;
+}
+
+/* ===== HERO SECTION ===== */
+
+.hero{
+background:linear-gradient(90deg,#1e3c72,#6a11cb);
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:0.9;
+}
+
+/* ===== RECRUITERS GRID ===== */
+
+.recruiters-section{
+padding:80px 60px;
+background:#f4f6f9;
+min-height:100vh;
+}
+
+.recruiters-section h2{
+text-align:center;
+margin-bottom:50px;
+font-size:30px;
+}
+
+.recruiters-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:35px;
+max-width:1300px;
+margin:auto;
+
+}
+
+.recruiter-box{
+
+background:#eee;
+height:150px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s;
+cursor:pointer;
+
+}
+
+.recruiter-box:hover{
+background:white;
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
+transform:translateY(-5px);
+}
+
+.recruiter-box img{
+
+max-width:140px;
+max-height:80px;
+object-fit:contain;
+
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:20px;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<h2>EDUSTACK UNIVERSITY</h2>
+
+<nav>
+<a href="{{ url_for('home') }}">Home</a>
+<a href="#">About</a>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="{{ url_for('placementhome') }}">Placements</a>
+<a href="#">Courses</a>
+<a href="{{ url_for('login') }}">Login</a>
+</nav>
+
+</header>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+<h1>Our Recruiters</h1>
+<p>Top Companies That Trust EduStack Talent</p>
+
+</section>
+
+
+<!-- RECRUITERS GRID -->
+<section class="recruiters-section">
+
+<h2>Prominent Hiring Partners</h2>
+
+<div class="recruiters-grid">
+
+{% for r in recruiters %}
+
+<div class="recruiter-box">
+    <img src="{{ url_for('static', filename='recruiters/' + r.company_logo) }}">
+</div>
+
+{% endfor %}
+
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+© 2026 EduStack University | All Rights Reserved
+</footer>
+
+</body>
+</html>

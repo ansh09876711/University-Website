@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Menu Panel</title>
+<style>
+body{font-family:Segoe UI;background:#f4f6fa;padding:30px;}
+.card{background:white;padding:20px;border-radius:15px;margin-bottom:20px;}
+button{background:#7c3aed;color:white;border:none;padding:8px 15px;border-radius:10px;}
+</style>
+</head>
+<body>
+
+<h1>🍴 Admin Canteen Panel</h1>
+
+<div class="card">
+<h2>Add Menu Item</h2>
+<form method="POST" action="/add-menu-item">
+<input type="text" name="item_name" placeholder="Item Name" required>
+<input type="number" name="price" placeholder="Price" required>
+<button>Add</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Current Menu</h2>
+{% for item in menu %}
+<p>{{ item.item_name }} - ₹{{ item.price }}</p>
+{% endfor %}
+</div>
+
+</body>
+</html>

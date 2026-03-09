@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mandatory Disclosure | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI, sans-serif;
+background:#f4f6fb;
+color:#222;
+line-height:1.7;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+z-index:1000;
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+margin-top:80px;
+background:linear-gradient(135deg,#1e3a8a,#6366f1);
+color:white;
+padding:70px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+}
+
+/* ===== INFO CARDS ===== */
+
+.card{
+background:white;
+padding:30px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+margin-bottom:30px;
+}
+
+/* ===== TABLE ===== */
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th, table td{
+border:1px solid #ddd;
+padding:12px;
+text-align:left;
+}
+
+table th{
+background:#1e3a8a;
+color:white;
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+
+.btn{
+display:inline-block;
+padding:10px 18px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:6px;
+margin-top:10px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#1e40af;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+</nav>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+
+<!-- HERO -->
+
+<section class="hero">
+<h1>Mandatory Disclosure</h1>
+<p>As per UGC / AICTE Guidelines</p>
+</section>
+
+<!-- SECTION 1 -->
+
+<section class="section">
+
+<div class="card">
+<h2>1. Institutional Information</h2>
+
+<table>
+<tr>
+<th>Particular</th>
+<th>Details</th>
+</tr>
+
+<tr>
+<td>Name of Institution</td>
+<td>EduStack University</td>
+</tr>
+
+<tr>
+<td>Year of Establishment</td>
+<td>2015</td>
+</tr>
+
+<tr>
+<td>Type of Institution</td>
+<td>Private University</td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td>EduStack Campus, Tech City, India</td>
+</tr>
+
+<tr>
+<td>Contact</td>
+<td>+91-9876543210</td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td>info@edustackuniversity.edu</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="card">
+<h2>2. Approvals & Accreditations</h2>
+
+<ul>
+<li>Approved by University Grants Commission (UGC)</li>
+<li>AICTE Approved Technical Programs</li>
+<li>NAAC Accredited with AAA+ Grade</li>
+<li>NBA Accredited Engineering Programs</li>
+</ul>
+
+<a href="#" class="btn">Download Approval Documents (PDF)</a>
+
+</div>
+
+
+<div class="card">
+<h2>3. Governing Body Members</h2>
+
+<table>
+<tr>
+<th>Name</th>
+<th>Designation</th>
+</tr>
+
+<tr>
+<td>Dr. Arjun Mehta</td>
+<td>Director</td>
+</tr>
+
+<tr>
+<td>Dr. Riya Sharma</td>
+<td>Dean Academics</td>
+</tr>
+
+<tr>
+<td>Mr. Rajiv Verma</td>
+<td>Registrar</td>
+</tr>
+
+<tr>
+<td>Ms. Ananya Gupta</td>
+<td>Finance Officer</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="card">
+<h2>4. Academic Programs</h2>
+
+<ul>
+<li>B.Tech (CSE, AI, Data Science)</li>
+<li>M.Tech (Computer Science)</li>
+<li>MBA (Finance, Marketing, HR)</li>
+<li>BBA</li>
+<li>BCA / MCA</li>
+</ul>
+
+<a href="#" class="btn">Download Prospectus</a>
+
+</div>
+
+
+<div class="card">
+<h2>5. Infrastructure Details</h2>
+
+<ul>
+<li>Smart Classrooms with Digital Boards</li>
+<li>Modern Computer Labs</li>
+<li>Central Library (Digital + Physical)</li>
+<li>Research & Innovation Centers</li>
+<li>Canteen</li>
+</ul>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 EduStack University | All Rights Reserved
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

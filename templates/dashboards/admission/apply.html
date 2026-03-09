@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Apply Now - EDUSTACK University</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    background:#f4f6fb;
+    margin:0;
+}
+
+.header{
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.form-box{
+    width:700px;
+    background:white;
+    margin:50px auto;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-box h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#1e3a8a;
+}
+
+.input{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.input:focus{
+    outline:none;
+    border:1px solid #1e3a8a;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#1e3a8a;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e40af;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:6px;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.back{
+    text-align:center;
+    margin-top:20px;
+}
+
+.back a{
+    text-decoration:none;
+    color:#1e3a8a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Apply Now</h1>
+    <p>Start your admission process at EDUSTACK University</p>
+</div>
+
+<div class="form-box">
+
+    {% if success %}
+    <div class="success">
+        ✅ Application Submitted Successfully!
+    </div>
+    {% endif %}
+
+    <h2>Admission Application Form</h2>
+
+   <form method="POST">
+
+    <input type="text" name="full_name" class="input" placeholder="Full Name" required>
+
+    <input type="email" name="email" class="input" placeholder="Email Address" required>
+
+    <input type="text" name="mobile" class="input" placeholder="Mobile Number" required>
+
+    <!-- STATE DROPDOWN -->
+    <select name="state" class="input" required>
+        <option value="">Select State</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Uttar Pradesh</option>
+        <option>Rajasthan</option>
+        <option>Gujarat</option>
+        <option>Delhi</option>
+        <option>Haryana</option>
+        <option>Punjab</option> 
+        <option>West Bengal</option>
+        <option>Kerala</option>
+        <option>Karnataka</option>
+    </select>
+
+    <!-- CITY DROPDOWN -->
+    <select name="city" class="input" required>
+        <option value="">Select City</option>
+        <option>Indore</option>
+        <option>Bhopal</option>
+        <option>Mumbai</option>
+        <option>Pune</option>
+        <option>Delhi</option>
+        <option>Jaipur</option>
+        <option>Ahmedabad</option>
+        <option>Lucknow</option>
+        <option>Kanpur</option>
+        <option>Jodhpur</option>
+        <option>Surat</option>
+    </select>
+
+    <select name="course" class="input" required>
+        <option value="">Select Course</option>
+        <option>B.Tech</option>
+        <option>BBA</option>
+        <option>MBA</option>
+        <option>M.Tech</option>
+    </select>
+
+    <button type="submit">Submit Application</button>
+
+</form>
+    <div class="back">
+        <a href="/">← Back to Home</a>
+    </div>
+
+</div>
+
+</body>
+</html>

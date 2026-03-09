@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ULTRA HR Payroll System</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* HEADER TITLE */
+
+.title{
+margin-bottom:20px;
+}
+
+.title h2{
+margin:0;
+}
+
+.subtitle{
+color:#64748b;
+margin-top:5px;
+font-size:14px;
+}
+
+input{
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+margin-bottom:15px;
+}
+
+.summary{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+}
+
+.box{
+background:#f8fafc;
+padding:12px;
+border-radius:10px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;   /* important */
+}
+
+th, td{
+padding:14px;
+border-bottom:1px solid #eee;
+text-align:center;   /* center all columns */
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+.salary{
+color:#16a34a;
+font-weight:bold;
+}
+
+.btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.back-btn{
+display:inline-block;
+margin-bottom:15px;
+text-decoration:none;
+color:#2563eb;
+font-weight:600;
+background:#eff6ff;
+padding:8px 14px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#dbeafe;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/hr" class="back-btn">⬅ Back to HR Dashboard</a>
+
+<div class="title">
+<h2>🔥 HR Payroll</h2>
+<div class="subtitle">Smart Payroll Management Dashboard • Ultra HR System</div>
+</div>
+
+<div class="card">
+
+<div class="summary">
+<div class="box">Employees: {{ employees|length }}</div>
+<div class="box">Total Payroll: ₹ {{ total_payroll }}</div>
+</div>
+
+<input type="text" id="search" placeholder="Search employee...">
+
+<table id="table">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Dept</th>
+<th>Basic</th>
+<th>HRA</th>
+<th>Bonus</th>
+<th>PF</th>
+<th>Net Salary</th>
+<th>Action</th>
+</tr>
+
+{% for e in employees %}
+
+{% set hra = e.salary * 0.20 %}
+{% set bonus = e.salary * 0.10 %}
+{% set pf = e.salary * 0.12 %}
+{% set net = e.salary + hra + bonus - pf %}
+
+<tr>
+
+<td>{{e.id}}</td>
+<td>{{e.name}}</td>
+<td>{{e.department}}</td>
+<td>₹ {{e.salary}}</td>
+<td>{{hra|int}}</td>
+<td>{{bonus|int}}</td>
+<td>{{pf|int}}</td>
+<td class="salary">₹ {{net|int}}</td>
+
+<td>
+<a href="/hr/salary-slip/{{e.id}}">
+<button class="btn">Download Slip</button>
+</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("search").onkeyup = function(){
+
+let val = this.value.toLowerCase();
+
+document.querySelectorAll("#table tr").forEach((row,i)=>{
+
+if(i==0) return;
+
+row.style.display = row.innerText.toLowerCase().includes(val)
+? ""
+: "none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

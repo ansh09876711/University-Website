@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HOD Classrooms</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    background:#f4f6f9;
+    padding:30px;
+}
+
+h2{
+    margin-bottom:5px;
+}
+
+.subtitle{
+    color:#666;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* Table Styling */
+
+.table-container{
+    background:white;
+    border-radius:12px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.08);
+    overflow:hidden;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#1e73d8;
+    color:white;
+}
+
+th{
+    padding:15px;
+    text-align:center;
+    font-weight:600;
+    font-size:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+tr:hover{
+    background:#f1f5fb;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    background:#007bff;
+    color:white;
+}
+
+.no-teacher{
+    background:#dc3545;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>🏫 Classroom Management</h2>
+<p class="subtitle">
+View all classes and their assigned teachers in one place.
+</p>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Assigned Teachers</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for c in classrooms %}
+
+<tr>
+<td>{{ c.class_name }}</td>
+<td>
+    {% if c.teachers %}
+        <span class="badge">{{ c.teachers }}</span>
+    {% else %}
+        <span class="badge no-teacher">No Teacher Assigned</span>
+    {% endif %}
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</body>
+</html>

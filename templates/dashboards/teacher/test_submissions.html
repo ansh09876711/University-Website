@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Test Submissions</title>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Segoe UI;
+padding:40px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #1e293b;
+text-align:left;
+}
+
+th{
+background:#2563eb;
+}
+
+.submitted{
+color:#22c55e;
+font-weight:bold;
+}
+
+.pending{
+color:#ef4444;
+font-weight:bold;
+}
+.back-btn{
+display:inline-block;
+margin-bottom:20px;
+color:#38bdf8;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+color:#22c55e;
+}
+</style>
+
+</head>
+
+<body>
+
+<a href="/teacher" class="back-btn">⬅ Back to Dashboard</a>
+
+<h2>📊 Student Submissions</h2>
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Student Name</th>
+<th>Status</th>
+<th>Submitted Time</th>
+</tr>
+
+{% for s in students %}
+
+<tr>
+
+<td>{{s.id}}</td>
+<td>{{s.username}}</td>
+
+{% if s.submitted_at %}
+<td class="submitted">Submitted</td>
+<td>{{s.submitted_at}}</td>
+{% else %}
+<td class="pending">Not Submitted</td>
+<td>-</td>
+{% endif %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

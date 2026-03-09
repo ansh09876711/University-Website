@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Fees</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body {
+            background: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .total { background: #4f46e5; }
+        .paid { background: #16a34a; }
+        .due { background: #dc2626; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th {
+            background: #2563eb;
+            color: #fff;
+            padding: 12px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .status.paid {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.pending {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .pay-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .pay-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>💰 My Fees</h1>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+        <div class="card total">
+            <h3>Total Fees</h3>
+            <p>₹ 45,000</p>
+        </div>
+        <div class="card paid">
+            <h3>Paid</h3>
+            <p>₹ 30,000</p>
+        </div>
+        <div class="card due">
+            <h3>Due</h3>
+            <p>₹ 15,000</p>
+        </div>
+    </div>
+
+    <!-- FEES TABLE -->
+     <div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>Semester</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Semester 1</td>
+                <td>₹ 15,000</td>
+                <td><span class="status paid">Paid</span></td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Semester 2</td>
+                <td>₹ 15,000</td>
+                <td><span class="status paid">Paid</span></td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Semester 3</td>
+                <td>₹ 15,000</td>
+                <td><span class="status pending">Pending</span></td>
+                <td>
+                    <button class="pay-btn">Pay Now</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+     </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

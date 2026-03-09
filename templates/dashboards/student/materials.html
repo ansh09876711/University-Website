@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Materials</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+<style>
+
+body{
+    background:#020617;
+    font-family:"Segoe UI", sans-serif;
+    color:white;
+}
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.materials{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:20px;
+}
+
+.material-card{
+    background:#020617;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:18px;
+    transition:0.2s;
+}
+
+.material-card:hover{
+    transform:translateY(-5px);
+}
+
+.subject{
+    font-size:13px;
+    opacity:0.8;
+    margin-bottom:6px;
+}
+
+.uploaded{
+    font-size:12px;
+    opacity:0.6;
+    margin-bottom:14px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.actions a{
+    flex:1;
+    text-align:center;
+    padding:8px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.btn-view{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-download{
+    background:#16a34a;
+    color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📘 Study Materials</h1>
+
+<div class="materials">
+
+{% for m in materials %}
+
+<div class="material-card">
+
+<h3>{{ m.title }}</h3>
+
+<div class="subject">
+📕 {{ m.subject }}
+</div>
+
+<div class="uploaded">
+Uploaded by: {{ m.teacher_username }}
+</div>
+
+<div class="actions">
+
+<a href="{{ url_for('static', filename='uploads/' + m.file_path) }}"
+target="_blank"
+class="btn-view">
+View
+</a>
+
+<a href="{{ url_for('static', filename='uploads/' + m.file_path) }}"
+download
+class="btn-download">
+Download
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<a href="/student" style="margin-top:20px;display:inline-block;color:#38bdf8;">
+⬅ Back to Dashboard
+</a>
+
+</div>
+
+</body>
+</html>

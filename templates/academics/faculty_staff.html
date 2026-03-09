@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Faculty & Staff | EDUSTACK UNIVERSITY</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6fa;
+margin:0;
+}
+
+/* ===== HERO ===== */
+
+.page-header{
+background:linear-gradient(135deg,#2b1cff,#9ea2a6);
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.page-header h1{
+font-size:42px;
+margin:0;
+letter-spacing:1px;
+}
+
+.page-header h3{
+font-weight:400;
+opacity:.9;
+margin-top:10px;
+}
+
+/* ===== CONTAINER ===== */
+
+.faculty-container{
+max-width:1300px;
+margin:auto;
+padding:60px 20px;
+}
+
+/* GRID */
+
+.faculty-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+/* ===== CARD ===== */
+
+.faculty-card{
+
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:.4s;
+position:relative;
+
+}
+
+.faculty-card:hover{
+
+transform:translateY(-10px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+
+}
+
+/* IMAGE */
+
+.faculty-card img{
+width:100%;
+height:280px;
+object-fit:cover;
+transition:.4s;
+}
+
+.faculty-card:hover img{
+transform:scale(1.08);
+}
+
+/* INFO */
+
+.faculty-info{
+padding:22px;
+}
+
+.faculty-info h3{
+margin:0;
+font-size:20px;
+}
+
+.role{
+color:#2b1cff;
+font-weight:600;
+margin-top:6px;
+}
+
+.faculty-info p{
+margin-top:6px;
+color:#555;
+}
+
+/* GLOW BORDER EFFECT */
+
+.faculty-card::before{
+
+content:"";
+position:absolute;
+inset:0;
+border-radius:18px;
+padding:2px;
+background:linear-gradient(135deg,#2b1cff,#7c3aed);
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite:xor;
+mask-composite:exclude;
+opacity:0;
+transition:.4s;
+
+}
+
+.faculty-card:hover::before{
+opacity:1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="page-header">
+<h1>Faculty & Staff</h1>
+<h3>Meet our experienced educators and professional team</h3>
+</section>
+
+<!-- GRID -->
+
+<div class="faculty-container">
+
+<div class="faculty-grid">
+
+<div class="faculty-card">
+<img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde">
+<div class="faculty-info">
+<h3>Dr. Amit Sharma</h3>
+<p class="role">Professor - Computer Science</p>
+<p>Artificial Intelligence & Machine Learning Specialist</p>
+</div>
+</div>
+
+<div class="faculty-card">
+<img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39">
+<div class="faculty-info">
+<h3>Dr. Neha Verma</h3>
+<p class="role">Associate Professor</p>
+<p>Data Science & Cloud Computing Expert</p>
+</div>
+</div>
+
+<div class="faculty-card">
+<img src="https://images.unsplash.com/photo-1552058544-f2b08422138a">
+<div class="faculty-info">
+<h3>Rahul Mehta</h3>
+<p class="role">Assistant Professor</p>
+<p>Cyber Security & Networking</p>
+</div>
+</div>
+
+<div class="faculty-card">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+<div class="faculty-info">
+<h3>Priya Singh</h3>
+<p class="role">Academic Coordinator</p>
+<p>Student Engagement & Academic Planning</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

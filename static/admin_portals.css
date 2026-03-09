@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef2f7, #dbe7ff);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #1e293b;
+}
+
+.subtext {
+    margin-bottom: 30px;
+    color: #475569;
+    font-size: 15px;
+}
+
+/* Portal Grid */
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Portal Card */
+.portal-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.portal-card:hover {
+    background: #e0e7ff;
+    border-color: #4f46e5;
+    transform: translateY(-5px);
+}
+
+.portal-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.portal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.portal-desc {
+    font-size: 13px;
+    color: #475569;
+    margin-top: 6px;
+}
+
+/* Logout */
+.logout {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.logout a {
+    text-decoration: none;
+    background: #ef4444;
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout a:hover {
+    background: #dc2626;
+}

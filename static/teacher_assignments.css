@@ -1,0 +1,145 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+background:#f1f5f9;
+}
+
+/* FULL WIDTH LAYOUT */
+
+.layout{
+display:flex;
+width:100vw;
+min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:#0f172a;
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+.sidebar a{
+color:#cbd5e1;
+text-decoration:none;
+padding:12px;
+margin-top:6px;
+border-radius:8px;
+display:block;
+}
+
+.sidebar a:hover,
+.sidebar .active{
+background:#2563eb;
+color:white;
+}
+
+.logout{
+margin-top:auto;
+}
+
+/* MAIN */
+
+.main{
+flex:1;
+padding:30px 40px;
+width:100%;
+}
+
+/* TOPBAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+background:#2563eb;
+color:white;
+padding:8px 16px;
+border-radius:8px;
+text-decoration:none;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+margin-bottom:20px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* FORM */
+
+form{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+input, textarea{
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:14px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+/* ASSIGNMENT ITEM */
+
+.assignment-item{
+background:#f8fafc;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+border-left:4px solid #2563eb;
+}
+
+.due{
+color:#ef4444;
+font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.layout{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+flex-direction:row;
+overflow:auto;
+}
+
+.main{
+padding:15px;
+}
+
+}

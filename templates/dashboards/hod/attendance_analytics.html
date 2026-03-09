@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Attendance Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#f4f6fa,#eef2ff);
+padding:40px;
+margin:0;
+color:#1e293b;
+}
+
+/* ===== HEADER ===== */
+
+.title{
+font-size:26px;
+font-weight:700;
+margin-bottom:25px;
+}
+
+/* ===== CARD ===== */
+
+.card{
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 12px 35px rgba(0,0,0,0.08);
+max-width:700px;      /* 🔥 chart width control */
+margin:auto;          /* center align */
+}
+
+/* chart container size control */
+
+.chart-box{
+width:100%;
+height:350px;         /* 🔥 height fixed */
+}
+
+</style>
+</head>
+
+<body>
+
+<h2 class="title">📊 Attendance Analytics Dashboard</h2>
+
+<div class="card">
+
+<div class="chart-box">
+<canvas id="attendanceChart"></canvas>
+</div>
+
+</div>
+
+<script>
+
+/* ===== DATA FROM FLASK ===== */
+
+const labels = [
+{% for row in data %}
+"{{ row.subject }}",
+{% endfor %}
+];
+
+const values = [
+{% for row in data %}
+{{ row.avg_attendance }},
+{% endfor %}
+];
+
+/* ===== CHART ===== */
+
+new Chart(document.getElementById("attendanceChart"), {
+
+type: "bar",
+
+data: {
+labels: labels,
+datasets: [{
+label: "Average Attendance %",
+data: values,
+backgroundColor:"#22c55e",
+borderRadius:8
+}]
+},
+
+options: {
+
+responsive:true,
+maintainAspectRatio:false,   /* 🔥 height follow kare */
+
+scales:{
+y:{
+beginAtZero:true,
+max:100
+}
+}
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

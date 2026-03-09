@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Teacher Marks Panel</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+}
+
+.container{
+max-width:1000px;
+margin:40px auto;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+background:#2563eb;
+color:white;
+text-decoration:none;
+padding:8px 15px;
+border-radius:8px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+input, select{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.delete{
+background:#ef4444;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<h2>📝 Teacher Marks Panel</h2>
+
+<a href="/teacher" class="back-btn">⬅ Back</a>
+
+</div>
+
+<!-- ADD MARKS -->
+<div class="card">
+
+<h3>Add Student Marks</h3>
+
+<form method="POST">
+
+<input name="student_name" placeholder="Student Name" required>
+
+<input name="subject" placeholder="Subject" required>
+
+<input type="number" name="marks" placeholder="Marks" required>
+
+<!-- 🔥 Teacher allotted classes dropdown -->
+<select name="class_name" required>
+
+<option value="">Select Class</option>
+
+{% for c in teacher_classes %}
+<option value="{{c.class_name}}">
+{{c.class_name}}
+</option>
+{% endfor %}
+
+</select>
+
+<button>Add Marks</button>
+
+</form>
+
+</div>
+
+<!-- FILTER -->
+<div class="card">
+
+<form method="GET">
+
+<select name="class">
+
+<option value="">All Classes</option>
+
+{% for c in teacher_classes %}
+<option value="{{c.class_name}}"
+{% if selected_class == c.class_name %}selected{% endif %}>
+{{c.class_name}}
+</option>
+{% endfor %}
+
+</select>
+
+<button>Filter</button>
+
+</form>
+
+</div>
+
+<!-- TABLE -->
+<div class="card">
+
+<h3>All Marks</h3>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Class</th>
+<th>Subject</th>
+<th>Marks</th>
+<th>Grade</th>
+<th>Action</th>
+</tr>
+
+{% for m in marks %}
+
+<tr>
+<td>{{m.student_name}}</td>
+<td>{{m.class_name}}</td>
+<td>{{m.subject}}</td>
+<td>{{m.marks}}</td>
+<td>{{m.grade}}</td>
+
+<td>
+<form action="/teacher/delete-mark/{{m.id}}" method="POST">
+<button class="delete">Delete</button>
+</form>
+</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+<td colspan="6">No marks added</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

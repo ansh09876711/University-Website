@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body {
+            background: #020617;
+            font-family: "Segoe UI", sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: #0f172a;
+            color: #fff;
+        }
+
+        .search-box button {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Books grid */
+        .books {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .book {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .book h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .author {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        .status {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .available {
+            color: #22c55e;
+        }
+
+        .issued {
+            color: #ef4444;
+        }
+
+        .book button {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-issue {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .btn-disabled {
+            background: #334155;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 Library</h1>
+
+    <!-- Search -->
+    <div class="search-box">
+        <input type="text" placeholder="Search books by name, author or subject">
+        <button>Search</button>
+    </div>
+
+    <!-- Books -->
+    <div class="books">
+
+        <div class="book">
+            <h3>Machine Learning</h3>
+            <div class="author">Andrew Ng</div>
+            <div class="status available">● Available</div>
+            <button class="btn-issue">Issue Book</button>
+        </div>
+
+        <div class="book">
+            <h3>Data Structures</h3>
+            <div class="author">Mark Allen Weiss</div>
+            <div class="status issued">● Issued</div>
+            <button class="btn-disabled">Not Available</button>
+        </div>
+
+        <div class="book">
+            <h3>Operating System</h3>
+            <div class="author">Galvin</div>
+            <div class="status available">● Available</div>
+            <button class="btn-issue">Issue Book</button>
+        </div>
+
+        <div class="book">
+            <h3>Database System</h3>
+            <div class="author">Silberschatz</div>
+            <div class="status available">● Available</div>
+            <button class="btn-issue">Issue Book</button>
+        </div>
+
+        <div class="book">
+            <h3>Computer Networks</h3>
+            <div class="author">Tanenbaum</div>
+            <div class="status issued">● Issued</div>
+            <button class="btn-disabled">Not Available</button>
+        </div>
+
+    </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

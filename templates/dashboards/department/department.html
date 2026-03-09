@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Ultra Pro Department Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f6fb;
+}
+
+/* MAIN LAYOUT */
+
+.dashboard{
+display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:260px;
+height:100vh;
+background:linear-gradient(180deg,#0f172a,#020617);
+color:white;
+position:fixed;
+top:0;
+left:0;
+transform:translateX(-100%);   /* FULL hide */
+padding:25px;
+transition:.4s;
+z-index:999;
+}
+
+.sidebar.open{
+transform:translateX(0);
+}
+
+
+.sidebar h3{
+margin-bottom:25px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+text-decoration:none;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+transition:.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+transform:translateX(8px);
+}
+
+.sidebar a.active{
+background:linear-gradient(90deg,#4b00ff,#ff004c);
+}
+
+/* CONTENT AREA */
+
+.content{
+margin-left:0;
+padding:35px;
+width:100%;
+transition:.4s;
+}
+
+/* CARD STYLE */
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+/* INPUT STYLE */
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+background:linear-gradient(90deg,#4b00ff,#ff004c);
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+cursor:pointer;
+}
+
+/* TOP BAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+/* 🔥 HAMBURGER MENU BUTTON */
+
+.menu-btn{
+font-size:24px;
+cursor:pointer;
+margin-right:15px;
+background:white;
+padding:8px 12px;
+border-radius:8px;
+box-shadow:0 5px 12px rgba(0,0,0,0.1);
+transition:.3s;
+}
+
+.menu-btn:hover{
+transform:scale(1.05);
+}
+
+.top-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+<h3>⚡ Sections</h3>
+
+<a class="active">🏠 Homepage</a>
+<a href="/placement">💼 Placement</a>
+<a href="/homepageplacement">💼 HomepagePlacement</a>
+<a>🔬 Research</a>
+<a href="/department/students">👨‍🎓 Student</a>
+<a>🎯 Clubs</a>
+<a>📅 Happenings</a>
+<a>🖼 Gallery</a>
+<a>🏢 Facilities</a>
+<a>🎓 Student Life</a>
+<a>👥 Alumni</a>
+<a>🌍 International</a>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content" id="content">
+
+<div class="topbar">
+
+<div class="top-left">
+
+<!-- 🔥 MENU BUTTON -->
+<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+<h2>🏫 Ultra Pro Department Dashboard</h2>
+
+</div>
+
+<div>
+
+<a href="/">🌐 View Homepage</a> |
+<a href="/logout">Logout</a>
+
+</div>
+
+</div>
+
+<!-- ADD SECTION -->
+<div class="card">
+
+<h3>Upload Hero Media</h3>
+
+<form method="POST" action="/upload-hero-media" enctype="multipart/form-data">
+
+<input type="file" name="media" multiple required>
+
+<button type="submit">Upload</button>
+
+</form>
+
+</div>
+
+<!-- LIVE PREVIEW -->
+
+<div class="card">
+
+<h3>🔥 LIVE HOMEPAGE PREVIEW</h3>
+
+<iframe src="/" style="width:100%; height:500px; border-radius:10px;"></iframe>
+
+</div>
+
+</div>
+
+</div>
+<form method="POST" action="/delete-all-hero">
+    <button style="
+        background:red;
+        color:white;
+        padding:12px 18px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-bottom:20px;
+    ">
+        🗑 Delete All Media
+    </button>
+</form>
+
+<div class="card">
+
+<h3> add images/videos</h3>
+<h3>Existing Hero Media</h3>
+
+{% for m in hero_media %}
+
+<div style="margin-bottom:20px">
+
+    {% if m.type == "image" %}
+        <img src="/static/uploads/{{ m.file_name }}" width="200">
+    {% endif %}
+
+    {% if m.type == "video" %}
+        <video width="200" controls>
+            <source src="/static/uploads/{{ m.file_name }}">
+        </video>
+    {% endif %}
+
+    <form method="POST" action="/delete-hero/{{ m.id }}">
+        <button class="delete">Delete</button>
+    </form>
+
+</div>
+
+{% endfor %}
+
+</div>
+<script>
+
+/* TOGGLE SIDEBAR */
+
+function toggleSidebar(){
+document.getElementById("sidebar").classList.toggle("open");
+}
+
+/* AUTO CLOSE ON OUTSIDE CLICK */
+
+document.addEventListener("click", function(e){
+
+let sidebar = document.getElementById("sidebar");
+let menuBtn = document.querySelector(".menu-btn");
+
+if(
+sidebar.classList.contains("open") &&
+!sidebar.contains(e.target) &&
+!menuBtn.contains(e.target)
+){
+sidebar.classList.remove("open");
+}
+
+});
+
+</script>
+
+</body>
+</html>

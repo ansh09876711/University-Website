@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Materials</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo">AA<span>University</span></div>
+</header>
+
+<section class="study-page">
+
+    <h1 class="study-title">📘 RGPV Top Books</h1>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('btech')">B.Tech</button>
+        <button class="tab-btn" onclick="showTab('mba')">MBA</button>
+        <button class="tab-btn" onclick="showTab('bba')">BBA</button>
+    </div>
+
+    <!-- ================= BTECH ================= -->
+    <div class="tab-content active" id="btech">
+
+        <div class="study-books">
+
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/8231856-L.jpg"
+                     onerror="this.src='https://via.placeholder.com/200x300?text=Book'">
+                <h3>Engineering Mathematics</h3>
+                <p>Sem 1 & 2 – B.S. Grewal</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in/dp/9353162343" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/81kqrwS1nNL.jpg"
+                     onerror="this.src='https://via.placeholder.com/200x300?text=Book'">
+                <h3>Data Structures</h3>
+                <p>Sem 3 – Mark Allen Weiss</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in/dp/0133001090" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg">
+                <h3>The Lean Startup</h3>
+                <p>Eric Ries</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in/dp/0670921602" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= MBA ================= -->
+    <div class="tab-content" id="mba">
+        <div class="study-books">
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L.jpg">
+                <h3>Principles of Management</h3>
+                <p>Stephen Robbins</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/81nC1L4GZBL.jpg">
+                <h3>Financial Management</h3>
+                <p>I.M. Pandey</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= BBA ================= -->
+    <div class="tab-content" id="bba">
+        <div class="study-books">
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/71d6bX6yRPL.jpg">
+                <h3>Business Economics</h3>
+                <p>BBA Core</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/81YB7QwZP7L.jpg">
+                <h3>Business Communication</h3>
+                <p>BBA Core</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/71+8iQn+JDL.jpg">
+                <h3>Marketing Management</h3>
+                <p>Philip Kotler</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <img src="https://m.media-amazon.com/images/I/81t8fX9ZJDL.jpg">
+                <h3>Organizational Behavior</h3>
+                <p>Stephen Robbins</p>
+                <div class="buy-btns">
+                    <a href="https://www.amazon.in" target="_blank">Amazon</a>
+                    <a href="https://www.flipkart.com" target="_blank">Flipkart</a>
+                </div>
+            </div>
+
+</section>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

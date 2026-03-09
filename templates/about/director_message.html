@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Director Message | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f6f8fc;
+color:#111;
+line-height:1.7;
+overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(15px);
+
+z-index:999;
+}
+
+nav a{
+text-decoration:none;
+margin-left:25px;
+color:#111;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#2563eb;
+}
+
+/* ===== HERO ===== */
+.hero{
+height:85vh;
+background:
+linear-gradient(rgba(15,23,42,0.85),rgba(15,23,42,0.85)),
+url("https://images.unsplash.com/photo-1562774053-701939374585");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:120px 20px;
+}
+
+/* ===== DIRECTOR CARD ===== */
+
+.director-wrapper{
+
+background:white;
+border-radius:20px;
+padding:60px;
+
+display:flex;
+gap:60px;
+align-items:flex-start;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+
+flex-wrap:wrap;
+}
+
+.director-photo{
+width:350px;
+border-radius:16px;
+overflow:hidden;
+}
+
+.director-photo img{
+width:100%;
+display:block;
+transition:.5s;
+}
+
+.director-photo img:hover{
+transform:scale(1.05);
+}
+
+.message{
+flex:1;
+}
+
+.message h2{
+font-size:36px;
+margin-bottom:15px;
+}
+
+.quote{
+background:#f1f5f9;
+padding:20px;
+border-left:5px solid #2563eb;
+font-size:20px;
+font-style:italic;
+margin-bottom:25px;
+}
+
+/* ===== SIGNATURE ===== */
+
+.signature{
+margin-top:30px;
+font-weight:bold;
+font-size:18px;
+}
+
+/* ===== STATS SECTION ===== */
+
+.stats{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+gap:60px;
+padding:80px;
+flex-wrap:wrap;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:45px;
+color:#22c55e;
+margin:0;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+</nav>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Director’s Message</h1>
+<p>Vision • Leadership • Innovation</p>
+
+</div>
+
+</section>
+
+<!-- DIRECTOR MESSAGE -->
+
+<section class="section">
+
+<div class="director-wrapper">
+
+<div class="director-photo">
+
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a">
+
+</div>
+
+<div class="message">
+
+<h2>A Message from the Director</h2>
+
+<div class="quote">
+"True education inspires innovation, leadership, and lifelong learning."
+</div>
+
+<p>
+Welcome to EduStack University — where academic excellence meets innovation and industry integration. Our goal is to create a transformative educational experience that prepares students for global challenges.
+</p>
+
+<p>
+Through modern infrastructure, research-driven teaching, and collaborative learning, we empower students to become leaders of tomorrow. We strongly believe in nurturing creativity, ethical responsibility, and technological excellence.
+</p>
+
+<p>
+Our commitment is not just to education but to building an ecosystem that inspires innovation, entrepreneurship, and meaningful societal contributions.
+</p>
+
+<div class="signature">
+
+Dr. Arjun Mehta<br>
+Director, EduStack University
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat">
+<h3>5000+</h3>
+<p>Students</p>
+</div>
+
+<div class="stat">
+<h3>150+</h3>
+<p>Faculty</p>
+</div>
+
+<div class="stat">
+<h3>95%</h3>
+<p>Placement Rate</p>
+</div>
+
+</section>
+
+<footer>
+
+© 2026 EduStack University | All Rights Reserved
+
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

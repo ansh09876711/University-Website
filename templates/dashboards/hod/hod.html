@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultra Pro HOD 5.6</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f6f8fc;
+display:flex;
+color:#1e293b;
+transition:.3s;
+overflow-x:hidden;
+}
+
+.dark{
+background:#0f172a;
+color:white;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+width:260px;
+background:linear-gradient(180deg,#1e3a8a,#1e40af);
+height:100vh;
+position:fixed;
+padding:25px 18px;
+color:white;
+overflow-y:auto;
+transition:.3s;
+}
+
+.sidebar.collapsed{ width:75px; }
+
+.logo{
+font-size:22px;
+font-weight:700;
+margin-bottom:30px;
+}
+
+.menu-section{
+font-size:11px;
+opacity:.7;
+margin-top:20px;
+letter-spacing:1px;
+}
+
+.sidebar a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin-top:6px;
+transition:.2s;
+}
+
+.sidebar a:hover{
+background:rgba(255,255,255,0.15);
+transform:translateX(4px);
+}
+
+.sidebar.collapsed a span{ display:none; }
+
+.dropdown-menu{
+display:none;
+padding-left:30px;
+font-size:14px;
+transition:.3s;
+}
+
+.dropdown-menu.show{
+display:block;
+}
+
+/* ===== MAIN ===== */
+
+.main{
+margin-left:260px;
+flex:1;
+padding:30px 40px;
+transition:.3s;
+}
+
+.sidebar.collapsed + .main{
+margin-left:75px;
+}
+
+/* ===== TOPBAR ===== */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+}
+
+.top-actions{
+display:flex;
+gap:18px;
+align-items:center;
+}
+
+.top-actions i{ cursor:pointer; }
+
+/* ===== CARDS ===== */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
+}
+
+.stat-card{
+background:white;
+border-radius:18px;
+padding:24px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+transition:.25s;
+}
+
+.stat-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+}
+
+.dark .stat-card{ background:#1f2937; }
+
+.stat-card h4{
+margin:0;
+font-size:14px;
+opacity:.7;
+}
+
+.stat-card p{
+font-size:30px;
+font-weight:700;
+color:#2563eb;
+margin-top:12px;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+margin-top:30px;
+background:white;
+border-radius:18px;
+padding:28px;
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+.dark .section{ background:#1f2937; }
+
+/* ===== QUICK BUTTON ===== */
+
+.quick-float{
+position:fixed;
+right:25px;
+bottom:25px;
+background:#2563eb;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,0.25);
+transition:.2s;
+z-index:10000;
+}
+
+.quick-float:hover{ transform:scale(1.1); }
+
+/* ===== QUICK PANEL ===== */
+
+.quick-panel{
+position:fixed;
+top:0;
+right:-300px;
+height:100vh;
+width:260px;
+background:white;
+padding:25px;
+transition:.35s ease;
+box-shadow:-5px 0 25px rgba(0,0,0,0.15);
+z-index:9999;
+}
+
+.dark .quick-panel{ background:#1f2937; }
+
+.quick-panel.open{ right:0; }
+
+.quick-btn{
+display:block;
+background:#2563eb;
+color:white;
+padding:12px;
+border-radius:10px;
+margin-top:12px;
+text-align:center;
+text-decoration:none;
+transition:.2s;
+}
+
+.quick-btn:hover{ background:#1e40af; }
+
+.dropdown-menu a{
+padding-left:28px;
+font-size:14px;
+opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+
+<h2 class="logo">🎓 EduStack</h2>
+
+<div class="menu-section">MAIN</div>
+<a href="/hod"><i class="fa fa-home"></i> Dashboard</a>
+
+<div class="menu-section">REPORTS</div>
+<a onclick="toggleDrop('r1')"><i class="fa fa-chart-bar"></i> Reports</a>
+<div class="dropdown-menu" id="r1">
+<a href="/hod/classroom-activity"><i class="fa fa-circle"></i> Classroom Activity</a>
+<a href="/hod/student-attendance"><i class="fa fa-circle"></i> Student Attendance</a>
+</div>
+
+<div class="menu-section">ACADEMICS</div>
+
+<a onclick="toggleDrop('r2')">
+<i class="fa fa-school"></i> Academics
+</a>
+
+<div class="dropdown-menu" id="r2">
+<a href="/hod/student-info"><i class="fa fa-circle"></i> Student Information</a>
+<a href="/hod/classrooms"><i class="fa fa-circle"></i> Classrooms</a>
+<a href="/hod/material"><i class="fa fa-circle"></i> Study Material</a>
+<a href="/hod/department-notices"><i class="fa fa-circle"></i> Department Notices</a>
+<a href="/hod/department-reports"><i class="fa fa-circle"></i> Department Reports</a>
+</div>
+
+<div class="menu-section">STAFF MANAGEMENT</div>
+<a onclick="toggleDrop('r3')"><i class="fa fa-users"></i> Staff</a>
+<div class="dropdown-menu" id="r3">
+<a href="/hod/staff-info"><i class="fa fa-circle"></i> Staff Info</a>
+<a href="/hod/manage-devices"><i class="fa fa-circle"></i> Manage Devices</a>
+</div>
+
+<div class="menu-section">Analytics</div>
+<a onclick="toggleDrop('r4')"><i class="fa fa-school"></i> Analytics</a>
+<div class="dropdown-menu" id="r4">
+<a href="/hod/marks-analytics"><i class="fa fa-circle"></i> Marks Analytics</a>
+<a href="/hod/attendance-analytics"><i class="fa fa-circle"></i> Attendance Analytics</a>
+<a href="/hod/student-leaderboard"><i class="fa fa-circle"></i> Student Leaderboard</a>
+</div>
+
+</div> <!-- ⭐ IMPORTANT FIX: SIDEBAR CLOSED -->
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+<div>
+<i class="fa fa-bars" onclick="toggleSidebar()" style="cursor:pointer;margin-right:12px"></i>
+<b>👨‍💼 HOD Dashboard</b>
+</div>
+
+<div class="top-actions">
+<i class="fa fa-moon" onclick="toggleDark()"></i>
+<i class="fa fa-bell"></i>
+<a href="/logout" style="background:#ef4444;color:white;padding:8px 14px;border-radius:8px;text-decoration:none;">Logout</a>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat-card"><h4>Total Teachers</h4><p id="stat1">0</p></div>
+<div class="stat-card"><h4>Total Students</h4><p id="stat2">0</p></div>
+<div class="stat-card"><h4>Total Classes</h4><p id="stat3">0</p></div>
+<div class="stat-card"><h4>Attendance Today</h4><p id="stat4">0</p></div>
+</div>
+
+<div class="section">
+<h3>📊 Institute Overview</h3>
+Monitor academic performance and analytics.
+</div>
+
+</div>
+
+<div class="quick-float" onclick="toggleQuick()">⚡</div>
+
+<div class="quick-panel" id="quickPanel">
+<h3>Quick Actions</h3>
+<a class="quick-btn">Assign Class</a>
+<a class="quick-btn">Add Notice</a>
+<a class="quick-btn">Analytics</a>
+</div>
+
+<script>
+
+function toggleSidebar(){
+document.getElementById("sidebar").classList.toggle("collapsed");
+}
+
+function toggleDrop(id){
+document.getElementById(id).classList.toggle("show");
+}
+
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
+
+function toggleQuick(){
+document.getElementById("quickPanel").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e){
+let panel=document.getElementById("quickPanel");
+let button=document.querySelector(".quick-float");
+if(panel.classList.contains("open") &&
+!panel.contains(e.target) &&
+!button.contains(e.target)){
+panel.classList.remove("open");
+}
+});
+
+function animate(id,val){
+let i=0;
+let interval=setInterval(()=>{
+i++;
+document.getElementById(id).innerText=i;
+if(i>=val) clearInterval(interval);
+},10);
+}
+
+animate("stat1",12);
+animate("stat2",320);
+animate("stat3",18);
+animate("stat4",6);
+
+</script>
+
+</body>
+</html>

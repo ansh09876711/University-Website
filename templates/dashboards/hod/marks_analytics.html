@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HOD Marks Analytics</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f4f6fa;
+padding:30px;
+}
+
+h2{
+margin-bottom:25px;
+}
+
+.analytics-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card h3{
+margin-top:0;
+margin-bottom:20px;
+font-size:18px;
+}
+
+.stat{
+font-size:28px;
+font-weight:700;
+color:#2563eb;
+}
+
+.table{
+width:100%;
+border-collapse:collapse;
+}
+
+.table th, .table td{
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+.badge{
+padding:5px 10px;
+border-radius:8px;
+font-size:12px;
+color:white;
+}
+
+.badge.green{ background:#22c55e; }
+.badge.red{ background:#ef4444; }
+
+</style>
+</head>
+
+<body>
+
+<h2>📊 HOD Marks Analytics Dashboard</h2>
+
+<div class="analytics-grid">
+
+<!-- Subject Average Chart -->
+<div class="card">
+<h3>Subject Wise Average Marks</h3>
+<canvas id="marksChart"></canvas>
+</div>
+
+<!-- Overall Stats -->
+<div class="card">
+<h3>Overall Performance</h3>
+
+<p>Total Subjects</p>
+<div class="stat">{{ data|length }}</div>
+
+<hr style="margin:20px 0;">
+
+<p>Fail Subjects (Avg < 40)</p>
+<div class="stat">
+{{ data|selectattr(1, 'lt', 40)|list|length }}
+</div>
+
+</div>
+
+<!-- Topper List -->
+<div class="card">
+<h3>🏆 Top Performers</h3>
+
+<table class="table">
+<tr>
+<th>Student</th>
+<th>Average</th>
+</tr>
+
+{% for student in toppers %}
+<tr>
+<td>{{ student.student_name }}</td>
+<td>
+<span class="badge green">
+{{ student.avg_marks }}
+</span>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+</div>
+
+<script>
+
+// ===== Chart Data =====
+const labels = [
+{% for row in data %}
+"{{ row[0] }}",
+{% endfor %}
+];
+
+const values = [
+{% for row in data %}
+{{ row[1] }},
+{% endfor %}
+];
+
+// ===== Chart =====
+new Chart(document.getElementById("marksChart"), {
+type: "bar",
+data: {
+labels: labels,
+datasets: [{
+label: "Average Marks",
+data: values,
+backgroundColor: "#2563eb"
+}]
+},
+options: {
+responsive: true,
+plugins: {
+legend: { display: false }
+},
+scales: {
+y: {
+beginAtZero: true,
+max: 100
+}
+}
+}
+});
+
+</script>
+
+</body>
+</html>

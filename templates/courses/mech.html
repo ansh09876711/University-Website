@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Mechanical Engineering | EduStack University</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#ffffff;
+color:#1e293b;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0f172a;
+color:white;
+z-index:1000;
+}
+
+header nav a{
+color:#cbd5e1;
+margin-left:30px;
+text-decoration:none;
+font-size:15px;
+}
+
+header nav a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+background:#0f172a;
+color:white;
+overflow:hidden;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+padding:0 20px;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+color:#cbd5e1;
+font-size:18px;
+}
+
+/* CANVAS */
+
+#bg{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:1;
+}
+
+/* SECTION */
+
+.section{
+padding:100px 80px;
+max-width:1200px;
+margin:auto;
+background:white;
+}
+
+.section h2{
+font-size:36px;
+margin-bottom:40px;
+text-align:center;
+color:#0f172a;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#f8fafc;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+gap:80px;
+flex-wrap:wrap;
+margin-top:40px;
+justify-content:center;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:42px;
+color:#0f172a;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+padding:15px 20px;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.section{
+padding:60px 20px;
+}
+
+.stats{
+gap:40px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h2>EDUSTACK UNIVERSITY</h2>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#">Academics</a>
+<a href="#">Research</a>
+<a href="#">Placements</a>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Mechanical Engineering</h1>
+
+<p>
+
+Driving innovation in Robotics, Automotive Systems,
+Thermal Engineering and Advanced Manufacturing.
+
+</p>
+
+</div>
+
+<canvas id="bg"></canvas>
+
+</section>
+
+
+<!-- SPECIALIZATIONS -->
+
+<section class="section">
+
+<h2>Core Specializations</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Thermal Engineering</h3>
+
+<p>
+
+Heat transfer, energy systems and power plant engineering.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Robotics & Automation</h3>
+
+<p>
+
+Smart manufacturing, robotics and automation technologies.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Automobile Engineering</h3>
+
+<p>
+
+Vehicle dynamics, EV technology and powertrain research.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Manufacturing Technology</h3>
+
+<p>
+
+Advanced machining, CAD/CAM and industrial production.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="section">
+
+<h2>Placement Highlights</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h3 id="students">0</h3>
+<p>Students</p>
+</div>
+
+<div class="stat">
+<h3 id="faculty">0</h3>
+<p>Faculty</p>
+</div>
+
+<div class="stat">
+<h3 id="recruiters">0</h3>
+<p>Recruiters</p>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 EduStack University | Mechanical Engineering
+
+</footer>
+
+
+
+<script>
+
+/* ===== THREE JS ENGINE ANIMATION ===== */
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+);
+
+const renderer = new THREE.WebGLRenderer({
+canvas:document.getElementById("bg"),
+antialias:true
+});
+
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+camera.position.z = 10;
+
+/* LIGHT */
+
+const light = new THREE.PointLight(0x38bdf8,2,100);
+light.position.set(5,5,5);
+scene.add(light);
+
+const ambient = new THREE.AmbientLight(0xffffff,0.5);
+scene.add(ambient);
+
+
+/* GEAR FUNCTION */
+
+function createGear(radius,teeth){
+
+const shape = new THREE.Shape();
+
+shape.absarc(0,0,radius,0,Math.PI*2,false);
+
+for(let i=0;i<teeth;i++){
+
+let angle = (i/teeth)*Math.PI*2;
+
+let x = Math.cos(angle)*(radius+0.25);
+let y = Math.sin(angle)*(radius+0.25);
+
+shape.lineTo(x,y);
+
+}
+
+const geometry = new THREE.ExtrudeGeometry(shape,{
+depth:0.5,
+bevelEnabled:false
+});
+
+const material = new THREE.MeshStandardMaterial({
+color:0x38bdf8,
+metalness:0.8,
+roughness:0.2
+});
+
+const gear = new THREE.Mesh(geometry,material);
+
+return gear;
+
+}
+
+
+/* GEARS */
+
+const gear1 = createGear(1.5,20);
+gear1.position.x = -3;
+
+const gear2 = createGear(1.2,18);
+gear2.position.x = 0;
+
+const gear3 = createGear(1.4,20);
+gear3.position.x = 3;
+
+scene.add(gear1);
+scene.add(gear2);
+scene.add(gear3);
+
+
+/* PISTON */
+
+const pistonGeometry = new THREE.CylinderGeometry(0.5,0.5,2,32);
+
+const pistonMaterial = new THREE.MeshStandardMaterial({
+color:0xffffff,
+metalness:0.9,
+roughness:0.2
+});
+
+const piston = new THREE.Mesh(pistonGeometry,pistonMaterial);
+
+piston.rotation.z = Math.PI/2;
+
+piston.position.y = -2;
+
+scene.add(piston);
+
+
+/* CONNECTING ROD */
+
+const rodGeometry = new THREE.BoxGeometry(0.3,3,0.3);
+
+const rodMaterial = new THREE.MeshStandardMaterial({
+color:0x38bdf8,
+metalness:1,
+roughness:0.3
+});
+
+const rod = new THREE.Mesh(rodGeometry,rodMaterial);
+
+rod.position.y = -3;
+
+scene.add(rod);
+
+
+/* ANIMATION */
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+let time = Date.now()*0.002;
+
+gear1.rotation.z += 0.02;
+gear2.rotation.z -= 0.03;
+gear3.rotation.z += 0.02;
+
+piston.position.y = Math.sin(time)*1.5;
+
+rod.position.y = piston.position.y - 2;
+
+renderer.render(scene,camera);
+
+}
+
+animate();
+
+
+/* RESPONSIVE */
+
+window.addEventListener("resize",()=>{
+
+camera.aspect = window.innerWidth/window.innerHeight;
+
+camera.updateProjectionMatrix();
+
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+});
+
+
+/* COUNTER */
+
+function animateCounter(id,target){
+
+let count=0;
+
+const el=document.getElementById(id);
+
+const interval=setInterval(()=>{
+
+count+=Math.ceil(target/100);
+
+if(count>=target){
+count=target;
+clearInterval(interval);
+}
+
+el.innerText=count;
+
+},20);
+
+}
+
+window.onload=function(){
+
+animateCounter("students",720);
+animateCounter("faculty",48);
+animateCounter("recruiters",110);
+
+};
+
+</script>
+
+</body>
+</html>

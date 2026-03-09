@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>HOD Staff Info</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    background:linear-gradient(135deg,#eef3ff,#f7f9fc);
+    padding:40px;
+}
+
+/* TITLE */
+
+h2{
+    margin-bottom:25px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.staff-card{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:0.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.staff-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 14px 35px rgba(0,0,0,0.15);
+}
+
+/* TOP GRADIENT STRIP */
+
+.staff-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:6px;
+    background:linear-gradient(90deg,#1e73d8,#00c6ff);
+}
+
+/* IMAGE */
+
+.staff-card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #f2f4f8;
+    margin-bottom:12px;
+}
+
+/* NAME */
+
+.name{
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+/* TAG CONTAINER */
+
+.tags{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+/* TAG */
+
+.tag{
+    background:#1e73d8;
+    color:white;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:13px;
+}
+
+/* Different color tags */
+
+.subject{ background:#00a8ff; }
+.class{ background:#6c5ce7; }
+.degree{ background:#00b894; }
+
+</style>
+
+</head>
+
+<body>
+
+<h2>👩‍🏫 Staff Information</h2>
+
+<div class="grid">
+
+{% for t in teachers %}
+
+<div class="staff-card">
+
+<img src="{{ t[4] }}" alt="photo">
+
+<div class="name">{{ t[0] }}</div>
+
+<div class="tags">
+<span class="tag subject">📘 {{ t[1] or 'No Subject' }}</span>
+<span class="tag class">🏫 {{ t[2] or 'No Class' }}</span>
+<span class="tag degree">🎓 {{ t[3] or 'No Degree' }}</span>
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

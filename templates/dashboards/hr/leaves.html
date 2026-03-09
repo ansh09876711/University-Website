@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Email Leave Management</title>
+
+<style>
+
+body{
+font-family:Segoe UI, sans-serif;
+background:#f4f6fb;
+margin:0;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#2563eb;
+font-weight:600;
+}
+
+.table-box{
+background:white;
+padding:20px;
+border-radius:14px;
+box-shadow:0 5px 25px rgba(0,0,0,0.05);
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:14px;
+text-align:left;
+position:sticky;
+top:0;
+}
+
+td{
+padding:14px;
+border-bottom:1px solid #f1f1f1;
+}
+
+tr:hover{
+background:#f9fafb;
+}
+
+.status{
+padding:6px 14px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+display:inline-block;
+}
+
+.pending{
+background:#fde68a;
+color:#92400e;
+}
+
+.approved{
+background:#22c55e;
+color:white;
+}
+
+.rejected{
+background:#ef4444;
+color:white;
+}
+
+.action-box{
+display:flex;
+gap:10px;
+}
+
+.btn{
+padding:7px 14px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+transition:0.2s;
+}
+
+.approve{
+background:#22c55e;
+color:white;
+}
+
+.approve:hover{
+background:#16a34a;
+}
+
+.reject{
+background:#ef4444;
+color:white;
+}
+
+.reject:hover{
+background:#dc2626;
+}
+
+.empty{
+text-align:center;
+padding:20px;
+color:#888;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/hr" class="back">⬅ Back to HR Dashboard</a>
+
+<h2>📧 Email Leave Management</h2>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+<th>Teacher</th>
+<th>From</th>
+<th>To</th>
+<th>Reason</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% if email_leaves %}
+
+{% for e in email_leaves %}
+
+<tr>
+
+<td>{{e.teacher_name}}</td>
+<td>{{e.leave_from}}</td>
+<td>{{e.leave_to}}</td>
+<td>{{e.reason}}</td>
+
+<td>
+<span class="status {{e.status}}">
+{{e.status}}
+</span>
+</td>
+
+<td>
+
+{% if e.file_path %}
+<a href="/{{e.file_path}}" target="_blank">
+<button class="btn">View</button>
+</a>
+{% endif %}
+
+{% if e.status == 'pending' %}
+<a href="/hr/email-leave/approve/{{e.id}}">
+<button class="btn approve">Accept</button>
+</a>
+
+<a href="/hr/email-leave/reject/{{e.id}}">
+<button class="btn reject">Reject</button>
+</a>
+{% endif %}
+
+<a href="/hr/email-leave/delete/{{e.id}}">
+<button class="btn reject">Delete</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+<td colspan="6" class="empty">
+No Email Leaves Found
+</td>
+</tr>
+
+{% endif %}
+
+</table>
+
+</div>
+</div>
+</body>
+</html>

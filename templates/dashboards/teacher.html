@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/static/teacher.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2 class="logo">🎓 Teacher</h2>
+
+        <a href="/teacher" class="menu-item active">🏠 Dashboard</a>
+        <a href="/teacher/attendance" class="menu-item">📅 Attendance</a>
+        <a href="/teacher/students" class="menu-item">👨‍🎓 Students</a>
+        <a href="/teacher/materials" class="menu-item">📚 Study Material</a>
+        <a href="/teacher/assignments" class="menu-item">📝 Assignments</a>
+        <a href="/teacher/subject" class="menu-item">📖 Subject</a>
+        <a href="/teacher/marks" class="menu-item">✏ Marks</a>
+        <a href="/teacher/analytics" class="menu-item">📊 Analytics</a>
+        <a href="/teacher/notices" class="menu-item">📢 Notices</a>
+        <a href="/teacher/profile" class="menu-item">👤 Profile</a>
+        <a href="/logout" class="menu-item logout">🚪 Logout</a>
+    </div>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- MINI PROFILE -->
+        <div class="mini-profile">
+
+            {% if profile %}
+
+                <img src="/static/uploads/{{ profile.photo }}"
+                     class="mini-photo">
+
+                <span class="mini-name">
+                    {{ profile.name }}
+                </span>
+
+            {% else %}
+
+                <img src="/static/default.png"
+                     class="mini-photo">
+
+                <span class="mini-name">
+                    {{ session.username }}
+                </span>
+
+            {% endif %}
+
+        </div>
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <button onclick="toggleMenu()">☰</button>
+            <h2>Welcome, {{ session.username }}</h2>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="card green">
+                <h3>Present Today</h3>
+                <p>--</p>
+            </div>
+            <div class="card red">
+                <h3>Absent Today</h3>
+                <p>--</p>
+            </div>
+            <div class="card blue">
+                <h3>% Attendance</h3>
+                <p>--</p>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <!-- QUICK ACTIONS -->
+<div class="section">
+    <h3>⚡ Quick Actions</h3>
+
+    <div class="actions">
+
+        <button onclick="location.href='/teacher/attendance'">
+            📅 Mark Attendance
+        </button>
+
+        <button onclick="location.href='/teacher/online'">
+            📤 Online Classes
+        </button>
+
+        <button onclick="location.href='/teacher/schedule'">
+            📅 Schedule
+        </button>
+
+        <button onclick="location.href='/teacher/Test'">
+            💬 Test/Quiz
+        </button>
+
+        <button onclick="location.href='/teacher/assignments'">
+            📝 Upload Assignment
+        </button>
+
+        <button onclick="location.href='/teacher/marks'">
+            ✏ Upload Marks
+        </button>
+
+    </div>
+</div>
+        <!-- ANALYTICS -->
+        <div class="section">
+            <h3>📈 Attendance Analytics</h3>
+
+            <div class="analytics">
+                <div class="box">
+                    <h4>Present vs Absent</h4>
+                </div>
+                <div class="box">
+                    <h4>Attendance Overview</h4>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- STYLE -->
+<style>
+.mini-profile{
+    position:absolute;
+    top:20px;
+    right:30px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.mini-photo{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #2563eb;
+}
+
+.mini-name{
+    font-size:13px;
+    font-weight:600;
+}
+</style>
+
+<script>
+function toggleMenu(){
+   document.querySelector(".sidebar").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admission Cell</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#eef2f7;
+margin:0;
+}
+
+/* ===== HEADER ===== */
+
+.header{
+background:linear-gradient(135deg,#2563eb,#1e40af);
+color:white;
+padding:30px;
+text-align:center;
+font-size:26px;
+font-weight:bold;
+box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== MAIN BOX ===== */
+
+.container{
+width:1000px;
+margin:40px auto;
+background:white;
+padding:40px;
+border-radius:14px;
+box-shadow:0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* ===== GRID ===== */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+/* ===== CARD ===== */
+
+.card{
+text-decoration:none;
+background:#f8fafc;
+padding:35px 25px;
+border-radius:14px;
+text-align:center;
+transition:0.3s;
+color:#111827;
+border:1px solid transparent;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
+border-color:#2563eb;
+}
+
+/* ICON */
+
+.icon{
+font-size:38px;
+margin-bottom:12px;
+}
+
+/* TITLE */
+
+.card h3{
+margin:10px 0 6px;
+font-size:18px;
+}
+
+/* DESCRIPTION */
+
+.card p{
+color:#6b7280;
+font-size:14px;
+}
+
+/* BACK BUTTON */
+
+.back{
+display:inline-block;
+margin:30px auto;
+background:#2563eb;
+color:white;
+padding:12px 24px;
+border-radius:8px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.back:hover{
+background:#1e40af;
+}
+
+.center{
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+🎓 Admission Cell Dashboard
+</div>
+
+<div class="container">
+
+<div class="cards">
+
+<a href="/admission/new-applications" class="card">
+<div class="icon">📝</div>
+<h3>New Applications</h3>
+<p>View student applications</p>
+</a>
+
+<a href="/admission/approve" class="card">
+<div class="icon">✔️</div>
+<h3>Approve Admissions</h3>
+<p>Approve or Reject applications</p>
+</a>
+
+<a href="/admission/reports" class="card">
+<div class="icon">📊</div>
+<h3>Admission Reports</h3>
+<p>Statistics & analytics</p>
+</a>
+
+<a href="/admission/documents" class="card">
+<div class="icon">📥</div>
+<h3>Documents</h3>
+<p>Uploaded files</p>
+</a>
+
+<a href="/admission/fees" class="card">
+<div class="icon">💰</div>
+<h3>Fees Status</h3>
+<p>Track payments</p>
+</a>
+
+<a href="/admission/settings" class="card">
+<div class="icon">⚙️</div>
+<h3>Settings</h3>
+<p>Admission configuration</p>
+</a>
+
+</div>
+
+<div class="center">
+<a href="/admin/portals" class="back">⬅ Back</a>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Placement Admin</title>
+
+<style>
+
+body{
+font-family:Poppins;
+background:#f6f7fb;
+padding:40px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+button{
+background:linear-gradient(120deg,#4b00ff,#ff004c);
+color:white;
+border:none;
+padding:12px 25px;
+cursor:pointer;
+border-radius:6px;
+}
+
+.live-placement{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+width:220px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.delete-btn{
+background:red;
+margin-top:10px;
+}
+
+.delete-all{
+background:black;
+margin-bottom:20px;
+}
+.card{
+    width:220px;
+    height:120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f5f5f5;
+    border-radius:12px;
+}
+
+.card img{
+    max-width:120px;
+    max-height:60px;
+    object-fit:contain;
+}
+.recruiter-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.recruiter-card{
+    width:240px;
+    height:120px;
+    background:#f5f5f5;
+    border-radius:15px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.recruiter-card img{
+    max-width:120px;
+    max-height:60px;
+    object-fit:contain;
+}
+
+.delete-btn{
+    margin-top:10px;
+    background:red;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    border-radius:5px;
+}
+
+.delete-all{
+    margin-top:20px;
+    background:black;
+    color:white;
+    padding:10px 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🔥 Upload Recruiter</h2>
+
+<form action="/upload_recruiter" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="company_logo" required>
+
+<button type="submit">Upload Recruiter</button>
+
+</form>
+
+<h2>🔥 Live Recruiter Data</h2>
+
+<div class="recruiter-grid">
+
+{% for r in recruiters %}
+
+<div class="recruiter-card">
+
+    <img src="{{ url_for('static', filename='recruiters/' + r.company_logo) }}">
+
+    <form action="/delete-recruiter/{{ r.id }}" method="POST">
+        <button class="delete-btn">Delete</button>
+    </form>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<form action="/delete-all-recruiters" method="POST">
+    <button class="delete-all">Delete All Recruiters</button>
+</form>
+
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Teacher Timetable Upload</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f6fb;
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px;
+}
+
+/* ===== TITLE ===== */
+
+h1{
+margin-bottom:25px;
+color:#1e3a8a;
+}
+
+/* ===== CARD ===== */
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+margin-bottom:30px;
+}
+
+/* ===== FORM ===== */
+
+select,input[type=file]{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* ===== BUTTON ===== */
+
+.btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+}
+
+.btn:hover{
+background:#1e40af;
+}
+
+/* ===== TIMETABLE GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.timetable-box{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.05);
+}
+
+.timetable-box img{
+width:100%;
+border-radius:8px;
+margin-top:10px;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+margin-top:12px;
+background:#dc2626;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.delete-btn:hover{
+background:#991b1b;
+}
+/* Back button spacing */
+.back-btn a{
+    margin-bottom:15px;
+    background-color: #1e3a8a;
+    color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<a href="/teacher">⬅ Back to Dashboard</a>
+
+<h1>📅 Upload Class Timetable</h1>
+
+<!-- ================= UPLOAD CARD ================= -->
+
+<div class="card">
+
+<form method="POST" enctype="multipart/form-data">
+
+<label>Select Class</label>
+
+<select name="class_id" required>
+
+<option value="">Select Class</option>
+
+{% for c in classes %}
+<option value="{{ c.id }}">{{ c.class_name }}</option>
+{% endfor %}
+
+</select>
+
+<label>Upload Timetable Image</label>
+
+<input type="file" name="timetable" accept="image/*" required>
+
+<button class="btn" type="submit">
+Upload Timetable
+</button>
+
+</form>
+
+</div>
+
+
+<!-- ================= EXISTING TIMETABLES ================= -->
+
+<div class="card">
+
+<h2>Uploaded Timetables</h2>
+
+<div class="grid">
+
+{% for t in timetables %}
+
+<div class="timetable-box">
+
+<strong>{{ t.class_name }}</strong>
+
+<img src="/static/uploads/{{ t.image_path }}">
+
+<form method="POST"
+action="/teacher/delete-timetable/{{ t.id }}">
+
+<button class="delete-btn">
+Delete
+</button>
+
+</form>
+
+</div>
+
+{% endfor %}
+
+{% if timetables|length == 0 %}
+
+<p>No timetable uploaded yet.</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

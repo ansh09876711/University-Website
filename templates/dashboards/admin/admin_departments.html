@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Management</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>🏫 Department Management</h1>
+        <a href="/admin" class="btn btn-secondary">⬅ Back to Dashboard</a>
+    </div>
+
+    <!-- Add Department -->
+    <div class="card">
+        <h3>Add New Department</h3>
+        <form method="post" class="form-grid">
+            <input type="text" name="name" placeholder="Department Name" required>
+            <input type="text" name="hod" placeholder="HOD Name">
+            <button type="submit" class="btn btn-primary">➕ Add Department</button>
+        </form>
+    </div>
+
+    <!-- Assign Teacher -->
+    <div class="card">
+        <h3>Assign Teacher to Department</h3>
+
+        <form method="post" action="/admin/assign-teacher" class="form-grid">
+            <select name="teacher_id" required>
+                <option value="">Select Teacher</option>
+                {% for t in teachers %}
+                    <option value="{{ t.id }}">
+                        {{ t.username }} ({{ t.department or "No Dept" }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select name="department_id" required>
+                <option value="">Select Department</option>
+                {% for d in departments %}
+                    <option value="{{ d.id }}">{{ d.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn btn-primary">📌 Assign</button>
+        </form>
+    </div>
+
+    <!-- Departments Table -->
+     <div class="table-wrap">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Department</th>
+            <th>HOD</th>
+            <th>Created</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for d in departments %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><strong>{{ d.name }}</strong></td>
+            <td>{{ d.hod or "—" }}</td>
+            <td>{{ d.created_at.strftime("%d %b %Y") }}</td>
+            <td>
+                <a href="/admin/departments/edit/{{ d.id }}" class="btn btn-sm">✏ Edit</a>
+                <a href="/admin/departments/delete/{{ d.id }}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete department?')">
+                   ❌ Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <!-- Teacher Department List -->
+    <div class="card">
+        <h3>Teachers & Their Departments</h3>
+        <div class="table-wrap">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Teacher</th>
+                <th>Department</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for t in teachers %}
+            <tr>
+                <td>{{ t.username }}</td>
+                <td>{{ t.department or "Not Assigned" }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

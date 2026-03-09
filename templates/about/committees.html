@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Regulatory Committees | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ================= GLOBAL ================= */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(to bottom,#f8fafc,#eef2ff);
+color:#1e293b;
+line-height:1.7;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 4px 20px rgba(0,0,0,0.05);
+z-index:1000;
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#334155;
+font-weight:600;
+font-size:15px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#2563eb;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+margin-top:90px;
+height:380px;         /* fixed compact height */
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:linear-gradient(135deg,#0f172a,#1e40af);
+color:white;
+}
+.hero-content{
+max-width:900px;
+}
+
+.hero h1{
+font-size:58px;
+margin-bottom:20px;
+letter-spacing:1px;
+line-height:1.2;
+}
+
+.hero p{
+font-size:20px;
+opacity:.9;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:90px 20px;
+}
+
+/* ================= COMMITTEE GRID ================= */
+
+.committee-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
+
+/* ================= COMMITTEE CARD ================= */
+
+.committee-card{
+background:white;
+padding:35px;
+border-radius:22px;
+box-shadow:0 15px 40px rgba(0,0,0,0.06);
+transition:all .4s ease;
+border-top:5px solid #2563eb;
+}
+
+.committee-card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 60px rgba(0,0,0,0.12);
+}
+
+.committee-card h3{
+margin-top:0;
+margin-bottom:15px;
+font-size:22px;
+color:#1e40af;
+}
+
+.committee-card ul{
+padding-left:20px;
+margin-top:10px;
+color:#475569;
+line-height:1.8;
+}
+
+.committee-card ul li{
+margin-bottom:6px;
+}
+
+/* ================= RESPONSIBILITY SECTION ================= */
+
+.responsibility{
+margin-top:80px;
+background:linear-gradient(135deg,#1e293b,#0f172a);
+color:white;
+padding:70px 40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+.responsibility h2{
+text-align:center;
+margin-bottom:30px;
+font-size:32px;
+}
+
+.responsibility ul{
+max-width:850px;
+margin:auto;
+line-height:2;
+font-size:17px;
+opacity:.95;
+}
+
+.responsibility ul li{
+margin-bottom:10px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#0f172a;
+color:#cbd5e1;
+text-align:center;
+padding:25px;
+margin-top:80px;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+<header>
+
+<h3>EDUSTACK UNIVERSITY</h3>
+
+<nav>
+
+<a href="{{ url_for('home') }}" class="nav-btn">Home</a>
+
+<!-- ABOUT MENU -->
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+<div class="mega-inner">
+
+<div class="mega-left">
+<h3>Overview</h3>
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 🔥 ACADEMICS MEGA MENU -->
+<!-- ACADEMICS MENU -->
+<div class="menu">
+    <a href="#" id="academicsBtn">Academics</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Undergraduate" target="_blank">Undergraduate</a>
+                <a href="/Postgraduate" target="_blank">Postgraduate</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/examinations" target="_blank">Examinations</a>
+                <a href="/time-table" target="_blank">Time Table</a>
+                <a href="/notices" target="_blank">Notices</a>
+                <a href="/academic-calendar" target="_blank">Academic Calendar</a>
+                <a href="/code-of-conduct" target="_blank">Code of Conduct</a>
+                <a href="/IQAC" target="_blank">IQAC</a>
+                <a href="/library" target="_blank">Library</a>
+                <a href="/faculty-staff" target="_blank">Faculty & Staff</a>
+            </div>
+
+        </div>
+    </div>
+</div>  <!-- 🔥 THIS CLOSING WAS MISSING -->
+
+
+<!-- FACILITIES MENU -->
+<div class="menu">
+    <a href="#" id="facilitiesBtn">Facilities</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Timelapse</a>
+                <a href="/Newsletter" target="_blank">Newsletter</a>
+                <a href="/Sports" target="_blank">Sports</a>
+                <a href="/e-learning" target="_blank">E-Learning</a>
+                <a href="/chapter-association" target="_blank">Chapter & Association</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/clubs" target="_blank">Clubs</a>
+                <a href="/research-innovation" target="_blank">Research & Innovation</a>
+                <a href="/transport-facilities" target="_blank">Transport Facilities</a>
+                <a href="/wifi-campus" target="_blank">Wifi Campus</a>
+                <a href="/canteen" target="_blank">Canteen</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<a href="/placementhome">Placements</a>
+
+<!---Courses-->
+<div class="menu">
+    <a href="#" id="CourseBtn">Courses</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Computer Science & Engineering</a>
+                <a href="/Newsletter" target="_blank">Information Technology</a>
+                <a href="/Sports" target="_blank">Electronics & Communication Engineering</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/research-innovation" target="_blank">Mechanical Engineering</a>
+                <a href="/transport-facilities" target="_blank">Civil Engineering</a>
+                <a href="/wifi-campus" target="_blank">Management</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a href="/login">Login</a>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-content">
+      <h1>Regulatory Committees</h1>
+      <p>Ensuring Transparency, Compliance & Institutional Integrity</p>
+  </div>
+</section>
+
+<!-- COMMITTEES -->
+
+<section class="section">
+
+<div class="committee-grid">
+
+<div class="committee-card">
+<h3>Internal Quality Assurance Cell (IQAC)</h3>
+<ul>
+<li>Dr. Riya Sharma – Chairperson</li>
+<li>Dr. Arjun Mehta – Member</li>
+<li>Mr. Rajiv Verma – Member</li>
+</ul>
+</div>
+
+<div class="committee-card">
+<h3>Anti-Ragging Committee</h3>
+<ul>
+<li>Dr. Vikram Singh – Chairperson</li>
+<li>Ms. Ananya Gupta – Member</li>
+<li>Student Representative</li>
+</ul>
+</div>
+
+<div class="committee-card">
+<h3>Grievance Redressal Committee</h3>
+<ul>
+<li>Dr. Sneha Kapoor – Chairperson</li>
+<li>Registrar – Member</li>
+<li>Faculty Representative</li>
+</ul>
+</div>
+
+<div class="committee-card">
+<h3>Examination Committee</h3>
+<ul>
+<li>Dean Academics – Chairperson</li>
+<li>Controller of Examination</li>
+<li>Senior Faculty Members</li>
+</ul>
+</div>
+
+<div class="committee-card">
+<h3>Research & Ethics Committee</h3>
+<ul>
+<li>Head of Research – Chairperson</li>
+<li>Industry Expert</li>
+<li>External Academic Member</li>
+</ul>
+</div>
+
+<div class="committee-card">
+<h3>Finance Committee</h3>
+<ul>
+<li>Finance Officer – Chairperson</li>
+<li>Registrar</li>
+<li>Board Representative</li>
+</ul>
+</div>
+
+</div>
+
+<!-- RESPONSIBILITIES -->
+
+<div class="responsibility">
+
+<h2>Roles & Responsibilities</h2>
+
+<ul>
+<li>Ensure compliance with UGC, AICTE, NAAC & NBA guidelines</li>
+<li>Maintain academic quality and institutional standards</li>
+<li>Promote ethical practices and student welfare</li>
+<li>Handle grievances transparently and efficiently</li>
+<li>Monitor financial transparency and governance structure</li>
+</ul>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 EduStack University | All Rights Reserved
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

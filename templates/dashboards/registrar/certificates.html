@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Certificates Panel</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6fb;
+padding:40px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+.btn{
+background:#2563eb;
+color:white;
+padding:8px 12px;
+border-radius:6px;
+border:none;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>📜 Certificate Management (Registrar)</h2>
+
+<div class="card">
+
+<form method="POST">
+
+<select name="student_id" required>
+
+<option value="">Select Student</option>
+
+{% for s in students %}
+<option value="{{s.id}}">{{s.username}}</option>
+{% endfor %}
+
+</select>
+
+<select name="certificate_type">
+
+<option>Completion Certificate</option>
+<option>Achievement Certificate</option>
+<option>Participation Certificate</option>
+
+</select>
+
+<button class="btn">Generate Certificate</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h3>Certificate History</h3>
+
+<table>
+
+<tr>
+<th>Student</th>
+<th>Type</th>
+<th>Date</th>
+<th>Download</th>
+</tr>
+
+{% for c in certs %}
+
+<tr>
+<td>{{c.username}}</td>
+<td>{{c.certificate_type}}</td>
+<td>{{c.issue_date}}</td>
+<td>
+<a class="btn" href="/static/certificates/cert_{{c.student_id}}.pdf" target="_blank">Download</a>
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

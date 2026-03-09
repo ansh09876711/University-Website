@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HR Recruitment</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.back-btn{
+display:inline-block;
+margin-bottom:15px;
+text-decoration:none;
+color:#2563eb;
+font-weight:600;
+background:#eff6ff;
+padding:8px 14px;
+border-radius:8px;
+}
+
+input{
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:14px;
+text-align:left;
+}
+
+td{
+padding:14px;
+border-bottom:1px solid #eee;
+}
+
+.status{
+font-weight:bold;
+}
+
+.applied{color:#2563eb;}
+.interview{color:#f59e0b;}
+.selected{color:#16a34a;}
+.rejected{color:#dc2626;}
+
+.btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/hr" class="back-btn">⬅ Back to HR Dashboard</a>
+
+<h2>🔥 ULTRA HR Recruitment System</h2>
+<p>Smart Candidate Management Dashboard</p>
+
+<div class="card">
+
+<input type="text" id="search" placeholder="Search candidate...">
+
+<table id="table">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Position</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for c in candidates %}
+
+<tr>
+
+<td>{{c.id}}</td>
+<td>{{c.name}}</td>
+<td>{{c.position}}</td>
+
+<td class="status {{c.status}}">
+{{c.status}}
+</td>
+
+<td>
+
+<button class="btn">View</button>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("search").onkeyup = function(){
+
+let val = this.value.toLowerCase();
+
+document.querySelectorAll("#table tr").forEach((row,i)=>{
+
+if(i==0) return;
+
+row.style.display = row.innerText.toLowerCase().includes(val)
+? ""
+: "none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Undergraduate Programs</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:linear-gradient(135deg,#3b1dd1,#7c3aed);
+    color:white;
+}
+
+/* HEADER */
+.header{
+    padding:40px;
+    text-align:center;
+}
+
+.header h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.header p{
+    opacity:.9;
+}
+
+/* GRID */
+.container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    padding:40px;
+}
+
+/* CARD */
+.card{
+    width:300px;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,0.2);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:14px;
+    opacity:.9;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 15px;
+    border-radius:20px;
+    background:white;
+    color:#3b1dd1;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#e5e5ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🎓 Postgraduate Programs</h1>
+</div>
+
+
+<div class="container">
+
+    <div class="card">
+        <h3>B.Tech Computer Science</h3>
+        <p>Advanced AI, Machine Learning & Cloud Computing specialization.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+    <div class="card">
+        <h3>B.Tech Information Technology</h3>
+        <p>Software + Networking specialization.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+    <div class="card">
+        <h3>B.Tech Mechanical</h3>
+        <p>Research-focused thermal and design engineering program.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+    <div class="card">
+        <h3>B.Tech Civil</h3>
+        <p>Infrastructure and construction engineering program.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+     <div class="card">
+        <h3>B.Tech Electrical</h3>
+        <p>Power systems and electronics engineering program.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+     <div class="card">
+        <h3>B.Tech Biotechnology</h3>
+        <p>Biological and chemical engineering specialization.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+     <div class="card">
+        <h3>BBA</h3>
+        <p>Business administration and management program.</p>
+        <a href="#" class="btn">View Details</a>
+    </div>
+
+
+
+</div>
+
+</div>
+
+</body>
+</html>

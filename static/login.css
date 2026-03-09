@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* THREE CANVAS */
+#login-3d{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* PAGE */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    position: relative;
+    z-index: 1;
+}
+
+/* CARD */
+.login-card {
+    width: 850px;
+    height: 420px;
+    display: flex;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* LEFT */
+.login-left {
+    flex: 1;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-left h2 {
+    font-size: 36px;
+}
+
+.login-left p {
+    opacity: 0.9;
+}
+
+/* RIGHT */
+.login-right {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-right h3 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.roles {
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    color: #555;
+}
+
+.error {
+    color: red;
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 900px){
+
+.login-card{
+    width:90%;
+    height:auto;
+    flex-direction:column;
+}
+
+/* left section */
+.login-left{
+    padding:30px;
+    text-align:center;
+}
+
+.login-left h2{
+    font-size:26px;
+}
+
+/* right section */
+.login-right{
+    padding:30px;
+}
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width:480px){
+
+body{
+    overflow:auto; /* mobile scroll enable */
+}
+
+/* page spacing */
+.login-page{
+    padding:20px;
+}
+
+/* card full width */
+.login-card{
+    width:100%;
+    border-radius:12px;
+}
+
+/* heading smaller */
+.login-left h2{
+    font-size:22px;
+}
+
+/* inputs mobile friendly */
+.input-group input{
+    padding:14px;
+    font-size:16px;
+}
+
+/* button better tap size */
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+.roles{
+    font-size:12px;
+}
+
+}
+/* ================= MOBILE PERFECT CENTER FIX ================= */
+
+@media (max-width:768px){
+
+body{
+    overflow:auto;
+}
+
+/* page center */
+.login-page{
+    min-height:100vh;
+    padding:20px 15px;
+    align-items:center;
+}
+
+/* card responsive */
+.login-card{
+    width:100%;
+    max-width:420px;
+    height:auto;
+    flex-direction:column;
+    margin:auto;
+}
+
+/* welcome section */
+.login-left{
+    padding:30px 20px;
+    text-align:center;
+}
+
+.login-left h2{
+    font-size:24px;
+    line-height:1.2;
+}
+
+/* form section */
+.login-right{
+    padding:25px 20px;
+}
+
+/* inputs */
+.input-group input{
+    padding:14px;
+    font-size:16px;
+}
+
+/* button */
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+}
+/* ============================= */
+/* MOBILE RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 768px){
+
+/* HEADER */
+
+header{
+flex-direction:column;
+padding:10px;
+}
+
+nav{
+display:none;
+}
+
+/* HERO */
+
+.hero{
+height:300px;
+}
+
+/* ADMISSION */
+
+.admission-container{
+padding:20px;
+text-align:center;
+}
+
+.admission-container h1{
+font-size:24px;
+}
+
+.admission-buttons{
+flex-direction:column;
+gap:15px;
+}
+
+.download-btn{
+width:100%;
+}
+
+/* RESEARCH */
+
+.research-wrapper{
+flex-direction:column;
+padding:20px;
+}
+
+.research-track{
+flex-direction:column;
+}
+
+/* KNOWLEDGE SECTION */
+
+.knowledge-container{
+flex-direction:column;
+padding:20px;
+}
+
+.slider-track{
+flex-direction:column;
+gap:20px;
+}
+
+/* PLACEMENT */
+
+.placement-flex{
+flex-direction:column;
+}
+
+.placement-left{
+padding:20px;
+}
+
+.placement-right{
+width:100%;
+}
+
+/* DEPARTMENT GRID */
+
+.department-grid{
+grid-template-columns:1fr;
+gap:20px;
+padding:20px;
+}
+
+.department-card img{
+height:200px;
+}
+
+/* NEWS */
+
+.grid{
+grid-template-columns:1fr;
+}
+
+/* FOOTER */
+
+.footer-grid{
+grid-template-columns:1fr;
+gap:20px;
+padding:20px;
+}
+
+/* CHATBOT MOBILE */
+
+#chatbot-box{
+
+width:90%;
+right:5%;
+bottom:80px;
+height:400px;
+
+}
+
+#chatbot-btn{
+
+width:55px;
+height:55px;
+font-size:24px;
+
+}
+
+}
+
+/* ============================= */
+/* TABLET DESIGN */
+/* ============================= */
+
+@media (max-width: 1024px){
+
+.department-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.research-wrapper{
+
+flex-direction:column;
+
+}
+
+.placement-flex{
+
+flex-direction:column;
+
+}
+
+.footer-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}

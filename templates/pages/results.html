@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results & Notices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="results-wrapper">
+
+    <h1>🎓 Results & 📢 Notices</h1>
+
+    <div class="results-grid-fixed">
+
+        <div class="results-box">
+            <h2>📊 Results</h2>
+
+            {% if results %}
+                {% for r in results %}
+                    <div class="result-item">
+                        <strong>{{ r.title }}</strong>
+                        <p>{{ r.description }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-text">No results available</p>
+            {% endif %}
+        </div>
+
+        <div class="results-box">
+            <h2>📢 Notices</h2>
+
+            {% if notices %}
+                {% for n in notices %}
+                    <div class="notice-item">
+                        <strong>{{ n.title }}</strong>
+                        <p>{{ n.description }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-text">No notices available</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

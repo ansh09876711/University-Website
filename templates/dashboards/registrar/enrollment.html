@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Enrollment Panel</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6fb;
+margin:0;
+padding:30px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.stats{
+display:flex;
+gap:20px;
+}
+
+.stat-box{
+flex:1;
+background:#eef2ff;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.stat-box h3{
+margin:0;
+font-size:28px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+th{
+background:#f1f5f9;
+}
+
+.btn{
+padding:10px 15px;
+background:#2563eb;
+color:white;
+border-radius:6px;
+text-decoration:none;
+}
+
+.filter-box{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+select{
+padding:8px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2>🎓 Enrollment Dashboard (Registrar)</h2>
+
+<div style="display:flex;gap:15px;align-items:center;">
+
+<form method="GET" class="filter-box">
+
+<select name="department">
+<option value="">Department</option>
+{% for d in departments %}
+<option value="{{d.department}}">{{d.department}}</option>
+{% endfor %}
+</select>
+
+<select name="year">
+<option value="">Year</option>
+<option value="1">1st Year</option>
+<option value="2">2nd Year</option>
+<option value="3">3rd Year</option>
+<option value="4">4th Year</option>
+</select>
+
+<select name="class">
+<option value="">Class</option>
+{% for c in classes %}
+<option value="{{c.id}}">{{c.class_name}}</option>
+{% endfor %}
+</select>
+
+<button type="submit" class="btn">Filter</button>
+
+</form>
+
+<a href="/registrar" class="btn">⬅ Back</a>
+
+</div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>{{ total_students }}</h3>
+<p>Total Students</p>
+</div>
+
+<div class="stat-box">
+<h3>{{ total_classes }}</h3>
+<p>Total Classes</p>
+</div>
+
+<div class="stat-box">
+<h3>{{ recent_count }}</h3>
+<p>Recent Enrollments</p>
+</div>
+
+</div>
+
+<!-- RECENT STUDENTS -->
+
+<div class="card">
+
+<h3>Recent Enrolled Students</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Enrollment</th>
+<th>Class</th>
+</tr>
+
+{% for s in recent_students %}
+
+<tr>
+<td>{{s.id}}</td>
+<td>{{s.username}}</td>
+<td>{{s.enrollment_no}}</td>
+<td>{{s.class_name}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body {
+            background: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .homework-card {
+            border-left: 6px solid #2563eb;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #f8fafc;
+            transition: 0.3s;
+        }
+
+        .homework-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .subject {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .due {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .due span {
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .description {
+            margin: 12px 0;
+            color: #475569;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .submitted {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .upload {
+            background: #2563eb;
+            color: white;
+        }
+
+        .view {
+            background: #0f172a;
+            color: white;
+        }
+
+        .upload:hover {
+            background: #1d4ed8;
+        }
+
+        .view:hover {
+            background: #020617;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 Homework</h1>
+
+    <!-- Homework 1 -->
+    <div class="homework-card">
+        <div class="subject">Machine Learning</div>
+        <div class="due">Due Date: <span>10 Feb 2026</span></div>
+
+        <div class="description">
+            Write short notes on Supervised and Unsupervised Learning with examples.
+        </div>
+
+        <span class="status pending">Pending</span>
+
+        <div class="actions">
+            <a href="#" class="btn upload">📤 Upload Homework</a>
+            <a href="#" class="btn view">👁 View Question</a>
+        </div>
+    </div>
+
+    <!-- Homework 2 -->
+    <div class="homework-card">
+        <div class="subject">Database Management System</div>
+        <div class="due">Due Date: <span>05 Feb 2026</span></div>
+
+        <div class="description">
+            Solve normalization problems up to 3NF with proper explanation.
+        </div>
+
+        <span class="status submitted">Submitted</span>
+
+        <div class="actions">
+            <a href="#" class="btn view">📄 View Submission</a>
+        </div>
+    </div>
+
+    <!-- Homework 3 -->
+    <div class="homework-card">
+        <div class="subject">Computer Networks</div>
+        <div class="due">Due Date: <span>12 Feb 2026</span></div>
+
+        <div class="description">
+            Explain TCP vs UDP with diagram and use cases.
+        </div>
+
+        <span class="status pending">Pending</span>
+
+        <div class="actions">
+            <a href="#" class="btn upload">📤 Upload Homework</a>
+            <a href="#" class="btn view">👁 View Question</a>
+        </div>
+    </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

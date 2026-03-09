@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>🏆 Ultra Leaderboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6fa;
+padding:40px;
+margin:0;
+}
+
+/* ===== TITLE ===== */
+
+.title{
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+/* ===== TOPPER SPOTLIGHT ===== */
+
+.spotlight{
+background:linear-gradient(135deg,#fbbf24,#f59e0b);
+padding:25px;
+border-radius:18px;
+color:white;
+margin-bottom:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+animation:fadeUp .6s ease;
+}
+
+.spotlight h3{
+margin:0;
+font-size:20px;
+}
+
+.spotlight .name{
+font-size:26px;
+font-weight:bold;
+margin-top:6px;
+}
+
+/* ===== LEADERBOARD CARD ===== */
+
+.card{
+max-width:750px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* ===== ROW ===== */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:14px;
+border-bottom:1px solid #eee;
+font-size:18px;
+transition:.3s;
+animation:fadeUp .5s ease forwards;
+}
+
+.row:hover{
+background:#f1f5f9;
+transform:scale(1.02);
+}
+
+.rank{
+font-weight:bold;
+width:80px;
+}
+
+.name{
+flex:1;
+}
+
+.marks{
+font-weight:bold;
+color:#2563eb;
+}
+
+/* medals */
+.medal{
+font-size:22px;
+margin-right:8px;
+}
+
+/* arrows */
+.arrow-up{
+color:#22c55e;
+margin-left:6px;
+}
+
+.arrow-down{
+color:#ef4444;
+margin-left:6px;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="title">🏆 Student Leaderboard</div>
+
+<!-- ===== TOPPER SPOTLIGHT ===== -->
+
+{% if students|length > 0 %}
+<div class="spotlight">
+<h3>🔥 Top Performer</h3>
+<div class="name">🥇 {{ students[0].student_name }}</div>
+<div>Average Marks: {{ students[0].avg_marks }}%</div>
+</div>
+{% endif %}
+
+<!-- ===== LIST ===== -->
+
+<div class="card">
+
+{% for s in students %}
+
+<div class="row">
+
+<div class="rank">
+
+{% if loop.index == 1 %}
+<span class="medal">🥇</span>
+
+{% elif loop.index == 2 %}
+<span class="medal">🥈</span>
+
+{% elif loop.index == 3 %}
+<span class="medal">🥉</span>
+
+{% else %}
+#{{ loop.index }}
+{% endif %}
+
+</div>
+
+<div class="name">
+{{ s.student_name }}
+
+<!-- random arrow animation feel -->
+{% if loop.index % 2 == 0 %}
+<span class="arrow-up">▲</span>
+{% else %}
+<span class="arrow-down">▼</span>
+{% endif %}
+
+</div>
+
+<div class="marks">
+{{ s.avg_marks }}%
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

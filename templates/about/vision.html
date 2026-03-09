@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision & Mission | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f5f7fc;
+color:#111;
+line-height:1.7;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 12px rgba(0,0,0,0.05);
+z-index:1000;
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+margin-top:80px;
+height:60vh;
+background:
+linear-gradient(rgba(15,23,42,0.85),rgba(15,23,42,0.85)),
+url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+margin:0;
+}
+
+.hero p{
+font-size:20px;
+opacity:.9;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:80px 20px;
+}
+
+/* ===== VISION MISSION SPLIT ===== */
+
+.vm-container{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.vm-box{
+flex:1;
+min-width:300px;
+background:white;
+padding:40px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,0.05);
+transition:.4s;
+}
+
+.vm-box:hover{
+transform:translateY(-8px);
+box-shadow:0 25px 60px rgba(0,0,0,0.1);
+}
+
+.vm-box h2{
+margin-top:0;
+color:#2563eb;
+}
+
+/* ===== CORE VALUES ===== */
+
+.values{
+margin-top:70px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.value-card{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+padding:30px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.value-card:hover{
+transform:translateY(-8px);
+}
+
+.value-card h3{
+margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+</nav>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Vision & Mission</h1>
+<p>Empowering Innovation • Inspiring Leadership • Transforming Futures</p>
+
+</section>
+
+<!-- VISION & MISSION -->
+
+<section class="section">
+
+<div class="vm-container">
+
+<div class="vm-box">
+<h2>Our Vision</h2>
+<p>
+To become a globally recognized university known for academic excellence, innovation-driven education, and impactful research. EduStack University envisions shaping future leaders who contribute meaningfully to society and industry.
+</p>
+</div>
+
+<div class="vm-box">
+<h2>Our Mission</h2>
+<p>
+To provide high-quality education through advanced curriculum, industry collaboration, and research excellence. We aim to nurture creativity, ethical values, and leadership skills that empower students for global success.
+</p>
+</div>
+
+</div>
+
+<!-- CORE VALUES -->
+
+<h2 style="margin-top:70px;">Our Core Values</h2>
+
+<div class="values">
+
+<div class="value-card">
+<h3>Academic Excellence</h3>
+<p>Delivering high standards in teaching, learning, and research.</p>
+</div>
+
+<div class="value-card">
+<h3>Innovation</h3>
+<p>Encouraging creativity and technological advancement.</p>
+</div>
+
+<div class="value-card">
+<h3>Integrity</h3>
+<p>Maintaining ethical standards and transparency.</p>
+</div>
+
+<div class="value-card">
+<h3>Leadership</h3>
+<p>Developing responsible global leaders of tomorrow.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 EduStack University | All Rights Reserved
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

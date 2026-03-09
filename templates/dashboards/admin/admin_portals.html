@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Control Panel</title>
+    <link rel="stylesheet" href="/static/admin_portals.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🔐 Admin Control Panel</h1>
+    </div>
+
+    <p class="subtext">Select a portal to login</p>
+
+    <div class="portal-grid">
+
+        <a href="/login?role=accounts" class="portal-card">
+            <div class="portal-icon">💰</div>
+            <div class="portal-title">Accounts</div>
+            <div class="portal-desc">Fees & Finance Management</div>
+        </a>
+
+        <a href="/login?role=scholarship" class="portal-card">
+            <div class="portal-icon">🎓</div>
+            <div class="portal-title">Scholarship</div>
+            <div class="portal-desc">Scholarship Records</div>
+        </a>
+
+        
+        <a href="/admission" class="portal-card">
+            <div class="portal-icon">🧑‍🎓</div>
+            <div class="portal-title">Admission Cell</div>
+            <div class="portal-desc">Admission Management</div>
+        </a>
+
+        
+        <a href="/login?role=hr" class="portal-card">
+            <div class="portal-icon">👨‍💼</div>
+            <div class="portal-title">HR</div>
+            <div class="portal-desc">Human Resources</div>
+        </a>
+
+        
+        <a href="/login?role=registrars" class="portal-card">
+            <div class="portal-icon">📋</div>
+            <div class="portal-title">Registrar</div>
+            <div class="portal-desc">Registration Management</div>
+        </a>
+
+        <a href="/login?role=library" class="portal-card">
+            <div class="portal-icon">📚</div>
+            <div class="portal-title">Library</div>
+            <div class="portal-desc">Library Management</div>
+        </a>
+
+        <a href="/login?role=department" class="portal-card">
+            <div class="portal-icon">🏫</div>
+            <div class="portal-title">Department</div>
+            <div class="portal-desc">Department Control</div>
+        </a>
+
+        <a href="/login?role=hod" class="portal-card">
+            <div class="portal-icon">👨‍🏫</div>
+            <div class="portal-title">HOD</div>
+            <div class="portal-desc">Faculty Management</div>
+        </a>
+
+        <a href="/login?role=principal" class="portal-card">
+            <div class="portal-icon">🎩</div>
+            <div class="portal-title">Principal</div>
+            <div class="portal-desc">College Oversight</div>
+        </a>
+
+        <a href="/login?role=Dean" class="portal-card">
+            <div class="portal-icon">📘</div>
+            <div class="portal-title">Dean</div>
+            <div class="portal-desc">Academic Operations</div>
+        </a>
+
+        <a href="/login?role=director" class="portal-card">
+            <div class="portal-icon">🏢</div>
+            <div class="portal-title">Director</div>
+            <div class="portal-desc">Complete Control</div>
+        </a>
+
+    </div>
+
+    <div class="logout">
+        <a href="/logout">🚪 Logout</a>
+    </div>
+
+</div>
+
+</body>
+</html>

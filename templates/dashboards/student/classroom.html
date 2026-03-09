@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Classroom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body{
+            margin:0;
+            background:#0f172a;
+            color:#e5e7eb;
+            font-family:"Segoe UI",sans-serif;
+        }
+
+        /* HEADER */
+        .top-bar{
+            background:linear-gradient(135deg,#22c55e,#15803d);
+            padding:16px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .top-bar a{
+            color:#dcfce7;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        /* CONTAINER */
+        .container{
+            padding:18px;
+        }
+
+        .card{
+            background:#020617;
+            border-radius:16px;
+            padding:18px;
+            margin-bottom:16px;
+            border:1px solid #1e293b;
+        }
+
+        /* GRID */
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:16px;
+        }
+
+        .class-card{
+            background:#020617dd;
+            border-radius:16px;
+            padding:16px;
+            transition:.2s;
+        }
+
+        .class-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 10px 25px rgba(0,0,0,.4);
+        }
+
+        .subject{
+            font-size:18px;
+            margin:0;
+        }
+
+        .teacher{
+            color:#94a3b8;
+            font-size:14px;
+            margin:6px 0;
+        }
+
+        .badge{
+            display:inline-block;
+            padding:4px 10px;
+            border-radius:20px;
+            font-size:12px;
+            margin-bottom:10px;
+        }
+
+        .live{
+            background:#dc262633;
+            color:#f87171;
+        }
+
+        .upcoming{
+            background:#2563eb33;
+            color:#93c5fd;
+        }
+
+        .recorded{
+            background:#16a34a33;
+            color:#4ade80;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:10px 14px;
+            border-radius:10px;
+            background:#22c55e;
+            color:#022c22;
+            text-decoration:none;
+            font-size:14px;
+            margin-right:6px;
+            transition:.2s;
+        }
+
+        .btn.secondary{
+            background:#1e293b;
+            color:#e5e7eb;
+        }
+
+        .btn:hover{
+            opacity:.85;
+        }
+
+        /* NOTICE */
+        .notice{
+            background:#1e293b;
+            border-left:5px solid #22c55e;
+            padding:12px;
+            border-radius:12px;
+            font-size:14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-bar">
+    <h2>🏫 Classroom</h2>
+    <a href="/student">⬅ Back</a>
+</div>
+
+<div class="container">
+
+    <!-- NOTICE -->
+    <div class="card notice">
+        📢 <b>Notice:</b> Join live classes on time. Attendance will be marked automatically.
+    </div>
+
+    <!-- CLASSROOM LIST -->
+    <div class="card">
+        <h3>My Classes</h3>
+
+        <div class="grid">
+
+            <!-- CLASS 1 -->
+            <div class="class-card">
+                <h4 class="subject">Data Structures</h4>
+                <p class="teacher">👨‍🏫 Prof. R. Sharma</p>
+                <span class="badge live">🔴 Live Now</span><br><br>
+                <a href="#" class="btn">Join Class</a>
+                <a href="#" class="btn secondary">View Material</a>
+            </div>
+
+            <!-- CLASS 2 -->
+            <div class="class-card">
+                <h4 class="subject">Operating System</h4>
+                <p class="teacher">👩‍🏫 Dr. Neha Verma</p>
+                <span class="badge upcoming">⏰ Upcoming</span><br><br>
+                <a href="#" class="btn secondary">Schedule</a>
+                <a href="#" class="btn secondary">Notes</a>
+            </div>
+
+            <!-- CLASS 3 -->
+            <div class="class-card">
+                <h4 class="subject">Database Management</h4>
+                <p class="teacher">👨‍🏫 Prof. A. Khan</p>
+                <span class="badge recorded">🎥 Recorded</span><br><br>
+                <a href="#" class="btn">Watch Video</a>
+                <a href="#" class="btn secondary">Assignments</a>
+            </div>
+
+            <!-- CLASS 4 -->
+            <div class="class-card">
+                <h4 class="subject">Web Technology</h4>
+                <p class="teacher">👩‍🏫 Ms. Pooja Jain</p>
+                <span class="badge upcoming">⏰ Upcoming</span><br><br>
+                <a href="#" class="btn secondary">Schedule</a>
+                <a href="#" class="btn secondary">Resources</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

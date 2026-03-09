@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Approvals & Accreditations | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI, sans-serif;
+background:#f4f6fb;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+z-index:1000;
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+margin-top:80px;
+height:50vh;
+background:linear-gradient(120deg,#1e3a8a,#6366f1);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+.hero h1{
+font-size:48px;
+margin:0;
+}
+
+.hero p{
+opacity:.9;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:70px 20px;
+}
+
+.section h2{
+font-size:32px;
+margin-bottom:30px;
+}
+
+/* ===== ACCREDITATION GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.card{
+
+background:rgba(255,255,255,0.8);
+border-radius:18px;
+padding:30px;
+text-align:center;
+
+backdrop-filter:blur(12px);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+transition:.4s;
+
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:80px;
+margin-bottom:15px;
+}
+
+/* ===== TIMELINE SECTION ===== */
+
+.timeline{
+background:#0f172a;
+color:white;
+padding:70px 20px;
+}
+
+.timeline-inner{
+max-width:1000px;
+margin:auto;
+}
+
+.timeline-item{
+margin-bottom:25px;
+padding-left:20px;
+border-left:3px solid #60a5fa;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+</nav>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Approvals & Accreditations</h1>
+
+<p>
+Recognized by national and international academic bodies ensuring quality education.
+</p>
+
+</section>
+
+<!-- ACCREDITATION CARDS -->
+
+<section class="section">
+
+<h2>Official Recognitions</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+<h3>UGC Approved</h3>
+
+<p>
+Recognized by University Grants Commission ensuring national academic standards.
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png">
+
+<h3>AICTE Approved</h3>
+
+<p>
+Technical programs approved by AICTE ensuring industry-ready education.
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/190/190411.png">
+
+<h3>NAAC Accreditation</h3>
+
+<p>
+Accredited with AAA+ grade for academic excellence and infrastructure.
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/942/942748.png">
+
+<h3>NBA Accredited</h3>
+
+<p>
+Engineering programs recognized for high academic standards.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="timeline">
+
+<div class="timeline-inner">
+
+<h2>Accreditation Journey</h2>
+
+<div class="timeline-item">
+
+<h3>2015</h3>
+<p>University established with UGC approval.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>2018</h3>
+<p>AICTE accreditation for technical courses.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>2022</h3>
+<p>NAAC AAA+ grade achieved.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>2024</h3>
+<p>NBA recognition for engineering excellence.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 EduStack University | All Rights Reserved
+
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

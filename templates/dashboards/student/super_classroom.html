@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Segoe UI;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+padding:40px;
+}
+
+.card{
+background:#0f172a;
+padding:20px;
+border-radius:14px;
+}
+
+.live{background:red;padding:5px;border-radius:10px;}
+
+.btn{
+display:inline-block;
+padding:10px 14px;
+background:#22c55e;
+color:black;
+text-decoration:none;
+border-radius:10px;
+}
+
+.disabled{
+background:#1e293b;
+color:gray;
+pointer-events:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Super Classroom</h2>
+
+<div class="grid">
+
+{% for s in sessions %}
+
+<div class="card">
+
+<h3>{{s.title}}</h3>
+
+{% if s.auto_status=="live" %}
+
+<span class="live">LIVE</span>
+
+<a href="{{s.meeting_link}}" target="_blank"
+onclick="markAttendance({{s.id}})"
+class="btn">Join</a>
+
+{% elif s.auto_status=="upcoming" %}
+
+<button class="disabled">Upcoming</button>
+
+{% else %}
+
+<a href="{{s.video_link}}" target="_blank"
+class="btn">Watch Recording</a>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+function markAttendance(id){
+
+fetch("/student/mark-attendance/"+id,{method:"POST"});
+
+}
+
+</script>
+
+</body>
+
+</html>

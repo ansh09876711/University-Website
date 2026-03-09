@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* HEADER */
+.header {
+    background: #0b2c4d;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+    gap: 20px;
+}
+
+.stat-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 22%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stat-box h2 {
+    color: #ffb703;
+    font-size: 32px;
+}
+
+/* SECTIONS */
+.section {
+    background: white;
+    margin: 30px;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+}
+
+/* COMPANIES */
+.companies span {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 18px;
+    background: #eef3f8;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* BRANCH */
+.branch {
+    background: #f8fafc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #ffb703;
+}
+
+/* TESTIMONIAL */
+.testimonial {
+    background: #f1f5f9;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+/* DRIVES */
+.drives li {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #0b2c4d;
+    color: white;
+}

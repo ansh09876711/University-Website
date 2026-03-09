@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Placements | EduStack University</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+
+body{background:#f4f6fb;overflow-x:hidden}
+
+.section{padding:100px 80px;text-align:center}
+
+/* HERO */
+
+.hero{
+height:40vh;
+background:linear-gradient(130deg,#1d2b64,#f8cdda);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.hero h1{font-size:60px}
+
+/* ABOUT */
+
+.about{
+display:flex;
+gap:50px;
+align-items:center;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.about img{
+width:450px;
+border-radius:20px;
+}
+
+/* PROCESS */
+
+.process{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:50px;
+}
+
+.step{
+width:170px;
+height:170px;
+border-radius:50%;
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:600;
+}
+
+/* CARDS */
+
+.cards{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:30px;
+width:260px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* RECRUITER GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+}
+
+.grid img{
+width:100%;
+background:white;
+padding:30px;
+border-radius:15px;
+}
+
+/* DARK FACILITY */
+
+.facility{
+background:#063642;
+color:white;
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:40px;
+}
+
+.facility img{width:450px;border-radius:15px}
+
+/* TEAM */
+
+.team{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.member{
+background:white;
+padding:20px;
+width:260px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* FAQ */
+
+.faq{
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:left;
+max-width:800px;
+margin:auto;
+}
+
+/* TESTIMONIAL */
+
+.testimonial{
+background:linear-gradient(130deg,#1d2b64,#f8cdda);
+color:white;
+}
+/* ABOUT SECTION */
+
+.about-container{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:60px;
+flex-wrap:wrap;
+}
+
+.about-text{
+flex:1;
+font-size:16px;
+line-height:1.8;
+color:#333;
+text-align:left;
+}
+
+.about-image img{
+width:500px;
+border-radius:20px;
+}
+
+
+/* FEATURES */
+
+.feature-container{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:60px;
+flex-wrap:wrap;
+background:#f9f9f9;
+padding:40px;
+border-radius:20px;
+}
+
+.feature-image img{
+width:500px;
+border-radius:10px;
+}
+
+.feature-text ul{
+list-style:none;
+text-align:left;
+}
+
+.feature-text li{
+margin-bottom:18px;
+font-size:16px;
+position:relative;
+padding-left:20px;
+}
+
+.feature-text li::before{
+content:"•";
+position:absolute;
+left:0;
+color:#c33;
+font-size:20px;
+}
+
+.placement-process{
+    padding:80px 5%;
+    background:#f5f6fa;
+    text-align:center;
+}
+
+.placement-process h2{
+    font-size:32px;
+    margin-bottom:60px;
+    font-weight:700;
+}
+
+.process-wrapper{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:60px;
+    position:relative;
+}
+
+.process-item{
+    text-align:center;
+    position:relative;
+}
+
+.circle{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+
+    background:linear-gradient(135deg,#5b2cff,#ff2c74);
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+    transition:0.4s;
+}
+
+.process-item:hover .circle{
+    transform:translateY(-10px) scale(1.05);
+}
+
+.process-item p{
+    margin-top:15px;
+    font-weight:600;
+}
+.milestone{
+
+padding:120px 60px;
+text-align:center;
+background:linear-gradient(135deg,#352c75,#a02c4b);
+color:white;
+}
+
+.milestone h1{
+margin-bottom:50px;
+}
+
+.milestone-slider{
+
+display:flex;
+gap:40px;
+overflow-x:auto;
+justify-content:center;
+}
+
+.milestone-card{
+
+background:white;
+color:black;
+width:260px;
+border-radius:20px;
+padding-bottom:25px;
+position:relative;
+transition:.4s;
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.milestone-card:hover{
+
+transform:translateY(-10px) scale(1.05);
+}
+
+.milestone-card img{
+
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:20px 20px 80px 80px;
+}
+
+.company{
+
+background:white;
+padding:10px 15px;
+border-radius:50px;
+position:absolute;
+top:220px;
+left:50%;
+transform:translateX(-50%);
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+font-weight:600;
+}
+
+.milestone-card h3{
+
+color:#ff9900;
+margin-top:30px;
+}
+.slider{
+display:flex;
+gap:30px;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.card{
+min-width:280px;
+background:white;
+border-radius:20px;
+padding:20px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:20px;
+}
+/* SECTION */
+
+.placement-section{
+background:linear-gradient(120deg,#5f2c82,#a83279);
+padding:120px 40px;
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+.title{
+font-size:40px;
+font-weight:700;
+}
+
+.subtitle{
+margin-top:10px;
+margin-bottom:70px;
+font-size:28px;
+}
+
+/* SLIDER */
+
+.slider-container{
+width:100%;
+overflow:hidden;
+}
+
+.slider-track{
+display:flex;
+gap:40px;
+animation:slide 25s linear infinite;
+}
+
+/* CARD */
+
+.placement-card{
+min-width:300px;
+background:#f5f5f5;
+color:black;
+border-radius:30px;
+padding-bottom:25px;
+position:relative;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+/* IMAGE */
+
+.image-box{
+height:240px;
+overflow:hidden;
+border-radius:30px 30px 80px 80px;
+}
+
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* COMPANY BADGE */
+
+.company-badge{
+background:white;
+padding:10px 18px;
+border-radius:50px;
+position:absolute;
+top:210px;
+left:50%;
+transform:translateX(-50%);
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+font-weight:600;
+}
+
+/* CONTENT */
+
+.card-content{
+margin-top:40px;
+}
+
+.salary{
+font-size:32px;
+font-weight:bold;
+color:#ff9900;
+margin-top:10px;
+}
+
+/* AUTO SLIDE ANIMATION */
+
+@keyframes slide{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+.slider-track{
+display:flex;
+gap:40px;
+}
+
+.placement-wrapper{
+display:flex;
+gap:40px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:60px;
+}
+
+.placement-card{
+width:280px;
+background:white;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.image-box{
+height:260px;
+overflow:hidden;
+border-radius:30px 30px 80px 80px;
+}
+
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.company-badge{
+position:absolute;
+top:220px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+padding:10px 18px;
+border-radius:50px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+font-weight:600;
+}
+
+.card-content{
+padding:30px 20px;
+}
+
+.salary{
+font-size:28px;
+font-weight:bold;
+color:#ff9900;
+margin-top:10px;
+}
+/* HERO SECTION */
+
+.placement-hero{
+
+    width:100%;
+    padding:80px 20px;
+    text-align:center;
+
+    /* gradient background */
+    background: linear-gradient(90deg,#2f3c6a,#e4b6c0);
+
+    color:white;
+}
+
+.placement-small-title{
+
+    font-size:18px;
+    letter-spacing:3px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.placement-big-title{
+
+    font-size:55px;
+    font-weight:700;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<div>The University</div>
+<div>Edustack Heritage</div>
+<div>Leadership & Management</div>
+<div>Chancellor’s Message</div>
+<div>Vice Chancellor’s Message</div>
+<div>Awards & Rankings</div>
+<div>Approvals & Accreditations</div>
+<div>Mandatory Disclosure</div>
+
+</div>
+
+<div class="mega-right">
+
+<div>Vision & Mission</div>
+<div>Core Values</div>
+<div>Governance</div>
+<div>Organogram</div>
+<div>Regulatory Committees</div>
+<div>University Regulations</div>
+<div>Act and Statutes or MoA</div>
+<div>Institutional Development Plan</div>
+<div>Collaboration Cell</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at MU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<section class="hero">
+
+    <h3 class="placement-small-title">PLACEMENTS</h3>
+
+    <h1 class="placement-big-title">
+        Producing Skilled Professionals
+    </h1>
+
+</section>
+
+<!-- WHY -->
+
+<div class="section">
+<h2>Why Recruit From Us</h2>
+<p>Edustack College is committed to nurturing competent, ethical, and industry-ready professionals. 
+    With a strong academic foundation and a practical learning approach, the college consistently prepares
+    students to meet the dynamic demands of today’s corporate and professional world.</p>
+</div>
+
+<!-- ================= ABOUT SECTION ================= -->
+
+<div class="section about-section">
+
+<div class="about-container">
+
+    <!-- LEFT TEXT -->
+    <div class="about-text">
+
+        <p>
+        Over the years EduStack University has earned reputation for its commitment to producing
+        well-groomed professionals. Even during periods of economic uncertainty, the university's
+        placement records have consistently remained among the best in the state.
+        </p>
+
+        <p>
+        EduStack University's talented pool of students is highly regarded by corporates across
+        different sectors. Our alumni have proven their potential as valuable assets to organizations.
+        </p>
+
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="about-image">
+
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= FEATURES SECTION ================= -->
+
+<div class="section feature-section">
+
+<div class="feature-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="feature-image">
+
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7">
+
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="feature-text">
+
+        <ul>
+
+            <li>24+ years as the Best Private University</li>
+            <li>Ranked as top university in Central India</li>
+            <li>25000+ Alumni Network</li>
+            <li>Engineering, Management, Law & Pharmacy programs</li>
+            <li>Strong industry collaboration with MNC companies</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+</div>
+
+<section class="placement-process">
+
+    <h2>Placement Process</h2>
+
+    <div class="process-wrapper">
+
+        <!-- STEP 1 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-building"></i>
+            </div>
+            <p>1. Invite Company</p>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <p>2. Company Shares Job Notification Form</p>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-user-edit"></i>
+            </div>
+            <p>3. Student Registration</p>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <p>4. Sharing CV and list with HR</p>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-users"></i>
+            </div>
+            <p>5. Company Shares Shortlisting</p>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-folder"></i>
+            </div>
+            <p>6. Record Keeping</p>
+        </div>
+
+        <!-- STEP 7 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-bell"></i>
+            </div>
+            <p>7. Selection Announcement</p>
+        </div>
+
+        <!-- STEP 8 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <p>8. Result Declaration</p>
+        </div>
+
+        <!-- STEP 9 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-university"></i>
+            </div>
+            <p>9. Campus Drive</p>
+        </div>
+
+        <!-- STEP 10 -->
+        <div class="process-item">
+            <div class="circle">
+                <i class="fas fa-handshake"></i>
+            </div>
+            <p>10. Pre Process Arrangements</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PACKAGES -->
+
+<!-- ===============================
+        MILESTONE PACKAGES
+================================== -->
+<section class="placement-section">
+
+<h2 class="title">Milestone Packages</h2>
+<h3 class="subtitle">Producing Skilled Professionals</h3>
+
+<div class="slider-container">
+<div class="slider-track">
+
+{% for student in placements %}
+
+<div class="placement-card">
+
+    <div class="image-box">
+        <img src="{{ url_for('static', filename='uploads/' + student.student_image) }}">
+    </div>
+
+    <!-- COMPANY BADGE -->
+    <div class="company-badge">
+        <img src="{{ url_for('static', filename='recruiters/' + student.company_logo) }}">
+        <span>{{ student.company_name }}</span>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay">
+        <h2>₹{{ student.ctc }} LAC PACKAGE</h2>
+        <p>{{ student.student_name }}</p>
+    </div>
+
+</div>
+
+
+{% endfor %}
+
+</div>
+</div>
+
+</section>
+
+
+<style>
+/* ================= SECTION BACKGROUND ================= */
+
+/* SECTION BACKGROUND */
+
+.placement-section{
+
+    background: linear-gradient(120deg,#5f2c82,#a83279);
+    padding:80px 0;
+    overflow:hidden;
+    text-align:center;
+}
+
+.title{
+    color:white;
+    font-size:40px;
+    font-weight:700;
+}
+
+.subtitle{
+    color:white;
+    margin-bottom:40px;
+}
+
+
+/* SLIDER */
+
+.slider-container{
+    width:100%;
+    overflow:hidden;
+}
+
+.slider-track{
+    display:flex;
+    gap:40px;
+    animation:autoSlide 20s linear infinite;
+}
+
+
+/* AUTO SLIDE */
+
+@keyframes autoSlide{
+
+    0%{ transform:translateX(0); }
+
+    100%{ transform:translateX(-50%); }
+
+}
+
+
+/* CARD */
+
+.placement-card{
+
+    width:260px;
+    background:white;
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    flex-shrink:0;
+}
+
+
+/* IMAGE */
+
+.image-box{
+    width:100%;
+    height:300px;        /* height increase for full look */
+    overflow:hidden;
+}
+
+.image-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;    /* ⭐ FULL BOX COVER */
+    display:block;
+}
+.placement-card{
+    overflow:hidden;
+    border-radius:30px;
+}
+
+.image-box{
+    border-radius:30px 30px 0 0;
+}
+
+/* COMPANY BADGE */
+
+.company-badge{
+
+    position:absolute;
+    top:200px;
+    left:50%;
+    transform:translateX(-50%);
+    background:white;
+    padding:8px 15px;
+    border-radius:50px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.company-badge img{
+    width:20px;
+    height:20px;
+}
+
+
+/* CONTENT */
+
+.card-content{
+    padding:30px 20px;
+}
+
+.salary{
+    font-size:24px;
+    font-weight:bold;
+    color:#ff9900;
+}
+.placement-card{
+    position:relative;
+    width:300px;
+    height:400px;
+    border-radius:25px;
+    overflow:hidden;
+}
+
+/* FULL IMAGE COVER */
+.placement-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* DARK GRADIENT LIKE SCREENSHOT */
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color:white;
+}
+
+/* TEXT STYLE */
+.overlay h2{
+    font-size:28px;
+    font-weight:bold;
+    margin:0;
+}
+
+.overlay p{
+    margin-top:5px;
+}
+
+</style>
+
+<!-- ================= RECRUITERS SECTION ================= -->
+<section class="recruiter-section">
+
+    <h2>Our Prominent Recruiters</h2>
+
+    <div class="recruiter-grid">
+
+        {% for recruiter in recruiters[:10] %}
+        <div class="recruiter-card">
+            <img src="{{ url_for('static', filename='recruiters/' + recruiter.company_logo) }}">
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="view-all-wrapper">
+        <a href="{{ url_for('all_recruiters') }}" class="view-btn">
+            View All →
+        </a>
+    </div>
+
+</section>
+
+<style>
+/* ================= RECRUITER SECTION ================= */
+.recruiter-section{
+    padding:80px 0;
+    text-align:center;
+}
+
+.recruiter-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);   /* 5 per row */
+    gap:30px;
+    max-width:1200px;
+    margin:50px auto;
+}
+
+.recruiter-card{
+    background:#f3f3f3;
+    height:130px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.recruiter-card img{
+    max-width:120px;
+    max-height:70px;
+    object-fit:contain;
+}
+
+.view-all-wrapper{
+    margin-top:50px;
+}
+
+.view-btn{
+    padding:12px 30px;
+    border-radius:30px;
+    background:linear-gradient(45deg,#6a11cb,#ff007f);
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+</style>
+
+
+<!-- TEAM -->
+
+<div class="section">
+
+<h2>Placement Team</h2>
+
+<div class="team">
+
+<div class="member">Mr Prasad Muley</div>
+<div class="member">Mr Sachin</div>
+<div class="member">Mr Kuber Shukla</div>
+
+</div>
+
+</div>
+
+<!-- FAQ -->
+
+<div class="section">
+
+<h2>FAQ</h2>
+
+<div class="faq">
+
+<p><b>How companies hire students?</b></p>
+<ul>
+<li>Campus Recruitment</li>
+<li>Internship Conversion</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- TESTIMONIAL -->
+
+<div class="section testimonial">
+
+<h2>Testimonials</h2>
+
+<p>Students have strong technical and analytical skills.</p>
+
+</div>
+
+<footer>
+<p>
+    EDUSTACK UNIVERSITY
+</p>
+</footer>
+
+<section class="bgi-footer">
+
+<div class="footer-grid">
+
+<!-- LOGO + ADDRESS -->
+
+<div class="footer-logo">
+
+<img src="https://i.ibb.co/5hk1BjbF/Whats-App-Image-2026-02-16-at-10-38-13-AM-removebg-preview.png">
+
+<div class = "footer-links">
+<h4>EDUSTACK UNIVERSITY</h4>
+</div>
+
+<p>Admission Enquiry (BTech/ME/MTech/MBA)</p>
+<p>E-mail : info@sdbc.ac.in</p>
+<p>+91-9109954633</p>
+<p>Address: </p>
+
+</div>
+
+<!-- QUICK LINKS -->
+
+<div class="footer-links">
+
+<h4>Quick Links</h4>
+
+<p>Alumni</p>
+<p>Vidya Lakshmi Portal</p>
+<p>Pragati Portal</p>
+<p>Grievances</p>
+<p>NPTEL-Swayam</p>
+<p>Student Registration</p>
+<p>News and Events</p>
+<p>Career</p>
+
+</div>
+
+<!-- IMPORTANT LINKS -->
+
+<div class="footer-links">
+
+<h4>Important Link</h4>
+
+<p>RGPV</p>
+<p>AICTE</p>
+<p>MP Scholarship</p>
+<p>MP DTE</p>
+<p>Anti-Ragging (UGC)</p>
+<p>Feedback</p>
+<p>Privacy Policy</p>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<div class="footer-links">
+
+<h4>Download</h4>
+
+<p>Brochure</p>
+<p>Bus Route</p>
+
+</div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+
+<div class="footer-bottom">
+
+<p>© 2025 BGI Indore. All Rights Reserved</p>
+
+<div class="social">
+<div>f</div>
+<div>📷</div>
+<div>in</div>
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+new Chart(document.getElementById("chart"),{
+
+type:"bar",
+
+data:{
+labels:["2022","2023","2024"],
+datasets:[{
+label:"Recruiters",
+data:[180,220,240]
+}]
+}
+
+});
+
+</script>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+<script>
+document.getElementById("viewMoreBtn").addEventListener("click", function () {
+
+    const more = document.getElementById("moreRecruiters");
+
+    if (more.style.display === "none" || more.style.display === "") {
+        more.style.display = "flex";
+        this.innerText = "View Less";
+    } else {
+        more.style.display = "none";
+        this.innerText = "View More";
+    }
+
+});
+</script>
+
+</body>
+</html>

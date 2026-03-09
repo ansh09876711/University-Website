@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>{{ test.title }} | Start Test</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#020617;
+font-family:Segoe UI;
+color:white;
+margin:0;
+padding:0;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+/* HEADER */
+
+.test-header{
+background:#020617;
+border:1px solid #1e293b;
+padding:25px;
+border-radius:16px;
+margin-bottom:25px;
+}
+
+.deadline{
+color:#facc15;
+font-size:14px;
+margin-top:5px;
+}
+
+/* QUESTION CARD */
+
+.question-card{
+background:#020617;
+border:1px solid #1e293b;
+padding:20px;
+border-radius:16px;
+margin-bottom:20px;
+transition:.3s;
+}
+
+.question-card:hover{
+border-color:#22c55e;
+}
+
+.question-title{
+font-weight:600;
+margin-bottom:15px;
+}
+
+/* OPTIONS */
+
+.option{
+margin-bottom:10px;
+}
+
+.option input{
+margin-right:10px;
+}
+
+/* BUTTON */
+
+.submit-btn{
+margin-top:25px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.submit-btn:hover{
+background:#16a34a;
+}
+
+.back{
+display:inline-block;
+margin-top:20px;
+color:#38bdf8;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="test-header">
+
+<h2>{{ test.title }}</h2>
+
+{% if test.deadline %}
+<div class="deadline">
+⏰ Deadline: {{ test.deadline }}
+</div>
+{% endif %}
+
+</div>
+
+<!-- FORM -->
+
+<form method="POST">
+
+{% for q in questions %}
+
+<div class="question-card">
+
+<div class="question-title">
+Q{{ loop.index }}. {{ q.question }}
+</div>
+
+<label class="option">
+<input type="radio" name="q{{ q.id }}" value="{{ q.option1 }}" required>
+{{ q.option1 }}
+</label>
+
+<label class="option">
+<input type="radio" name="q{{ q.id }}" value="{{ q.option2 }}">
+{{ q.option2 }}
+</label>
+
+<label class="option">
+<input type="radio" name="q{{ q.id }}" value="{{ q.option3 }}">
+{{ q.option3 }}
+</label>
+
+<label class="option">
+<input type="radio" name="q{{ q.id }}" value="{{ q.option4 }}">
+{{ q.option4 }}
+</label>
+
+</div>
+
+{% endfor %}
+
+<button class="submit-btn">Submit Test</button>
+
+</form>
+
+<a href="/student/tests" class="back">⬅ Back to Tests</a>
+
+</div>
+
+</body>
+</html>

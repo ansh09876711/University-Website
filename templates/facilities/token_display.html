@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Token Display</title>
+<meta http-equiv="refresh" content="5">
+<style>
+body{font-family:Segoe UI;background:black;color:white;text-align:center;padding:40px;}
+.token{font-size:60px;margin:20px;}
+.ready{color:#22c55e;}
+.preparing{color:#facc15;}
+</style>
+</head>
+<body>
+
+<h1>🎫 Live Token Status</h1>
+
+{% for order in orders %}
+<div class="token {% if order.status=='Ready' %}ready{% else %}preparing{% endif %}">
+Token {{ order.token_number }} - {{ order.status }}
+</div>
+{% endfor %}
+
+</body>
+</html>

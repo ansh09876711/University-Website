@@ -1,0 +1,13 @@
+{% for a in assignments %}
+
+<h3>{{ a.title }}</h3>
+
+<a href="{{ a.form_link }}" target="_blank">Open Form</a>
+
+<a href="{{ a.response_sheet }}" target="_blank">
+View Responses Table
+</a>
+
+<a href="/delete-form/{{ a.id }}">❌ Delete</a>
+
+{% endfor %}

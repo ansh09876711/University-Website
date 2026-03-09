@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Sports | EDUSTACK UNIVERSITY</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f6fa;
+}
+
+/* HERO */
+
+.hero{
+height:60vh;
+background:url("https://images.unsplash.com/photo-1461896836934-ffe607ba8211") center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+
+.hero h1{
+position:relative;
+font-size:50px;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+}
+
+/* SPORTS GRID */
+
+.sports-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.sport-card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:.3s;
+}
+
+.sport-card:hover{
+transform:translateY(-10px);
+}
+
+.sport-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+transition:.4s;
+}
+
+.sport-card:hover img{
+transform:scale(1.1);
+}
+
+.sport-info{
+padding:20px;
+}
+
+.sport-info h3{
+margin:0;
+}
+
+/* FACILITIES SECTION */
+
+.facilities{
+background:linear-gradient(135deg,#3b1dd1,#7c3aed);
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.facilities h2{
+margin-bottom:20px;
+}
+
+.facility-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.facility-box{
+background:rgba(255,255,255,0.1);
+padding:20px 30px;
+border-radius:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+<h1>Sports & Athletics</h1>
+</section>
+
+
+<!-- SPORTS GRID -->
+
+<div class="container">
+
+<h2>Our Sports Activities</h2>
+
+<div class="sports-grid">
+
+<div class="sport-card">
+<img src="https://images.unsplash.com/photo-1508606572321-901ea443707f">
+<div class="sport-info">
+<h3>Football</h3>
+<p>Professional football ground & tournaments</p>
+</div>
+</div>
+
+<div class="sport-card">
+<img src="https://images.unsplash.com/photo-1546519638-68e109498ffc">
+<div class="sport-info">
+<h3>Basketball</h3>
+<p>Indoor & outdoor basketball courts</p>
+</div>
+</div>
+
+<div class="sport-card">
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
+<div class="sport-info">
+<h3>Cricket</h3>
+<p>Professional cricket practice nets</p>
+</div>
+</div>
+
+<div class="sport-card">
+<img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da">
+<div class="sport-info">
+<h3>Badminton</h3>
+<p>Indoor badminton courts</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FACILITIES -->
+
+<section class="facilities">
+
+<h2>Sports Facilities</h2>
+
+<div class="facility-grid">
+
+<div class="facility-box">🏟 Stadium</div>
+<div class="facility-box">🏀 Indoor Courts</div>
+<div class="facility-box">🏀 Basketball Courts</div>
+<div class="facility-box">⚽ Football Ground</div>
+<div class="facility-box">🎾 Tennis Court</div>
+
+</div>
+
+</section>
+
+</body>
+</html>

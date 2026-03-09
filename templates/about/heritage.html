@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EduStack Heritage | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f4f6fb;
+color:#111;
+scroll-behavior:smooth;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.06);
+z-index:999;
+}
+
+.topbar h3{margin:0;}
+
+.topbar nav a{
+text-decoration:none;
+margin-left:25px;
+color:#333;
+font-weight:500;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+height:85vh;
+background:url("https://images.unsplash.com/photo-1562774053-701939374585") center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+margin-top:80px;
+}
+
+.hero h1{
+font-size:60px;
+background:rgba(0,0,0,0.5);
+padding:25px 50px;
+border-radius:10px;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:100px 20px;
+text-align:center;
+}
+
+.section h2{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.section p{
+color:#040000;
+max-width:800px;
+margin:auto;
+line-height:1.7;
+}
+
+/* SCROLL SECTION */
+
+.timeline-section{
+height:100vh;
+display:flex;
+align-items:center;
+overflow:hidden;
+position:relative;
+}
+
+.timeline-container{
+display:flex;
+gap:120px;
+padding:0 200px;
+position:relative;
+}
+
+/* GLOW LINE */
+
+.glow-line{
+position:absolute;
+top:50%;
+left:0;
+height:4px;
+width:100%;
+background:linear-gradient(90deg,#facc15,#3b82f6,#f97316);
+transform:translateY(-50%);
+filter:blur(2px);
+opacity:0.6;
+}
+
+/* CARD */
+
+.timeline-card{
+min-width:320px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border-radius:20px;
+padding:30px;
+text-align:center;
+box-shadow:0 15px 50px rgba(0,0,0,0.5);
+transition:0.4s;
+position:relative;
+}
+
+.timeline-card:hover{
+transform:translateY(-15px);
+box-shadow:0 25px 70px rgba(0,0,0,0.8);
+}
+
+.timeline-card h3{
+margin-bottom:15px;
+font-size:22px;
+}
+
+.timeline-card p{
+color:#000102;
+font-size:15px;
+}
+
+/* YEAR CIRCLE */
+
+.year{
+width:90px;
+height:90px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#ffffff;
+border:4px solid;
+font-weight:bold;
+margin:20px auto 0;
+transition:0.4s;
+}
+
+.yellow{ border-color:#facc15; }
+.blue{ border-color:#3b82f6; }
+.orange{ border-color:#f97316; }
+.white{ border-color:rgb(248, 7, 7); }
+
+.timeline-card.active .year{
+transform:scale(1.2);
+box-shadow:0 0 25px currentColor;
+}
+
+/* HORIZONTAL SCROLL ANIMATION */
+
+.timeline-section{
+perspective:1000px;
+}
+
+.timeline-container{
+animation:scrollTimeline 25s linear infinite;
+}
+
+@keyframes scrollTimeline{
+0%{ transform:translateX(0); }
+100%{ transform:translateX(-50%); }
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+.timeline-container{
+gap:60px;
+padding:0 60px;
+}
+.timeline-card{
+min-width:250px;
+}
+}
+/* ================= STATS ================= */
+
+.stats{
+background:rgb(249, 248, 248);
+padding:80px 20px;
+display:flex;
+justify-content:center;
+gap:120px;
+flex-wrap:wrap;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:42px;
+margin:0;
+color:#3b82f6;
+}
+
+.stat p{
+margin:10px 0 0;
+color:#555;
+}
+
+/* ================= CAMPUS GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
+margin-top:60px;
+}
+
+.grid-card{
+background:white;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.grid-card:hover{
+transform:translateY(-8px);
+}
+
+.grid-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.grid-card .content{
+padding:20px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:30px;
+margin-top:100px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h3>EDUSTACK UNIVERSITY</h3>
+
+<nav>
+
+<a href="{{ url_for('home') }}" class="nav-btn">Home</a>
+
+<!-- ABOUT MENU -->
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+<div class="mega-inner">
+
+<div class="mega-left">
+<h3>Overview</h3>
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 🔥 ACADEMICS MEGA MENU -->
+<!-- ACADEMICS MENU -->
+<div class="menu">
+    <a href="#" id="academicsBtn">Academics</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Undergraduate" target="_blank">Undergraduate</a>
+                <a href="/Postgraduate" target="_blank">Postgraduate</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/examinations" target="_blank">Examinations</a>
+                <a href="/time-table" target="_blank">Time Table</a>
+                <a href="/notices" target="_blank">Notices</a>
+                <a href="/academic-calendar" target="_blank">Academic Calendar</a>
+                <a href="/code-of-conduct" target="_blank">Code of Conduct</a>
+                <a href="/IQAC" target="_blank">IQAC</a>
+                <a href="/library" target="_blank">Library</a>
+                <a href="/faculty-staff" target="_blank">Faculty & Staff</a>
+            </div>
+
+        </div>
+    </div>
+</div>  <!-- 🔥 THIS CLOSING WAS MISSING -->
+
+
+<!-- FACILITIES MENU -->
+<div class="menu">
+    <a href="#" id="facilitiesBtn">Facilities</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Timelapse</a>
+                <a href="/Newsletter" target="_blank">Newsletter</a>
+                <a href="/Sports" target="_blank">Sports</a>
+                <a href="/e-learning" target="_blank">E-Learning</a>
+                <a href="/chapter-association" target="_blank">Chapter & Association</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/clubs" target="_blank">Clubs</a>
+                <a href="/research-innovation" target="_blank">Research & Innovation</a>
+                <a href="/transport-facilities" target="_blank">Transport Facilities</a>
+                <a href="/wifi-campus" target="_blank">Wifi Campus</a>
+                <a href="/canteen" target="_blank">Canteen</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<a href="/placementhome">Placements</a>
+
+<!---Courses-->
+<div class="menu">
+    <a href="#" id="CourseBtn">Courses</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Computer Science & Engineering</a>
+                <a href="/Newsletter" target="_blank">Information Technology</a>
+                <a href="/Sports" target="_blank">Electronics & Communication Engineering</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/research-innovation" target="_blank">Mechanical Engineering</a>
+                <a href="/transport-facilities" target="_blank">Civil Engineering</a>
+                <a href="/wifi-campus" target="_blank">Management</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a href="/login">Login</a>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<section class="hero">
+<h1>Our Heritage</h1>
+</section>
+
+<section class="section">
+<h2>Legacy of Excellence</h2>
+<p>
+EduStack University was established with the vision of redefining higher education 
+through innovation, research, and global collaboration. Over the years, the university 
+has evolved into a center of academic brilliance and technological advancement.
+</p>
+<section class="timeline-section">
+
+<div class="glow-line"></div>
+
+<div class="timeline-container">
+
+<div class="timeline-card">
+<h3>Foundation</h3>
+<p>University established with innovation vision.</p>
+<div class="year yellow">2019</div>
+</div>
+
+<div class="timeline-card">
+<h3>Expansion</h3>
+<p>New engineering blocks and research labs introduced.</p>
+<div class="year white">2020</div>
+</div>
+
+<div class="timeline-card">
+<h3>Global Partnerships</h3>
+<p>International exchange programs launched.</p>
+<div class="year yellow">2021</div>
+</div>
+
+<div class="timeline-card">
+<h3>Digital Transformation</h3>
+<p>Smart classrooms & ERP systems implemented.</p>
+<div class="year white">2022</div>
+</div>
+
+<div class="timeline-card">
+<h3>Innovation Hub</h3>
+<p>AI research center & startup incubation launched.</p>
+<div class="year orange">2023</div>
+</div>
+
+<!-- duplicate for infinite loop effect -->
+
+<div class="timeline-card">
+<h3>Foundation</h3>
+<p>University established with innovation vision.</p>
+<div class="year yellow">2019</div>
+</div>
+
+<div class="timeline-card">
+<h3>Expansion</h3>
+<p>New engineering blocks and research labs introduced.</p>
+<div class="year white">2020</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="stats">
+<div class="stat">
+<h3 id="students">0</h3>
+<p>Students Enrolled</p>
+</div>
+<div class="stat">
+<h3 id="faculty">0</h3>
+<p>Expert Faculty</p>
+</div>
+<div class="stat">
+<h3 id="placements">0</h3>
+<p>Placement Partners</p>
+</div>
+</section>
+
+<section class="section">
+<h2>Campus Highlights</h2>
+
+<div class="grid">
+<div class="grid-card">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+<div class="content">
+<h3>Modern Infrastructure</h3>
+<p>World-class campus facilities designed for innovation.</p>
+</div>
+</div>
+
+<div class="grid-card">
+<img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f">
+<div class="content">
+<h3>Research Excellence</h3>
+<p>Advanced research labs fostering groundbreaking ideas.</p>
+</div>
+</div>
+
+<div class="grid-card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<div class="content">
+<h3>Vibrant Student Life</h3>
+<p>Clubs, cultural events & leadership opportunities.</p>
+</div>
+</div>
+</div>
+
+</section>
+
+<script>
+
+/* Horizontal Scroll with Mouse */
+const track = document.getElementById("timelineTrack");
+
+window.addEventListener("wheel",(e)=>{
+track.scrollLeft += e.deltaY;
+});
+
+/* Animated Counter */
+function animateCounter(id, target){
+let count=0;
+const element=document.getElementById(id);
+const interval=setInterval(()=>{
+count+=Math.ceil(target/100);
+if(count>=target){
+count=target;
+clearInterval(interval);
+}
+element.innerText=count;
+},20);
+}
+
+window.onload=function(){
+animateCounter("students", 5000);
+animateCounter("faculty", 320);
+animateCounter("placements", 150);
+};
+
+</script>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+
+<script>
+
+$(document).ready(function(){
+
+$('.placement-slider').owlCarousel({
+
+    loop:true,
+    margin:30,
+    nav:true,
+    autoplay:true,
+    autoplayTimeout:2000,
+    smartSpeed:800,
+
+    responsive:{
+        0:{ items:1 },
+        600:{ items:2 },
+        1000:{ items:3 }
+    }
+
+});
+
+});
+</script>
+
+<script>
+
+/* ===== CLEAN MEGA MENU SYSTEM ===== */
+
+const menus = document.querySelectorAll(".menu");
+
+menus.forEach(menu => {
+
+    const btn = menu.querySelector("a");
+
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        // close others
+        menus.forEach(m => {
+            if(m !== menu){
+                m.classList.remove("active");
+            }
+        });
+
+        menu.classList.toggle("active");
+    });
+
+});
+
+
+/* CLOSE ONLY WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", function(e){
+
+    if(!e.target.closest(".menu")){
+        menus.forEach(m=>{
+            m.classList.remove("active");
+        });
+    }
+
+});
+
+</script>
+</body>
+</html>

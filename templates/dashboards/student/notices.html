@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body {
+            background: #020617;
+            font-family: "Segoe UI", sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtext {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .filters button {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: none;
+            background: #0f172a;
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .filters button.active,
+        .filters button:hover {
+            background: #2563eb;
+        }
+
+        /* Notification List */
+        .notifications {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .notification {
+            display: flex;
+            gap: 14px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .notification:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .icon {
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .info p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+
+        .time {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Types */
+        .notice { border-left: 4px solid #2563eb; }
+        .exam { border-left: 4px solid #dc2626; }
+        .assignment { border-left: 4px solid #f59e0b; }
+        .general { border-left: 4px solid #16a34a; }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🔔 Notifications</h1>
+    <div class="subtext">Important updates from college & faculty</div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="active">All</button>
+        <button>Notices</button>
+        <button>Exams</button>
+        <button>Assignments</button>
+        <button>General</button>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notifications">
+
+        <div class="notification notice">
+            <div class="icon">📢</div>
+            <div class="info">
+                <h3>College Holiday Declared</h3>
+                <p>College will remain closed tomorrow due to maintenance work.</p>
+                <div class="time">Today • 9:30 AM</div>
+            </div>
+        </div>
+
+        <div class="notification exam">
+            <div class="icon">📝</div>
+            <div class="info">
+                <h3>Mid-Sem Exam Schedule</h3>
+                <p>Mid-sem exams will start from 15 March. Check timetable.</p>
+                <div class="time">Yesterday • 4:15 PM</div>
+            </div>
+        </div>
+
+        <div class="notification assignment">
+            <div class="icon">📚</div>
+            <div class="info">
+                <h3>DBMS Assignment Uploaded</h3>
+                <p>Submit Assignment 3 before Friday.</p>
+                <div class="time">Yesterday • 11:00 AM</div>
+            </div>
+        </div>
+
+        <div class="notification general">
+            <div class="icon">🎓</div>
+            <div class="info">
+                <h3>Internship Opportunity</h3>
+                <p>New internship opportunities added in the internship section.</p>
+                <div class="time">2 days ago</div>
+            </div>
+        </div>
+
+        <div class="notification notice">
+            <div class="icon">📌</div>
+            <div class="info">
+                <h3>Library Timing Updated</h3>
+                <p>Library will remain open till 8 PM from next week.</p>
+                <div class="time">3 days ago</div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        body {
+            background: #020617;
+            font-family: "Segoe UI", sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtext {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .filters button {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: none;
+            background: #0f172a;
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .filters button.active,
+        .filters button:hover {
+            background: #2563eb;
+        }
+
+        /* Notification List */
+        .notifications {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .notification {
+            display: flex;
+            gap: 14px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .notification:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .icon {
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .info p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+
+        .time {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Types */
+        .notice { border-left: 4px solid #2563eb; }
+        .exam { border-left: 4px solid #dc2626; }
+        .assignment { border-left: 4px solid #f59e0b; }
+        .general { border-left: 4px solid #16a34a; }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🔔 Notifications</h1>
+    <div class="subtext">Important updates from college & faculty</div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="active">All</button>
+        <button>Notices</button>
+        <button>Exams</button>
+        <button>Assignments</button>
+        <button>General</button>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notifications">
+
+        <div class="notification notice">
+            <div class="icon">📢</div>
+            <div class="info">
+                <h3>College Holiday Declared</h3>
+                <p>College will remain closed tomorrow due to maintenance work.</p>
+                <div class="time">Today • 9:30 AM</div>
+            </div>
+        </div>
+
+        <div class="notification exam">
+            <div class="icon">📝</div>
+            <div class="info">
+                <h3>Mid-Sem Exam Schedule</h3>
+                <p>Mid-sem exams will start from 15 March. Check timetable.</p>
+                <div class="time">Yesterday • 4:15 PM</div>
+            </div>
+        </div>
+
+        <div class="notification assignment">
+            <div class="icon">📚</div>
+            <div class="info">
+                <h3>DBMS Assignment Uploaded</h3>
+                <p>Submit Assignment 3 before Friday.</p>
+                <div class="time">Yesterday • 11:00 AM</div>
+            </div>
+        </div>
+
+        <div class="notification general">
+            <div class="icon">🎓</div>
+            <div class="info">
+                <h3>Internship Opportunity</h3>
+                <p>New internship opportunities added in the internship section.</p>
+                <div class="time">2 days ago</div>
+            </div>
+        </div>
+
+        <div class="notification notice">
+            <div class="icon">📌</div>
+            <div class="info">
+                <h3>Library Timing Updated</h3>
+                <p>Library will remain open till 8 PM from next week.</p>
+                <div class="time">3 days ago</div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

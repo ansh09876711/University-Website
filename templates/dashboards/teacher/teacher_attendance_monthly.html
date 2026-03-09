@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='attendance_monthly.css') }}">
+</head>
+<body>
+
+<div class="calendar-header">
+    <a href="/teacher">⬅ Back</a>
+    <h2>📅 Monthly Attendance</h2>
+</div>
+
+<div class="table-wrap">
+<table class="calendar-table">
+    <tr>
+        <th>Student</th>
+        {% for d in range(1, 31) %}
+            <th>{{ d }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td class="student-name">{{ s.username }}</td>
+
+        {% for d in range(1, 31) %}
+            {% set date_key = "2025-12-" ~ ("%02d"|format(d)) %}
+            {% set status = attendance.get(s.username, {}).get(date_key) %}
+
+            <td
+                class="{% if status=='present' %}present{% elif status=='absent' %}absent{% else %}empty{% endif %}"
+                onclick="toggleAttendance('{{ s.username }}','{{ date_key }}', this)">
+                {% if status=='present' %}✔{% elif status=='absent' %}✖{% else %}—{% endif %}
+            </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+<div class="legend">
+    <span>✔ Present</span>
+    <span>✖ Absent</span>
+    <span>— Not marked</span>
+</div>
+
+<script src="{{ url_for('static', filename='attendance_monthly.js') }}"></script>
+</body>
+</html>

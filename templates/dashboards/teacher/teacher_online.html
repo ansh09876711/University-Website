@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Classroom Manager</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+background:#020617;
+font-family:Segoe UI;
+color:white;
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px;
+}
+
+/* ===== TITLE ===== */
+
+h2{
+margin-bottom:20px;
+}
+
+/* ===== FORM GLASS CARD ===== */
+
+.form-box{
+background:rgba(255,255,255,0.04);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.08);
+margin-bottom:40px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:none;
+background:#0f172a;
+color:white;
+}
+
+/* BUTTON */
+
+button{
+background:#22c55e;
+border:none;
+padding:12px 18px;
+border-radius:10px;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* ===== SESSION GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,0.04);
+border-radius:18px;
+padding:20px;
+border:1px solid rgba(255,255,255,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 50px rgba(0,0,0,0.6);
+}
+
+.type{
+font-size:12px;
+padding:4px 10px;
+border-radius:20px;
+display:inline-block;
+margin-bottom:10px;
+}
+
+.live{ background:#16a34a; }
+.upcoming{ background:#2563eb; }
+.recorded{ background:#9333ea; }
+
+.delete{
+background:#ef4444;
+margin-top:10px;
+color:white;
+}
+
+.meta{
+opacity:.7;
+font-size:13px;
+margin:6px 0;
+}
+.back-btn{
+display:inline-block;
+margin-bottom:20px;
+color:#38bdf8;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+color:#22c55e;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/teacher" class="back-btn">⬅ Back to Dashboard</a>
+
+<h2>🎥 Classroom Manager</h2>
+
+<!-- ===== CREATE FORM ===== -->
+
+<div class="form-box">
+
+<h3>Create Live / Recorded / Upcoming Session</h3>
+
+<form method="POST">
+
+<input name="title" placeholder="Class Title" required>
+
+<select name="class_id">
+{% for c in classes %}
+<option value="{{c.id}}">{{c.class_name}}</option>
+{% endfor %}
+</select>
+
+<select name="type">
+<option value="live">🔴 Live</option>
+<option value="upcoming">⏰ Upcoming</option>
+<option value="recorded">▶ Recorded</option>
+</select>
+
+<label>Schedule Date & Time</label>
+<input type="datetime-local" name="schedule_time">
+
+<input name="meeting_link" placeholder="Meeting Link (Zoom/Meet etc)">
+
+<input name="video_link" placeholder="Recorded Video Link">
+
+<button>Create Session</button>
+
+</form>
+
+</div>
+
+
+<!-- ===== SESSION LIST ===== -->
+
+<h3>📚 Your Sessions</h3>
+
+<div class="grid">
+
+{% for s in sessions %}
+
+<div class="card">
+
+<div class="type {{s.type}}">{{s.type|upper}}</div>
+
+<h3>{{s.title}}</h3>
+
+<div class="meta">Class ID: {{s.class_id}}</div>
+
+{% if s.schedule_time %}
+<div class="meta">🕒 {{s.schedule_time}}</div>
+{% endif %}
+
+{% if s.meeting_link %}
+<div class="meta">
+<a href="{{s.meeting_link}}" target="_blank" style="color:#38bdf8;">Join Link</a>
+</div>
+{% endif %}
+
+{% if s.video_link %}
+<div class="meta">
+<a href="{{s.video_link}}" target="_blank" style="color:#a78bfa;">Watch Recording</a>
+</div>
+{% endif %}
+
+<form action="/teacher/delete-session/{{s.id}}" method="POST">
+<button class="delete">Delete</button>
+</form>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

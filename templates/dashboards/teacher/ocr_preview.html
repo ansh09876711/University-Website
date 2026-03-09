@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OCR Result</title>
+    <style>
+        textarea { width: 100%; height: 300px; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+
+<a href="/teacher">⬅ Back</a>
+
+<h2>🖼 Image → Text (OCR)</h2>
+
+<form method="POST" action="/teacher/save-ocr">
+    <input type="hidden" name="class_id" value="{{ class_id }}">
+
+    <textarea name="text">{{ text }}</textarea><br><br>
+
+    <button type="submit">✅ Save Students</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Calendar</title>
+
+    <!-- ✅ CORRECT CSS PATH -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='teacher_attendance_calendar.css') }}">
+</head>
+<body>
+
+<div class="calendar-container">
+
+    <!-- HEADER -->
+    <div class="calendar-header">
+        <h2>📅 Attendance Calendar</h2>
+
+        <div class="month-picker">
+            <button onclick="changeMonth(-1)">◀</button>
+            <span id="monthYear"></span>
+            <button onclick="changeMonth(1)">▶</button>
+        </div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+        <span class="present">● Present</span>
+        <span class="absent">● Absent</span>
+    </div>
+
+    <!-- CALENDAR -->
+    <div id="calendar"></div>
+
+</div>
+
+<!-- ✅ VARIABLE NAMES FIXED -->
+<script>
+    const students = {{ students | tojson }};
+    const attendance = {{ attendance | tojson }};
+</script>
+<script>
+/* ===== LOAD SAVED ATTENDANCE ===== */
+window.addEventListener("load", () => {
+    fetch("/api/get-attendance")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(rec => {
+                const day = parseInt(rec.date.split("-")[2]);
+
+                document.querySelectorAll("tr").forEach(row => {
+                    if (row.dataset.student === rec.student) {
+                        const cell = row.children[day];
+                        if (!cell) return;
+
+                        cell.classList.remove("present", "absent");
+                        cell.classList.add(rec.status);
+                        cell.textContent = rec.status === "present" ? "✔" : "✖";
+                    }
+                });
+            });
+        });
+});
+</script>
+
+<!-- ✅ CORRECT JS PATH -->
+<script src="{{ url_for('static', filename='js/teacher_attendance_calendar.js') }}"></script>
+
+</body>
+</html>

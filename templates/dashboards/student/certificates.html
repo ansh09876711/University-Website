@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Certificates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <style>
+        body{
+            margin:0;
+            background:#0f172a;
+            color:#e5e7eb;
+            font-family:"Segoe UI",sans-serif;
+        }
+
+        /* HEADER */
+        .top-bar{
+            background:linear-gradient(135deg,#2563eb,#1e40af);
+            padding:16px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .top-bar a{
+            color:#bfdbfe;
+            text-decoration:none;
+        }
+
+        /* CONTENT */
+        .container{
+            padding:18px;
+        }
+
+        .card{
+            background:#020617;
+            border-radius:14px;
+            padding:18px;
+            margin-bottom:16px;
+        }
+
+        /* CERTIFICATE GRID */
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:16px;
+        }
+
+        .certificate{
+            background:#020617dd;
+            border-radius:16px;
+            padding:16px;
+            border:1px solid #1e293b;
+            transition:transform .2s, box-shadow .2s;
+        }
+
+        .certificate:hover{
+            transform:translateY(-4px);
+            box-shadow:0 10px 25px rgba(0,0,0,.4);
+        }
+
+        .icon{
+            font-size:38px;
+            margin-bottom:10px;
+        }
+
+        .title{
+            font-size:18px;
+            margin:0;
+        }
+
+        .desc{
+            font-size:14px;
+            color:#94a3b8;
+            margin:6px 0 12px;
+        }
+
+        .badge{
+            display:inline-block;
+            padding:4px 10px;
+            border-radius:20px;
+            font-size:12px;
+            margin-bottom:12px;
+        }
+
+        .approved{
+            background:#16a34a33;
+            color:#22c55e;
+        }
+
+        .pending{
+            background:#f59e0b33;
+            color:#fbbf24;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:10px 14px;
+            border-radius:10px;
+            background:#2563eb;
+            color:#fff;
+            text-decoration:none;
+            font-size:14px;
+            transition:.2s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-bar">
+    <h2>📜 Certificates</h2>
+    <a href="/student">⬅ Back</a>
+</div>
+
+<div class="container">
+
+    <!-- CERTIFICATE LIST -->
+    <div class="card">
+        <h3>My Certificates</h3>
+
+        <div class="grid">
+
+            <!-- CERT 1 -->
+            <div class="certificate">
+                <div class="icon">🎓</div>
+                <h4 class="title">Course Completion</h4>
+                <div class="badge approved">Approved</div>
+                <p class="desc">Machine Learning (CS-601)</p>
+                <a href="#" class="btn">⬇ Download</a>
+            </div>
+
+            <!-- CERT 2 -->
+            <div class="certificate">
+                <div class="icon">🏆</div>
+                <h4 class="title">Merit Certificate</h4>
+                <div class="badge approved">Approved</div>
+                <p class="desc">Top 5% in Semester</p>
+                <a href="#" class="btn">⬇ Download</a>
+            </div>
+
+            <!-- CERT 3 -->
+            <div class="certificate">
+                <div class="icon">📘</div>
+                <h4 class="title">Internship Certificate</h4>
+                <div class="badge pending">Pending</div>
+                <p class="desc">6-Week Internship</p>
+                <a href="#" class="btn">⏳ Waiting</a>
+            </div>
+
+            <!-- CERT 4 -->
+            <div class="certificate">
+                <div class="icon">🧪</div>
+                <h4 class="title">Workshop Certificate</h4>
+                <div class="badge approved">Approved</div>
+                <p class="desc">AI & Data Science Workshop</p>
+                <a href="#" class="btn">⬇ Download</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

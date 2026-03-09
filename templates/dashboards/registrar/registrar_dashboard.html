@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registrar Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f1f5f9;
+}
+
+/* HEADER */
+
+.header{
+background:#1e3a8a;
+color:white;
+padding:20px 40px;
+font-size:24px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.back{
+color:white;
+text-decoration:none;
+font-size:14px;
+background:#2563eb;
+padding:6px 12px;
+border-radius:6px;
+}
+
+/* CONTAINER */
+
+.container{
+padding:40px;
+max-width:1300px;
+margin:auto;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 30px rgba(0,0,0,0.08);
+}
+
+.card h3{
+margin-top:0;
+color:#1e3a8a;
+}
+
+.card p{
+color:#555;
+}
+
+/* LINKS */
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+🏢 Registrar Dashboard
+
+<a href="/login" class="back">Logout</a>
+
+</div>
+
+<div class="container">
+
+<div class="grid">
+
+<!-- STUDENT RECORDS -->
+
+<a href="/registrar/student-records">
+<div class="card">
+<h3>📚 Student Records</h3>
+<p>View and manage all student information and profiles.</p>
+</div>
+</a>
+
+<!-- ENROLLMENT -->
+
+<a href="/registrar/enrollment">
+<div class="card">
+<h3>📝 Enrollment Management</h3>
+<p>Handle admissions, enrollment approvals, and registrations.</p>
+</div>
+</a>
+
+<!-- CERTIFICATE -->
+
+<a href="/registrar/certificates">
+<div class="card">
+<h3>🎓 Certificate Generator</h3>
+<p>Auto generate AI-based certificates instantly.</p>
+</div>
+</a>
+
+<!-- ID CARD -->
+
+<a href="/registrar/id-cards">
+<div class="card">
+<h3>🪪 ID Card Generator</h3>
+<p>Generate auto PDF ID cards for students.</p>
+</div>
+</a>
+
+<!-- ACADEMIC RECORDS -->
+
+<a href="/registrar/academic-records">
+<div class="card">
+<h3>📊 Academic Records</h3>
+<p>Manage marksheets, grades and performance analytics.</p>
+</div>
+</a>
+
+<!-- LIVE SEARCH -->
+
+<a href="/registrar/student-search">
+<div class="card">
+<h3>🔎 Live Student Search</h3>
+<p>Realtime smart search system.</p>
+</div>
+</a>
+
+<!-- ANALYTICS -->
+
+<a href="/registrar/analytics">
+<div class="card">
+<h3>📈 Academic Analytics</h3>
+<p>AI charts and performance insights.</p>
+</div>
+</a>
+
+<!-- ADMIN PANEL -->
+
+<a href="/admin">
+<div class="card">
+<h3>👑 Admin Control Panel</h3>
+<p>Advanced system controls and management.</p>
+</div>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

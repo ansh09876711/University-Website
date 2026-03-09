@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOD Classroom Activity</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body{
+            font-family:Segoe UI;
+            background:#f4f6f9;
+            margin:0;
+            padding:30px;
+        }
+
+        h1{
+            margin-bottom:25px;
+            color:#222;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card-title{
+            font-size:14px;
+            color:#777;
+            margin-bottom:10px;
+        }
+
+        .number{
+            font-size:28px;
+            font-weight:bold;
+            color:#007bff;
+        }
+
+        .chart-box{
+            margin-top:40px;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .chart-wrapper{
+            position:relative;
+            height:350px;      /* 🔥 height fixed */
+            max-width:800px;   /* 🔥 width controlled */
+            margin:auto;       /* center align */
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>📊 Classroom Activity Overview</h1>
+
+<div class="cards">
+
+    <div class="card">
+        <div class="card-title">Total Classes</div>
+        <div class="number">{{ total_classes }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Total Teachers</div>
+        <div class="number">{{ total_teachers }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Total Students</div>
+        <div class="number">{{ total_students }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Live Sessions</div>
+        <div class="number">{{ live_sessions }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Attendance Today</div>
+        <div class="number">{{ today_attendance }}</div>
+    </div>
+
+</div>
+
+<div class="chart-box">
+    <div class="chart-wrapper">
+        <canvas id="activityChart"></canvas>
+    </div>
+</div>
+
+<script>
+const ctx = document.getElementById('activityChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Classes','Teachers','Students','Live Sessions'],
+        datasets: [{
+            label: 'System Activity',
+            data: [
+                {{ total_classes }},
+                {{ total_teachers }},
+                {{ total_students }},
+                {{ live_sessions }}
+            ],
+            backgroundColor: [
+                '#4e73df',
+                '#1cc88a',
+                '#36b9cc',
+                '#f6c23e'
+            ],
+            borderRadius:8
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

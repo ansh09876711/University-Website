@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Teacher Notice Panel</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+input,textarea,select{
+width:100%;
+padding:10px;
+margin:5px 0;
+}
+
+.notice{
+background:#f9fafb;
+padding:15px;
+margin-top:10px;
+border-radius:10px;
+}
+
+.important{
+border-left:5px solid red;
+}
+
+.back-btn{
+background:#2563eb;
+color:white;
+text-decoration:none;
+padding:8px 15px;
+border-radius:8px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+<div class="topbar">
+<h2>📢 Teacher Notice Panel</h2>
+<a href="/teacher" class="back-btn">⬅ Back</a>
+</div>
+
+<div class="card">
+
+<form method="POST">
+
+<input name="title" placeholder="Title" required>
+
+<textarea name="message" placeholder="Notice message"></textarea>
+
+<select name="class_name">
+
+{% for c in classes %}
+<option value="{{c.class_name}}">{{c.class_name}}</option>
+{% endfor %}
+
+</select>
+
+<label>
+<input type="checkbox" name="important">
+Important Notice
+</label>
+
+<button>Add Notice</button>
+
+</form>
+
+</div>
+
+
+<div class="card">
+
+<h3>All Notices</h3>
+
+{% for n in notices %}
+
+<div class="notice {% if n.is_important %}important{% endif %}">
+
+<h4>{{n.title}}</h4>
+
+<p>{{n.message}}</p>
+
+<p><b>Class:</b> {{n.class_name}}</p>
+
+</div>
+
+{% else %}
+No notice yet
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

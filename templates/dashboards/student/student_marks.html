@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Student Marks</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+padding:10px;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+.grade{
+padding:4px 10px;
+border-radius:6px;
+font-weight:bold;
+}
+
+.Aplus{background:#dcfce7;color:#166534;}
+.A{background:#dbeafe;color:#1e40af;}
+.B{background:#fef9c3;color:#854d0e;}
+.C{background:#fee2e2;color:#991b1b;}
+.Fail{background:#ef4444;color:white;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📊 My Marks</h2>
+
+<!-- TABLE CARD -->
+<div class="card">
+
+<table>
+
+<tr>
+<th>Subject</th>
+<th>Marks</th>
+<th>Teacher</th>
+<th>Date</th>
+<th>Grade</th>
+</tr>
+
+{% for m in marks %}
+
+<tr>
+
+<td>{{ m.subject }}</td>
+
+<td>{{ m.marks }}</td>
+
+<td>{{ m.teacher_username }}</td>
+
+<td>{{ m.created_at }}</td>
+
+<td>
+
+<span class="grade 
+{% if m.grade=='A+' %}Aplus{% endif %}
+{% if m.grade=='A' %}A{% endif %}
+{% if m.grade=='B' %}B{% endif %}
+{% if m.grade=='C' %}C{% endif %}
+{% if m.grade=='Fail' %}Fail{% endif %}
+">
+
+{{ m.grade }}
+
+</span>
+
+</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+<td colspan="5">No marks uploaded yet</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+<!-- GRAPH CARD -->
+<div class="card">
+
+<h3>📈 Marks Analytics</h3>
+
+<canvas id="marksChart"></canvas>
+
+</div>
+
+</div>
+
+
+<!-- ================= CHART SCRIPT ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const subjects = JSON.parse('{{ marks | map(attribute="subject") | list | tojson | safe }}');
+const marksData = JSON.parse('{{ marks | map(attribute="marks") | list | tojson | safe }}');
+
+new Chart(document.getElementById("marksChart"), {
+
+    type:"bar",
+
+    data:{
+        labels:subjects,
+        datasets:[{
+            label:"Marks",
+            data:marksData
+        }]
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

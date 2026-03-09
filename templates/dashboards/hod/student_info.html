@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>HOD Student Info</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6f9;
+padding:30px;
+}
+
+table{
+width:100%;
+background:white;
+border-collapse:collapse;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+th,td{
+padding:12px;
+text-align:left;
+border-bottom:1px solid #eee;
+}
+
+th{
+background:#007bff;
+color:white;
+}
+
+tr:hover{
+background:#f1f1f1;
+}
+
+.search-box{
+margin-bottom:20px;
+}
+
+input{
+padding:10px;
+width:300px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>👨‍🎓 Student Information Panel</h2>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search student...">
+</div>
+
+<table id="studentTable">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Enrollment</th>
+<th>Class</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for s in students %}
+
+<tr>
+<td>{{ s.id }}</td>
+<td>{{ s.username }}</td>
+<td>{{ s.enrollment_no }}</td>
+<td>{{ s.class_name }}</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keyup", function() {
+
+let filter = this.value.toLowerCase();
+let rows = document.querySelectorAll("#studentTable tbody tr");
+
+rows.forEach(row => {
+
+let text = row.innerText.toLowerCase();
+
+row.style.display = text.includes(filter) ? "" : "none";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

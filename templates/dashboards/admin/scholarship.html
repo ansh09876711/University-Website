@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scholarship Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>🎓 Scholarship Portal</h1>
+
+    <p>Welcome, {{ session.username }}</p>
+
+    <ul>
+        <li>📄 View Scholarship Applications</li>
+        <li>✅ Approve / Reject Applications</li>
+        <li>📊 Scholarship Reports</li>
+    </ul>
+
+    <br>
+    <a href="/logout">🚪 Logout</a>
+</div>
+
+</body>
+</html>

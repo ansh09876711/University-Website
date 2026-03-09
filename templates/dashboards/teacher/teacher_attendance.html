@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f8; padding:20px }
+        table { width:100%; background:#fff; border-collapse:collapse }
+        th, td { padding:10px; border-bottom:1px solid #ddd; text-align:center }
+        th { background:#2563eb; color:white }
+        button { padding:8px 14px; background:#2563eb; color:white; border:none; border-radius:6px }
+        select, input { padding:6px }
+    </style>
+</head>
+<body>
+<a href="/teacher" style="
+    display:inline-block;
+    margin-bottom:15px;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:8px 14px;
+    border-radius:6px;
+    font-weight:bold;
+">
+    ⬅ Back to Dashboard
+</a>
+
+<h2>📝 Mark Attendance</h2>
+
+<!-- CLASS SELECT -->
+<form method="get">
+    <label>Select Class:</label>
+    <select name="class_id" onchange="this.form.submit()">
+        <option value="">-- Select --</option>
+        {% for c in classes %}
+        <option value="{{ c.id }}" {% if selected_class == c.id|string %}selected{% endif %}>
+            {{ c.class_name }}
+        </option>
+        {% endfor %}
+    </select>
+</form>
+
+{% if students %}
+<hr>
+
+<form method="post" action="/teacher/mark-attendance">
+
+    <label><b>Date:</b></label>
+    <input type="date" name="date" required>
+
+    <input type="hidden" name="class_id" value="{{ selected_class }}">
+    <div class="table-wrap">
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Present</th>
+            <th>Absent</th>
+        </tr>
+
+        {% for s in students %}
+        <tr>
+            <td>{{ s.username }}</td>
+            <td><input type="radio" name="status_{{ s.id }}" value="present" required></td>
+            <td><input type="radio" name="status_{{ s.id }}" value="absent"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    <br>
+    <button type="submit">✅ Save Attendance</button>
+</form>
+{% endif %}
+
+</body>
+</html>

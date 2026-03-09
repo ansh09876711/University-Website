@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Student Assignments</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+}
+
+.assignment-box{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.assignment-box:hover{
+transform:translateY(-5px);
+}
+
+.timer{
+font-weight:bold;
+color:#2563eb;
+}
+
+.badge{
+padding:4px 10px;
+border-radius:6px;
+font-size:12px;
+margin-left:10px;
+}
+
+.open{background:#dcfce7;color:#166534;}
+.late{background:#fee2e2;color:#991b1b;}
+
+.submit-btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.submit-btn:hover{
+background:#1d4ed8;
+}
+
+.previewBox img{
+margin-top:10px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>📚 Student Dashboard</h2>
+
+{% for a in assignments %}
+
+<div class="assignment-box">
+
+<h3>
+{{ a.title }}
+<span class="status badge open">OPEN</span>
+</h3>
+
+<p>{{ a.description }}</p>
+
+{% if a.file_path %}
+<a href="/static/uploads/{{ a.file_path }}" target="_blank">
+📥 Download Assignment
+</a>
+{% endif %}
+
+<br><br>
+
+<span class="timer" data-deadline="{{ a.deadline }}"></span>
+
+<form action="/submit-assignment/{{ a.id }}" method="POST" enctype="multipart/form-data">
+
+<input type="file" class="fileInput" name="file" required>
+
+<div class="previewBox"></div>
+
+<button class="submit-btn">Submit Assignment</button>
+
+</form>
+
+</div>
+
+{% else %}
+
+<p>No assignments available.</p>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+document.querySelectorAll(".assignment-box").forEach(box=>{
+
+let timer = box.querySelector(".timer");
+let btn = box.querySelector(".submit-btn");
+let fileInput = box.querySelector(".fileInput");
+let previewBox = box.querySelector(".previewBox");
+let badge = box.querySelector(".status");
+
+let deadline = new Date(timer.dataset.deadline);
+
+setInterval(()=>{
+
+let now = new Date();
+let diff = deadline-now;
+
+if(diff<=0){
+
+timer.innerHTML="Late ❌";
+btn.disabled=true;
+btn.innerHTML="Submission Closed";
+btn.style.background="#ef4444";
+
+badge.innerHTML="LATE";
+badge.classList.remove("open");
+badge.classList.add("late");
+
+return;
+}
+
+let h=Math.floor(diff/1000/60/60);
+let m=Math.floor((diff/1000/60)%60);
+let s=Math.floor((diff/1000)%60);
+
+timer.innerHTML=`${h}h ${m}m ${s}s left ⏳`;
+
+},1000);
+
+
+// FILE PREVIEW
+
+fileInput.addEventListener("change",()=>{
+
+previewBox.innerHTML="";
+
+let file=fileInput.files[0];
+if(!file) return;
+
+previewBox.innerHTML="<b>"+file.name+"</b><br>";
+
+if(file.type.startsWith("image/")){
+let img=document.createElement("img");
+img.src=URL.createObjectURL(file);
+img.style.width="120px";
+previewBox.appendChild(img);
+}
+else if(file.type==="application/pdf"){
+previewBox.innerHTML+="📄 PDF Selected";
+}else{
+previewBox.innerHTML+="📁 File Ready";
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

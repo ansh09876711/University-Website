@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Percentage</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f8; padding:20px }
+        table { width:100%; background:white; border-collapse:collapse }
+        th, td { padding:12px; border-bottom:1px solid #ddd; text-align:center }
+        th { background:#2563eb; color:white }
+        .good { color:green; font-weight:bold }
+        .bad { color:red; font-weight:bold }
+        select { padding:8px }
+    </style>
+</head>
+<body>
+
+<a href="/teacher">⬅ Back</a>
+<h2>📊 Attendance Percentage</h2>
+
+<form method="get">
+    <label>Select Class:</label>
+    <select name="class_id" onchange="this.form.submit()">
+        <option value="">-- Select Class --</option>
+        {% for c in classes %}
+        <option value="{{ c.id }}" {% if selected_class == c.id|string %}selected{% endif %}>
+            {{ c.class_name }}
+        </option>
+        {% endfor %}
+    </select>
+</form>
+
+{% if data %}
+<div class="table-wrap">
+<table>
+<tr>
+    <th>ID</th>
+    <th>Student</th>
+    <th>Total Days</th>
+    <th>Present</th>
+    <th>Attendance %</th>
+</tr>
+
+{% for d in data %}
+<tr>
+    <td>{{ d.id }}</td>
+    <td>{{ d.username }}</td>
+    <td>{{ d.total }}</td>
+    <td>{{ d.present }}</td>
+    <td class="{{ 'good' if d.percent >= 75 else 'bad' }}">
+        {{ d.percent }}%
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endif %}
+
+</body>
+</html>

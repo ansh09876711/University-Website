@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>EDUSTACK UNIVERSITY</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<style>
+#chat-messages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+overflow-x:hidden;
+word-wrap:break-word;
+}
+.user-msg{
+background:#2563eb;
+color:white;
+padding:8px 12px;
+border-radius:10px;
+margin:5px;
+width:max-content;
+margin-left:auto;
+}
+.bot-msg{
+background:#f1f5f9;
+padding:8px 12px;
+border-radius:10px;
+margin:5px;
+max-width:85%;
+word-wrap:break-word;
+white-space:pre-wrap;
+}
+#chatbot-btn{
+position:fixed;
+right:25px;
+bottom:25px;
+background:#2563eb;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+cursor:pointer;
+z-index:9999;
+}
+
+#chatbot-box{
+position:fixed;
+right:25px;
+bottom:100px;
+width:360px;
+height:450px;
+background:white;
+border-radius:12px;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:9999;
+}
+
+.chat-header{
+background:#2563eb;
+color:white;
+padding:12px;
+font-weight:600;
+display:flex;
+justify-content:space-between;
+}
+
+#chat-messages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+font-size:14px;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #ddd;
+}
+
+.chat-input input{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+}
+
+.chat-input button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+}
+.download-btn{
+display:block;
+padding:15px 20px;
+border:2px solid #111;
+color:#2563eb;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+width:250px;
+}
+
+.download-btn:hover{
+background:#2563eb;
+color:white;
+}
+.footer-links a{
+display:block;
+color:#2563eb;
+text-decoration:none;
+margin-bottom:8px;
+}
+
+.footer-links a:hover{
+text-decoration:underline;
+}
+.department-card{
+position:relative;
+display:block;   /* Important */
+text-decoration:none;
+color:white;
+overflow:hidden;
+border-radius:12px;
+}
+
+.department-card img{
+width:100%;
+height:250px;
+object-fit:cover;
+display:block;
+}
+
+.overlay{
+position:absolute;
+bottom:0;
+width:100%;
+padding:20px;
+background:rgba(0,0,0,0.6);
+}
+.menu{
+position:relative;
+}
+
+/* MEGA MENU MAIN BOX */
+
+.mega{
+
+display:none;
+position:absolute;
+
+top:60px;
+left:50%;
+transform:translateX(-50%);
+
+width:900px;
+max-width:95vw;
+
+background:linear-gradient(135deg,#3b1dd1,#7c3aed);
+
+border-radius:18px;
+padding:35px;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.35);
+
+z-index:999;
+
+flex-direction:row;
+gap:40px;
+
+}
+
+/* SHOW */
+
+.menu.active .mega{
+display:flex;
+}
+
+/* INNER STRUCTURE */
+
+.mega-inner{
+
+display:flex;
+width:100%;
+gap:40px;
+
+}
+
+/* LEFT RIGHT */
+
+.mega-left,
+.mega-right{
+
+flex:1;
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+/* LINKS STYLE */
+
+.mega a{
+
+display:block;
+padding:12px 18px;
+
+border-radius:50px;
+color:white;
+text-decoration:none;
+
+background:rgba(255,255,255,0.08);
+
+transition:.3s;
+
+}
+
+.mega a:hover{
+
+background:white;
+color:#3b1dd1;
+transform:translateX(5px);
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h3>EDUSTACK UNIVERSITY</h3>
+
+<nav>
+
+<a href="{{ url_for('home') }}" class="nav-btn">Home</a>
+
+<!-- ABOUT MENU -->
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+<div class="mega-inner">
+
+<div class="mega-left">
+<h3>Overview</h3>
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 🔥 ACADEMICS MEGA MENU -->
+<!-- ACADEMICS MENU -->
+<div class="menu">
+    <a href="#" id="academicsBtn">Academics</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Undergraduate" target="_blank">Undergraduate</a>
+                <a href="/Postgraduate" target="_blank">Postgraduate</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/examinations" target="_blank">Examinations</a>
+                <a href="/time-table" target="_blank">Time Table</a>
+                <a href="/notices" target="_blank">Notices</a>
+                <a href="/academic-calendar" target="_blank">Academic Calendar</a>
+                <a href="/code-of-conduct" target="_blank">Code of Conduct</a>
+                <a href="/IQAC" target="_blank">IQAC</a>
+                <a href="/library" target="_blank">Library</a>
+                <a href="/faculty-staff" target="_blank">Faculty & Staff</a>
+            </div>
+
+        </div>
+    </div>
+</div>  <!-- 🔥 THIS CLOSING WAS MISSING -->
+
+
+<!-- FACILITIES MENU -->
+<div class="menu">
+    <a href="#" id="facilitiesBtn">Facilities</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Timelapse</a>
+                <a href="/Newsletter" target="_blank">Newsletter</a>
+                <a href="/Sports" target="_blank">Sports</a>
+                <a href="/e-learning" target="_blank">E-Learning</a>
+                <a href="/chapter-association" target="_blank">Chapter & Association</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/clubs" target="_blank">Clubs</a>
+                <a href="/research-innovation" target="_blank">Research & Innovation</a>
+                <a href="/transport-facilities" target="_blank">Transport Facilities</a>
+                <a href="/wifi-campus" target="_blank">Wifi Campus</a>
+                <a href="/canteen" target="_blank">Canteen</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<a href="/placementhome">Placements</a>
+
+<!---Courses-->
+<div class="menu">
+    <a href="#" id="CourseBtn">Courses</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/cse" target="_blank">Computer Science & Engineering</a>
+                <a href="/it" target="_blank">Information Technology</a>
+                <a href="/ece" target="_blank">Electronics & Communication Engineering</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/mech" target="_blank">Mechanical Engineering</a>
+                <a href="/civil" target="_blank">Civil Engineering</a>
+                <a href="/management" target="_blank">Management</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a href="/login">Login</a>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+
+{% for media in hero_media %}
+
+    {% if media.type == "image" %}
+        <div class="slide {% if loop.first %}active{% endif %}"
+        style="background-image:url('/static/uploads/{{ media.file_name }}')">
+        </div>
+        {% endif %}
+
+    {% if media.type == "video" %}
+
+    <div class="slide {% if loop.first %}active{% endif %}">
+
+        <video autoplay muted loop style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        ">
+            <source src="/static/uploads/{{ media.file_name }}">
+        </video>
+
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
+</section>
+
+<!-- 🔥 ADMISSION OPEN SECTION -->
+
+<section class="admission-ultra">
+
+<div class="admission-container">
+
+<h4>Admission</h4>
+
+<h1>
+Enroll at EDUSTACK - the Premier<br>
+University in Indore, Madhya Pradesh
+</h1>
+
+<p>
+This isn't a place to get lost, it's a place to get found.
+At EU, your future is uniquely yours.
+And our world-class liberal arts education is just the beginning.
+</p>
+
+<div class="admission-buttons">
+
+<a href="{{ url_for('static', filename='brochure/EDUSTACK BROCHURE.pdf') }}" 
+   target="_blank" 
+   class="download-btn">
+
+   📄 DOWNLOAD PROSPECTUS
+
+</a>
+<a href="/apply" class="apply-btn">APPLY NOW</a>
+
+</div>
+
+<div class="admission-links">
+
+<a>How to Apply</a>
+<a href="/eligibility">Eligibility Criteria</a>
+<a>Scholarships</a>
+<a>Admissions Calendar</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RESEARCH -->
+
+<section class="gradient reveal">
+
+<div class="research-wrapper">
+
+<div class="research-left">
+
+<h3>Research</h3>
+
+<h2>Fostering a culture of research and development</h2>
+
+<p>
+The university achieve its aspirations of becoming a renowned institution,
+such as fostering a culture of research and development.
+</p>
+
+</div>
+
+
+<div class="research-right">
+
+<div class="research-track">
+
+<div class="research-card">
+<img src="https://images.unsplash.com/photo-1581091870627-3d4f7f7e8a3d">
+<div class="research-title">Forensic Biology Lab</div>
+</div>
+
+<div class="research-card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<div class="research-title">Forensic Physics Lab</div>
+</div>
+
+<div class="research-card">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+<div class="research-title">AI Research Center</div>
+</div>
+
+<div class="research-card">
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+<div class="research-title">Innovation Lab</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STUDENT LIFE -->
+
+<section class="knowledge-section">
+
+<div class="knowledge-container">
+
+<!-- LEFT TEXT -->
+<div class="knowledge-text">
+
+<span class="small-title">Life@EU</span>
+
+<h2>Where Knowledge Meets Excitement</h2>
+
+<p>
+The growing campus and the events create a perfect ambience
+to accelerate knowledge and growth. Students explore innovation,
+teamwork and leadership through various activities.
+</p>
+
+</div>
+
+
+<!-- RIGHT SLIDER -->
+<div class="slider-wrapper">
+
+<div class="slider-track">
+
+<div class="card">
+<img src="https://i.ibb.co/V8gRqv1/Screenshot-2026-02-17-120332.png">
+<span>Clubs</span>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/7JRTms6h/Screenshot-2026-02-17-120142.png">
+<span>Canteen</span>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/XkxqK5Zr/Screenshot-2026-02-17-121022.png">
+<span>Sports Club</span>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/gbz1GMgs/Screenshot-2026-02-17-120635.png">
+<span>Library</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PLACEMENT -->
+<!-- ========================= -->
+<!--   PLACEMENT SECTION PRO   -->
+<!-- ========================= -->
+
+<section class="placement-section">
+
+<div class="container placement-flex">
+
+    <!-- LEFT CONTENT -->
+    <div class="placement-left">
+            <h2><u>PLACEMENT</u></h2>
+
+        <h2>Student Success:<br> From Classroom to Career</h2>
+
+        <p>
+            Our institution is committed to transforming students into industry-ready professionals. 
+            With a strong focus on practical learning, innovation, and real-world exposure, we ensure 
+            that every student is prepared to excel in their career journey.
+
+            Through strategic collaborations with top companies, expert mentorship, and skill-oriented 
+            training programs, our students achieve outstanding placement success across diverse industries.
+        </p>
+
+    </div>
+
+    <!-- RIGHT SLIDER -->
+    <div class="placement-right">
+
+        <div class="placement-slider owl-carousel">
+
+{% for student in students %}
+
+<div class="placement-card">
+
+    <img src="{{ url_for('static', filename='uploads/' + student.student_image) }}">
+
+    <div class="overlay">
+
+        <h3>₹{{ student.ctc }} LAC LAKH PACKAGE</h3>
+
+        <p>{{ student.student_name }}</p>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- OUR RECRUITERS SECTION -->
+<!-- ========================= -->
+
+<section class="recruiter-section">
+
+<h2 class="recruiter-title">Our Recruitment Partners</h2>
+
+<div class="recruiter-slider">
+<div class="recruiter-track">
+
+<!-- ORIGINAL -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/HCL_Technologies_logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/512px-Infosys_logo.svg.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Adani_logo_2012.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/DeloitteLogo.jpg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Wipro_new_logo.svg">
+
+
+<!-- DUPLICATE (infinite scroll smooth) -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Tech_Mahindra_New_Logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Adobe_logo_and_wordmark_%282017%29.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Zara_logo_1980.svg">
+
+</div>
+</div>
+
+</section>
+
+<!-- ======================
+   Departments Section
+====================== -->
+
+<section class="department-section">
+
+<h2 class="department-title">Departments</h2>
+
+<div class="department-grid">
+
+<!-- CSE -->
+<a href="{{ url_for('computer') }}" class="department-card">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+<div class="overlay">
+<h3>Computer Science & Engineering</h3>
+</div>
+</a>
+
+<!-- IT -->
+<a href="{{ url_for('information') }}" class="department-card">
+<img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c">
+<div class="overlay">
+<h3>Information Technology</h3>
+</div>
+</a>
+
+<!-- ECE -->
+<a href="{{ url_for('electronics') }}" class="department-card">
+<img src="https://i.ibb.co/2YWVjRtT/nicolas-thomas-3-GZi6-Op-SDc-Y-unsplash.jpg">
+<div class="overlay">
+<h3>Electronics & Communication</h3>
+</div>
+</a>
+
+<!-- MECH -->
+<a href="{{ url_for('mechanical') }}" class="department-card">
+<img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc">
+<div class="overlay">
+<h3>Mechanical Engineering</h3>
+</div>
+</a>
+
+<!-- CIVIL -->
+<a href="{{ url_for('civileng') }}" class="department-card">
+<img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e">
+<div class="overlay">
+<h3>Civil Engineering</h3>
+</div>
+</a>
+
+<!-- MANAGEMENT -->
+<a href="{{ url_for('manage') }}" class="department-card">
+<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df">
+<div class="overlay">
+<h3>Management</h3>
+</div>
+</a>
+
+</div>
+
+</section>
+<!-- NEWS -->
+
+<section class="glass reveal">
+
+<h2>News & Events</h2>
+
+<div class="grid">
+
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+
+</div>
+
+</section>
+
+<footer>
+<p>
+    EDUSTACK UNIVERSITY
+</p>
+</footer>
+<!-- 🔥 ULTRA BGI FOOTER -->
+
+<section class="bgi-footer">
+
+<div class="footer-grid">
+
+<!-- LOGO + ADDRESS -->
+
+<div class="footer-logo">
+
+<img src="https://i.ibb.co/5hk1BjbF/Whats-App-Image-2026-02-16-at-10-38-13-AM-removebg-preview.png">
+
+<div class = "footer-links">
+<h4>EDUSTACK UNIVERSITY</h4>
+</div>
+
+<p>Admission Enquiry (BTech/ME/MTech/MBA)</p>
+<p>E-mail : info@sdbc.ac.in</p>
+<p>+91-9109954633</p>
+<p>Address: </p>
+
+</div>
+
+<!-- QUICK LINKS -->
+<div class="footer-links">
+<h4>Quick Links</h4>
+
+<a href="{{ url_for('alumni') }}">Alumni</a>
+<a href="https://www.vidyalakshmi.co.in" target="_blank" class="btn">
+Vidya lakshmi
+</a>
+<a href="https://pragati.nic.in/en/" target="_blank" class="btn">Pragati Portal</a>
+<a href="https://pgportal.gov.in/" target="_blank" class="btn">Grievances</a>
+<a href="https://parakh.aicte.gov.in/" target="_blank" class="btn">Parakh Portal</a>
+<a href="https://swayam.gov.in/" target="_blank" class="btn">NPTEL-Swayam</a>
+</div>
+
+<!-- IMPORTANT LINKS -->
+<div class="footer-links">
+<h4>Important Link</h4>
+
+<a href="https://www.rgpv.ac.in/" target="_blank" class="btn">RGPV</a>
+<a href="https://www.aicte.gov.in/" target="_blank" class="btn">AICTE</a>
+<a href="https://hescholarship.mp.gov.in/Public/OtherSchemes/GB.aspx?ID=MTE=" target="_blank" class="btn">MP Scholarship</a>
+<a href="http://www.mptechedu.org/" target="_blank" class="btn">MP DTE</a>
+<a href="https://www.ugc.ac.in/page/Videos-Regarding-Ragging.aspx" target="_blank" class="btn">Anti-Ragging (UGC)</a>
+<a href="https://www.aicte.gov.in/feedback/students.php" target="_blank" class="btn">Feedback</a>
+<a href="{{ url_for('privacy') }}" target="_blank" class="btn">Privacy Policy</a>
+
+</div>
+
+<!-- DOWNLOAD -->
+<div class="footer-links">
+<h4>Download</h4>
+
+<a href="{{ url_for('static', filename='brochure/EDUSTACK BROCHURE.pdf') }}" 
+   target="_blank" 
+   class="download-btn">
+
+   📄 Brochure
+
+</a>
+<a href="{{ url_for('bus_route') }}">Bus Route</a>
+
+</div>
+<div id="chatbot-btn">🤖</div>
+
+<div id="chatbot-box">
+
+<div class="chat-header">
+Edustack AI Assistant 🤖
+<span onclick="closeChat()">✖</span>
+</div>
+
+<div id="chat-messages"></div>
+
+<div class="chat-input">
+
+<input id="userInput" placeholder="Ask about admission, courses, placements...">
+
+<button onclick="sendMessage()">Send</button>
+
+<button onclick="startVoice()">🎤</button>
+
+</div>
+
+</div>
+<script>
+
+/* HERO SLIDER */
+
+let slides=document.querySelectorAll('.slide');
+let i=0;
+
+setInterval(()=>{
+slides[i].classList.remove('active');
+i=(i+1)%slides.length;
+slides[i].classList.add('active');
+},4000);
+
+/* SCROLL REVEAL */
+
+window.addEventListener('scroll',()=>{
+document.querySelectorAll('.reveal').forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add('active');
+}
+});
+});
+
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+
+<script>
+
+$(document).ready(function(){
+
+$('.placement-slider').owlCarousel({
+
+    loop:true,
+    margin:30,
+    nav:true,
+    autoplay:true,
+    autoplayTimeout:2000,
+    smartSpeed:800,
+
+    responsive:{
+        0:{ items:1 },
+        600:{ items:2 },
+        1000:{ items:3 }
+    }
+
+});
+
+});
+</script>
+
+<script>
+
+/* ===== CLEAN MEGA MENU SYSTEM ===== */
+
+const menus = document.querySelectorAll(".menu");
+
+menus.forEach(menu => {
+
+    const btn = menu.querySelector("a");
+
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        // close others
+        menus.forEach(m => {
+            if(m !== menu){
+                m.classList.remove("active");
+            }
+        });
+
+        menu.classList.toggle("active");
+    });
+
+});
+
+
+/* CLOSE ONLY WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", function(e){
+
+    if(!e.target.closest(".menu")){
+        menus.forEach(m=>{
+            m.classList.remove("active");
+        });
+    }
+
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const btn = document.getElementById("chatbot-btn");
+const box = document.getElementById("chatbot-box");
+
+btn.addEventListener("click", function(){
+    box.style.display = "flex";
+});
+
+});
+
+function closeChat(){
+
+    const box = document.getElementById("chatbot-box");
+    box.style.display = "none";
+
+}
+
+async function sendMessage() {
+
+    const input = document.getElementById("userInput");
+    const message = input.value;
+
+    if (!message) return;
+
+    addUserMessage(message);
+    input.value = "";
+
+    addBotTyping();
+
+    try {
+
+        const response = await fetch("/chatbot", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
+
+        const data = await response.json();
+
+        removeTyping();
+
+        addBotMessage(data.reply);
+
+    } catch (error) {
+
+        removeTyping();
+
+        addBotMessage("⚠️ AI server error. Please try again.");
+
+    }
+}
+
+
+function speak(text){
+
+const speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+speech.rate = 1;
+speech.pitch = 1;
+
+window.speechSynthesis.speak(speech);
+
+}
+
+function addBotMessage(text){
+
+    const chat = document.getElementById("chat-messages");
+
+    const div = document.createElement("div");
+
+    div.className = "bot-msg";
+
+    div.innerText = text;
+
+    chat.appendChild(div);
+
+    chat.scrollTop = chat.scrollHeight;
+
+}
+
+function removeTyping(){
+
+    const typing = document.getElementById("typing");
+
+    if(typing){
+        typing.remove();
+    }
+}
+function addUserMessage(text){
+
+    const chat = document.getElementById("chat-messages");
+
+    const div = document.createElement("div");
+
+    div.className = "user-msg";
+    div.innerText = text;
+
+    chat.appendChild(div);
+
+    chat.scrollTop = chat.scrollHeight;
+
+}
+
+function addBotTyping(){
+
+    const chat = document.getElementById("chat-messages");
+
+    const div = document.createElement("div");
+
+    div.className = "bot-msg";
+    div.id = "typing";
+
+    div.innerText = "Typing...";
+
+    chat.appendChild(div);
+
+    chat.scrollTop = chat.scrollHeight;
+
+}
+
+const input = document.getElementById("userInput");
+
+input.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+        sendMessage();
+
+    }
+
+});
+
+function startVoice(){
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+        alert("⚠️ Voice recognition not supported in this browser. Use Chrome or Edge.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = function(){
+        console.log("🎤 Listening...");
+        document.getElementById("userInput").placeholder = "🎤 Listening...";
+    };
+
+    recognition.onresult = function(event){
+
+        const speech = event.results[0][0].transcript;
+
+        console.log("User said:", speech);
+
+        const input = document.getElementById("userInput");
+
+        input.value = speech;
+
+        sendMessage();
+    };
+
+    recognition.onerror = function(event){
+        console.error("Voice error:", event.error);
+        alert("Microphone error: " + event.error);
+    };
+
+    recognition.onend = function(){
+        document.getElementById("userInput").placeholder =
+        "Ask about admission, courses, placements...";
+    };
+
+    recognition.start();
+}
+</script>
+
+</body>
+</html>
+

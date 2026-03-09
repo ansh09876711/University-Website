@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI College Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+</head>
+<body>
+
+<!-- FLOATING AI CHATBOT -->
+<div id="chatbot-widget">
+    <div id="chatbot-header">🤖 AI College Assistant</div>
+
+    <div id="chat"></div>
+
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Ask me anything..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+<script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+
+
+</body>
+</html>

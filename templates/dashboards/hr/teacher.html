@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Manage Teachers</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f6fb;
+}
+
+/* Container */
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px;
+}
+
+/* Header */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.back{
+background:#2563eb;
+color:white;
+padding:8px 15px;
+border-radius:8px;
+text-decoration:none;
+}
+
+/* Add Teacher Form */
+.form{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+input{
+padding:10px;
+margin:5px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.delete{
+background:red;
+margin-top:10px;
+}
+
+/* Grid */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+
+/* Teacher Card */
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
+
+.avatar{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.name{
+font-size:18px;
+font-weight:bold;
+}
+
+.role{
+color:gray;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h2>👨‍🏫 Manage Teachers</h2>
+<a href="/hod" class="back">⬅ Back</a>
+</div>
+
+<!-- ADD TEACHER -->
+<div class="form">
+
+<h3>Add New Teacher</h3>
+
+<form action="/hod/add-teacher" method="POST">
+
+<input name="username" placeholder="Username" required>
+<input name="password" placeholder="Password" required>
+
+<button>Add Teacher</button>
+
+</form>
+
+</div>
+
+<!-- TEACHERS GRID -->
+<div class="grid">
+
+{% for t in teachers %}
+
+<div class="card">
+
+<div class="avatar">👨‍🏫</div>
+
+<div class="name">{{t.username}}</div>
+
+<div class="role">Teacher</div>
+
+<form action="/hod/delete-teacher/{{t.username}}" method="POST">
+
+<button class="delete">Delete</button>
+
+</form>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

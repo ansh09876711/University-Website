@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Students - Attendance</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+padding:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+select{
+padding:8px;
+border-radius:6px;
+}
+
+button{
+padding:6px 12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+a{
+text-decoration:none;
+font-weight:bold;
+color:#2563eb;
+}
+
+.btn-edit{
+background:#2563eb;
+padding:4px 8px;
+font-size:12px;
+}
+
+.btn-delete{
+background:#ef4444;
+padding:4px 8px;
+font-size:12px;
+}
+
+.btn-delete-all{
+background:black;
+margin-top:10px;
+}
+
+/* ================= */
+/* Attendance Styles */
+/* ================= */
+
+.shortage{
+background:#ffe5e5;
+}
+
+.bar{
+background:#ddd;
+height:10px;
+border-radius:5px;
+overflow:hidden;
+width:120px;
+margin:auto;
+}
+
+.bar-fill{
+height:10px;
+}
+
+.bar-green{
+background:green;
+}
+
+.bar-red{
+background:red;
+}
+
+.text-green{
+color:green;
+font-weight:bold;
+}
+
+.text-red{
+color:red;
+font-weight:bold;
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+/* Layout full width */
+body{
+    padding:10px;
+}
+
+/* Container full width */
+.container,
+.wrapper,
+.main,
+.section,
+.card{
+    width:100% !important;
+    max-width:100% !important;
+}
+
+/* Forms full width */
+input,
+select,
+button{
+    width:100% !important;
+    margin-bottom:10px;
+}
+
+/* Flex layout vertical */
+.form-row,
+.actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* Buttons big */
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+/* Back button spacing */
+.back-btn{
+    margin-bottom:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="/teacher">⬅ Back to Dashboard</a>
+
+<h2>👩‍🎓 Class-Wise Students</h2>
+
+<form method="get">
+
+<label>Select Class:</label>
+
+<select name="class_id" onchange="this.form.submit()">
+
+<option value="">-- Select Class --</option>
+
+{% for c in classes %}
+
+<option value="{{ c.id }}"
+{% if selected_class == c.id|string %}selected{% endif %}>
+{{ c.class_name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</form>
+
+
+{% if selected_class %}
+
+<hr>
+
+<form method="post"
+action="/teacher/upload-students"
+enctype="multipart/form-data">
+
+<input type="hidden" name="class_id" value="{{ selected_class }}">
+
+<input type="file" name="file" accept=".xlsx" required>
+
+<button type="submit">📤 Upload Excel</button>
+
+</form>
+
+<form method="post"
+action="/teacher/delete-class-students"
+onsubmit="return confirm('Delete ALL students?')">
+
+<input type="hidden" name="class_id" value="{{ selected_class }}">
+
+<button class="btn-delete-all">🗑 Delete Full Excel</button>
+
+</form>
+
+{% endif %}
+
+
+
+{% if students %}
+<div class="table-wrap">
+<table>
+
+<tr>
+<th>ID</th>
+<th>Username</th>
+<th>Attendance %</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for s in students %}
+
+{% set percent = s.attendance_percentage or 0 %}
+
+<tr class="{% if percent < 75 %}shortage{% endif %}">
+
+<td>{{ s.enrollment_no }}</td>
+
+<td>
+
+<form method="post"
+action="/teacher/edit-student"
+style="display:flex;gap:4px;justify-content:center;">
+
+<input type="hidden" name="student_id" value="{{ s.id }}">
+<input type="hidden" name="class_id" value="{{ selected_class }}">
+
+<input type="text"
+name="username"
+value="{{ s.username }}"
+style="width:120px;padding:4px;font-size:13px;">
+
+<button class="btn-edit">✏</button>
+
+</form>
+
+</td>
+
+
+<td>
+
+<div class="bar">
+
+<div class="bar-fill {% if percent >=75 %}bar-green{% else %}bar-red{% endif %}" style="width: {{ percent }}%;" >
+
+</div>
+
+</div>
+
+<span class="{% if percent >=75 %}text-green{% else %}text-red{% endif %}">
+{{ percent }}%
+</span>
+
+</td>
+
+
+<td>
+
+{% if percent >=75 %}
+<span class="text-green">✔ OK</span>
+{% else %}
+<span class="text-red">⚠ Shortage</span>
+{% endif %}
+
+</td>
+
+
+<td>
+
+<form method="post"
+action="/teacher/delete-student"
+onsubmit="return confirm('Delete student?')">
+
+<input type="hidden" name="student_id" value="{{ s.id }}">
+<input type="hidden" name="class_id" value="{{ selected_class }}">
+
+<button class="btn-delete">🗑</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+</div>
+
+{% else %}
+
+{% endif %}
+
+</body>
+</html>

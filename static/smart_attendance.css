@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.top-bar {
+    margin-bottom: 15px;
+}
+
+.top-bar input {
+    padding: 8px;
+    width: 200px;
+}
+
+.top-bar button {
+    padding: 8px 12px;
+    background: #0b8457;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.student-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.present {
+    background: #d1fae5;
+    border: 2px solid #10b981;
+}
+
+.absent {
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+}
+
+.summary {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.save-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #1e40af;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+/* Layout full width */
+body{
+    padding:10px;
+}
+
+/* Container full width */
+.container,
+.wrapper,
+.main,
+.section,
+.card{
+    width:100% !important;
+    max-width:100% !important;
+}
+
+/* Forms full width */
+input,
+select,
+button{
+    width:100% !important;
+    margin-bottom:10px;
+}
+
+/* Flex layout vertical */
+.form-row,
+.actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* Buttons big */
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+/* Back button spacing */
+.back-btn{
+    margin-bottom:15px;
+}
+
+}

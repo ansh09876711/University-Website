@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Approve Admissions</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    background:#f3f4f6;
+    margin:0;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(90deg,#3b82f6,#1e40af);
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* CARD */
+.container{
+    width:85%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.1);
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#3b82f6;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f9fafb;
+}
+
+/* BUTTONS */
+.btn{
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.approve{
+    background:#16a34a;
+    color:white;
+}
+
+.reject{
+    background:#dc2626;
+    color:white;
+}
+
+.back{
+    display:inline-block;
+    margin-top:20px;
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+✔️ Approve Admissions
+</div>
+
+<div class="container">
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Mobile</th>
+<th>City</th>
+<th>State</th>
+<th>Email</th>
+<th>Course</th>
+<th>Action</th>
+</tr>
+
+{% for a in applications %}
+
+<tr>
+
+<td>{{ a.full_name }}</td>
+<td>{{ a.mobile }}</td>
+<td>{{ a.city }}</td>
+<td>{{ a.state }}</td>
+<td>{{ a.email }}</td>
+<td>{{ a.course }}</td>
+
+<td>
+
+<form method="POST" action="/admission/action/{{a.id}}/approve" style="display:inline;">
+<button class="btn approve">Approve</button>
+</form>
+
+<form method="POST" action="/admission/action/{{a.id}}/reject" style="display:inline;">
+<button class="btn reject">Reject</button>
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/admission" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

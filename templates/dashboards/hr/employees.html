@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Employee Manager</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Poppins;
+background:#f4f6fb;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px;
+}
+
+h2{
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+margin-bottom:30px;
+}
+
+input{
+padding:10px;
+margin:8px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+padding:10px 16px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+th, td{
+padding:14px;
+text-align:left;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+tr:nth-child(even){
+background:#f8fafc;
+}
+
+.delete-btn{
+background:#ef4444;
+}
+
+.delete-btn:hover{
+background:#dc2626;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#2563eb;
+font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/hr/dashboard" class="back">← Back to Dashboard</a>
+
+<h2>👥 Employee Manager</h2>
+
+<div class="card">
+<form method="POST">
+<input name="name" placeholder="Employee Name" required>
+<input name="department" placeholder="Department" required>
+<input name="designation" placeholder="Designation" required>
+<input name="salary" type="number" placeholder="Salary" required>
+<button>Add Employee</button>
+</form>
+</div>
+
+<!-- SEARCH BOX -->
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="🔍 Search Employee..." onkeyup="searchTable()">
+</div>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Designation</th>
+<th>Salary</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for emp in employees %}
+<tr>
+<td>{{emp.id}}</td>
+<td>{{emp.name}}</td>
+<td>{{emp.department}}</td>
+<td>{{emp.designation}}</td>
+<td>₹ {{emp.salary}}</td>
+<td>{{emp.status}}</td>
+<td>
+<form action="/hr/delete-employee/{{emp.id}}" method="POST">
+<button class="delete-btn">Delete</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        /* STATUS BADGE */
+        .status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .status.active {
+            background: #e8fff0;
+            color: #0f9d58;
+            box-shadow: 0 0 8px rgba(15,157,88,0.4);
+        }
+
+        .status.locked {
+            background: #ffecec;
+            color: #d93025;
+            box-shadow: 0 0 8px rgba(217,48,37,0.4);
+        }
+
+        /* ROW EFFECT */
+        .row-locked {
+            background: #fff6f6;
+            transition: background 0.3s;
+        }
+
+        .row-active {
+            background: #f9fffb;
+            transition: background 0.3s;
+        }
+
+        /* LOCK BUTTON */
+        .lock-btn {
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.25s ease;
+        }
+
+        .lock-btn.lock {
+            background: #ffebee;
+            color: #d93025;
+        }
+
+        .lock-btn.unlock {
+            background: #e8fff0;
+            color: #0f9d58;
+        }
+
+        .lock-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 class="page-title">👥 User Management</h1>
+<a href="/admin" class="btn-primary">⬅ Back to Dashboard</a>
+
+<div class="table-wrap">
+<table class="user-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for u in users %}
+        <tr class="{% if u.locked %}row-locked{% else %}row-active{% endif %}">
+            <td>{{ u.username }}</td>
+            <td>{{ u.role }}</td>
+
+            <td>
+                <span class="status {% if u.locked %}locked{% else %}active{% endif %}">
+                    {% if u.locked %}
+                        🔒 Locked
+                    {% else %}
+                        🟢 Active
+                    {% endif %}
+                </span>
+            </td>
+
+            <td>
+                <button
+                    class="lock-btn {% if u.locked %}unlock{% else %}lock{% endif %}"
+                    onclick="toggleLock('{{ u.username }}', {{ 'true' if u.locked else 'false' }}, this)">
+                    {% if u.locked %}
+                        🔓 Unlock
+                    {% else %}
+                        🔒 Lock
+                    {% endif %}
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<!-- ✅ AJAX SCRIPT -->
+<script>
+function toggleLock(username, isLocked, btn) {
+
+    const url = isLocked
+        ? `/admin/unlock/${username}`
+        : `/admin/lock/${username}`;
+
+    fetch(url, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) {
+            alert("Action failed");
+            return;
+        }
+
+        const row = btn.closest("tr");
+        const status = row.querySelector(".status");
+
+        if (isLocked) {
+            // UNLOCK
+            row.className = "row-active";
+            status.innerHTML = "🟢 Active";
+            status.className = "status active";
+
+            btn.innerHTML = "🔒 Lock";
+            btn.className = "lock-btn lock";
+            btn.setAttribute(
+                "onclick",
+                `toggleLock('${username}', false, this)`
+            );
+        } else {
+            // LOCK
+            row.className = "row-locked";
+            status.innerHTML = "🔒 Locked";
+            status.className = "status locked";
+
+            btn.innerHTML = "🔓 Unlock";
+            btn.className = "lock-btn unlock";
+            btn.setAttribute(
+                "onclick",
+                `toggleLock('${username}', true, this)`
+            );
+        }
+    });
+}
+</script>
+
+</body>
+</html>

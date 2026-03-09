@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        .container {
+            padding: 25px;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-decoration: none;
+            color: #1e293b;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .icon {
+            font-size: 28px;
+            background: #eff6ff;
+            color: #2563eb;
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .card p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* SECTION TITLE */
+        .section {
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>👋 Welcome, {{ session.username }}</h1>
+        <p>Student Dashboard • College Resource Portal</p>
+    </div>
+
+    <!-- ACADEMIC -->
+    <div class="section">📘 Academic</div>
+    <div class="grid">
+        <a href="/student/subjects" class="card">
+            <div class="icon">📚</div>
+            <div>
+                <h3>Subjects</h3>
+                <p>View enrolled subjects</p>
+            </div>
+        </a>
+
+        <a href="/student/attendance" class="card">
+            <div class="icon">📊</div>
+            <div>
+                <h3>Attendance</h3>
+                <p>Check attendance status</p>
+            </div>
+        </a>
+
+        <a href="/student/timetable" class="card">
+            <div class="icon">🗓️</div>
+            <div>
+                <h3>Time Table</h3>
+                <p>Weekly class schedule</p>
+            </div>
+        </a>
+
+        <a href="/student/materials" class="card">
+            <div class="icon">📂</div>
+            <div>
+                <h3>Study Material</h3>
+                <p>Notes & resources</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- ACTIVITIES -->
+    <div class="section">🧠 Activities</div>
+    <div class="grid">
+        <a href="/student/assignments" class="card">
+            <div class="icon">📝</div>
+            <div>
+                <h3>Assignments</h3>
+                <p>Assignments & submissions</p>
+            </div>
+        </a>
+
+        <a href="/student/tests" class="card">
+            <div class="icon">🧪</div>
+            <div>
+                <h3>Tests / Quiz</h3>
+                <p>Online exams</p>
+            </div>
+        </a>
+
+        <a href="/student/leaderboard" class="card">
+            <div class="icon">🏆</div>
+            <div>
+                <h3>Leaderboard</h3>
+                <p>Performance ranking</p>
+            </div>
+        </a>
+
+        <a href="/student/classroom" class="card">
+            <div class="icon">🏫</div>
+            <div>
+                <h3>Classroom</h3>
+                <p>Virtual classes</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section">🏛️ Services</div>
+    <div class="grid">
+        <a href="/student/fees" class="card">
+            <div class="icon">💳</div>
+            <div>
+                <h3>Fees</h3>
+                <p>Payment & receipts</p>
+            </div>
+        </a>
+
+        <a href="/student/library" class="card">
+            <div class="icon">📖</div>
+            <div>
+                <h3>Library</h3>
+                <p>Books & issue history</p>
+            </div>
+        </a>
+
+        <a href="/student/certificates" class="card">
+            <div class="icon">📜</div>
+            <div>
+                <h3>Certificates</h3>
+                <p>Download certificates</p>
+            </div>
+        </a>
+
+        <a href="/student/notices" class="card">
+            <div class="icon">🔔</div>
+            <div>
+                <h3>Notices</h3>
+                <p>Latest announcements</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="section">⚙️ Account</div>
+    <div class="grid">
+        <a href="/student/profile" class="card">
+            <div class="icon">👤</div>
+            <div>
+                <h3>My Profile</h3>
+                <p>Personal information</p>
+            </div>
+        </a>
+
+        <a href="/student/settings" class="card">
+            <div class="icon">⚙️</div>
+            <div>
+                <h3>Settings</h3>
+                <p>Password & preferences</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

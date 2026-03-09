@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Collaboration Cell | EDUSTACK UNIVERSITY</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f5f7fb;
+color:#111;
+line-height:1.6;
+}
+
+/* ===== HEADER ===== */
+
+header{
+background:#0f172a;
+color:white;
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h2{
+margin:0;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:500;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+background:linear-gradient(120deg,#0f172a,#2563eb);
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+}
+
+.section h2{
+color:#2563eb;
+margin-bottom:15px;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+/* ===== CARD ===== */
+
+.card{
+background:white;
+border-radius:12px;
+padding:25px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card h3{
+margin-top:0;
+}
+
+/* ===== PARTNER BOX ===== */
+
+.partner{
+background:#eef2ff;
+padding:15px;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#0f172a;
+color:#ccc;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+<header>
+
+<h3>EDUSTACK UNIVERSITY</h3>
+
+<nav>
+
+<a href="{{ url_for('home') }}" class="nav-btn">Home</a>
+
+<!-- ABOUT MENU -->
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+<div class="mega-inner">
+
+<div class="mega-left">
+<h3>Overview</h3>
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 🔥 ACADEMICS MEGA MENU -->
+<!-- ACADEMICS MENU -->
+<div class="menu">
+    <a href="#" id="academicsBtn">Academics</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Undergraduate" target="_blank">Undergraduate</a>
+                <a href="/Postgraduate" target="_blank">Postgraduate</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/examinations" target="_blank">Examinations</a>
+                <a href="/time-table" target="_blank">Time Table</a>
+                <a href="/notices" target="_blank">Notices</a>
+                <a href="/academic-calendar" target="_blank">Academic Calendar</a>
+                <a href="/code-of-conduct" target="_blank">Code of Conduct</a>
+                <a href="/IQAC" target="_blank">IQAC</a>
+                <a href="/library" target="_blank">Library</a>
+                <a href="/faculty-staff" target="_blank">Faculty & Staff</a>
+            </div>
+
+        </div>
+    </div>
+</div>  <!-- 🔥 THIS CLOSING WAS MISSING -->
+
+
+<!-- FACILITIES MENU -->
+<div class="menu">
+    <a href="#" id="facilitiesBtn">Facilities</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Timelapse</a>
+                <a href="/Newsletter" target="_blank">Newsletter</a>
+                <a href="/Sports" target="_blank">Sports</a>
+                <a href="/e-learning" target="_blank">E-Learning</a>
+                <a href="/chapter-association" target="_blank">Chapter & Association</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/clubs" target="_blank">Clubs</a>
+                <a href="/research-innovation" target="_blank">Research & Innovation</a>
+                <a href="/transport-facilities" target="_blank">Transport Facilities</a>
+                <a href="/wifi-campus" target="_blank">Wifi Campus</a>
+                <a href="/canteen" target="_blank">Canteen</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<a href="/placementhome">Placements</a>
+
+<!---Courses-->
+<div class="menu">
+    <a href="#" id="CourseBtn">Courses</a>
+
+    <div class="mega">
+        <div class="mega-inner">
+
+            <div class="mega-left">
+                <h3>Programs</h3>
+                <a href="/Timelapse" target="_blank">Computer Science & Engineering</a>
+                <a href="/Newsletter" target="_blank">Information Technology</a>
+                <a href="/Sports" target="_blank">Electronics & Communication Engineering</a>
+            </div>
+
+            <div class="mega-right">
+                <a href="/research-innovation" target="_blank">Mechanical Engineering</a>
+                <a href="/transport-facilities" target="_blank">Civil Engineering</a>
+                <a href="/wifi-campus" target="_blank">Management</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a href="/login">Login</a>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>Collaboration Cell</h1>
+
+<p>Building Strong Industry, Academic & Global Partnerships</p>
+
+</div>
+
+<!-- ABOUT -->
+
+<div class="section">
+
+<h2>About Collaboration Cell</h2>
+
+<p>
+The Collaboration Cell at EDUSTACK UNIVERSITY focuses on establishing strategic partnerships with industries, academic institutions, research organizations, and global universities. These collaborations aim to enhance student learning, research opportunities, internships, and industry exposure.
+</p>
+
+</div>
+
+<!-- INDUSTRY COLLABORATIONS -->
+
+<div class="section">
+
+<h2>Industry Collaborations</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>💻 IT Industry Partnerships</h3>
+<div class="partner">TCS Academic Interface Program</div>
+<div class="partner">Infosys Springboard</div>
+<div class="partner">Wipro TalentNext</div>
+</div>
+
+<div class="card">
+<h3>🏭 Core Engineering Industries</h3>
+<div class="partner">L&T Technical Training</div>
+<div class="partner">Bosch Engineering</div>
+<div class="partner">Mahindra & Mahindra</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- ACADEMIC COLLABORATIONS -->
+
+<div class="section">
+
+<h2>Academic Collaborations</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🎓 National Academic Partners</h3>
+
+<ul>
+<li>AICTE Skill Development Programs</li>
+<li>IIT Workshops & FDP Programs</li>
+<li>NPTEL Certification Initiatives</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>🌎 International Collaborations</h3>
+
+<ul>
+
+<li>Global Exchange Programs</li>
+<li>Joint Research Projects</li>
+<li>International Guest Lectures</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RESEARCH COLLABORATIONS -->
+
+<div class="section">
+
+<h2>Research & Innovation Partnerships</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🔬 Research Programs</h3>
+
+<ul>
+
+<li>AI & Machine Learning Research Labs</li>
+<li>Cloud Computing Collaboration Programs</li>
+<li>Startup & Innovation Incubation</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>🚀 Student Development Initiatives</h3>
+
+<ul>
+
+<li>Industrial Training Programs</li>
+<li>Internships with Industry Experts</li>
+<li>Hackathons & Technical Events</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© EDUSTACK UNIVERSITY | All Rights Reserved
+
+</footer>
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+</html>

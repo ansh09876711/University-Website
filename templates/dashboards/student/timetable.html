@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Class Timetable</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#020617;
+color:white;
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:50px 20px;
+}
+
+/* TITLE */
+
+h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+/* CARD */
+
+.card{
+background:#0f172a;
+border-radius:14px;
+padding:25px;
+margin-top:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TIMETABLE IMAGE */
+
+.timetable-img{
+width:100%;
+border-radius:10px;
+margin-top:15px;
+}
+
+/* EMPTY STATE */
+
+.empty{
+text-align:center;
+opacity:.7;
+padding:40px;
+}
+
+/* BACK BTN */
+
+.back{
+display:inline-block;
+margin-top:25px;
+color:#38bdf8;
+text-decoration:none;
+font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📅 Class Timetable</h1>
+<p>Weekly academic schedule</p>
+
+
+<div class="card">
+
+{% if timetable %}
+
+<h3>{{ timetable.class_name }}</h3>
+
+<img class="timetable-img"
+src="/static/uploads/{{ timetable.image_path }}">
+
+{% else %}
+
+<div class="empty">
+
+<h3>No timetable uploaded yet</h3>
+<p>Teacher will upload soon.</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<a class="back" href="/student">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

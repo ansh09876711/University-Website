@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Study Material</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+padding:30px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+text-decoration:none;
+background:#2563eb;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+font-weight:bold;
+}
+
+.upload-box{
+background:#f9fafb;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+input, select{
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.material-list{
+margin-top:15px;
+}
+
+.material-item{
+background:#f1f5f9;
+padding:12px;
+border-radius:8px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.material-item a{
+text-decoration:none;
+color:#2563eb;
+font-weight:bold;
+}
+
+h2{
+margin:0;
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+body{
+    padding:10px;
+}
+
+.container{
+    width:100%;
+}
+
+input,
+select,
+button{
+    width:100%;
+    margin-bottom:10px;
+}
+
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h2>📚 Upload Study Material</h2>
+<a href="/teacher" class="back-btn">⬅ Back</a>
+</div>
+
+<!-- UPLOAD FORM -->
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="upload-box">
+
+<input type="text" name="title" placeholder="Title" required>
+
+<input type="text" name="subject" placeholder="Subject" required>
+
+<select name="class_id" required>
+{% for c in classes %}
+<option value="{{ c.id }}">{{ c.class_name }}</option>
+{% endfor %}
+</select>
+
+<input type="file" name="file" required>
+
+<button type="submit">Upload</button>
+
+</div>
+
+</form>
+
+<hr>
+
+<h3>Uploaded Materials</h3>
+
+<div class="material-list">
+
+{% for m in materials %}
+
+<div class="material-item">
+
+<div>
+<b>{{ m.title }}</b> ({{ m.subject }})
+</div>
+
+<div>
+
+<a href="{{ url_for('static', filename='uploads/' + m.file_path) }}" target="_blank">
+View
+</a>
+
+<form action="/teacher/delete_material/{{ m.id }}" method="POST" style="display:inline;">
+<button type="submit" onclick="return confirm('Delete material?')">
+Delete
+</button>
+</form>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

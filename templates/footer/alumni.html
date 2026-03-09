@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alumni | EduStack University</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#f8fafc;
+color:#1e293b;
+}
+
+/* HEADER */
+header{
+background:#0f172a;
+color:white;
+padding:20px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header a{
+color:#cbd5e1;
+text-decoration:none;
+margin-left:25px;
+}
+
+header a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+background:linear-gradient(to right,#0f172a,#1e293b);
+color:white;
+padding:120px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+color:#cbd5e1;
+font-size:18px;
+}
+
+/* SECTION */
+.section{
+padding:100px 80px;
+max-width:1100px;
+margin:auto;
+}
+
+.section h2{
+font-size:36px;
+margin-bottom:30px;
+text-align:center;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+/* STATS */
+.stats{
+display:flex;
+justify-content:center;
+gap:80px;
+flex-wrap:wrap;
+margin-top:40px;
+text-align:center;
+}
+
+.stat h3{
+font-size:40px;
+color:#0f172a;
+}
+
+/* CTA */
+.cta{
+background:#0f172a;
+color:white;
+padding:80px 20px;
+text-align:center;
+}
+
+.cta a{
+display:inline-block;
+margin-top:20px;
+padding:12px 30px;
+background:#38bdf8;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+/* FOOTER */
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:60px;
+}
+
+@media(max-width:768px){
+.section{padding:80px 30px;}
+.hero h1{font-size:36px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>EDUSTACK UNIVERSITY</h2>
+<div>
+<a href="/">Home</a>
+<a href="#">Departments</a>
+<a href="#">Contact</a>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Alumni Network</h1>
+<p>
+Connecting generations of leaders, innovators and achievers
+who continue to shape the world beyond campus.
+</p>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+<h2>About Our Alumni</h2>
+<p style="text-align:center; max-width:800px; margin:auto;">
+Our alumni community spans across industries including IT, Engineering,
+Finance, Research and Entrepreneurship. They represent excellence,
+innovation and leadership worldwide.
+</p>
+
+<div class="stats">
+<div class="stat">
+<h3 id="alumniCount">0</h3>
+<p>Global Alumni</p>
+</div>
+<div class="stat">
+<h3 id="countries">0</h3>
+<p>Countries</p>
+</div>
+<div class="stat">
+<h3 id="companies">0</h3>
+<p>Top Companies</p>
+</div>
+</div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="section">
+<h2>Success Stories</h2>
+
+<div class="grid">
+<div class="card">
+<h3>Rahul Sharma</h3>
+<p>Senior Software Engineer at Google. Leading AI infrastructure teams.</p>
+</div>
+
+<div class="card">
+<h3>Neha Verma</h3>
+<p>Entrepreneur & Founder of a fintech startup valued at $10M.</p>
+</div>
+
+<div class="card">
+<h3>Arjun Mehta</h3>
+<p>Research Scientist in Robotics at a global research lab.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2>Join the Alumni Network</h2>
+<p>Stay connected, mentor students and participate in university events.</p>
+<a href="#">Register as Alumni</a>
+</section>
+
+<footer>
+© 2026 EduStack University | Alumni Relations
+</footer>
+
+<script>
+function animateCounter(id,target){
+let count=0;
+const el=document.getElementById(id);
+const interval=setInterval(()=>{
+count+=Math.ceil(target/100);
+if(count>=target){count=target;clearInterval(interval);}
+el.innerText=count;
+},20);
+}
+
+window.onload=function(){
+animateCounter("alumniCount",15000);
+animateCounter("countries",25);
+animateCounter("companies",300);
+};
+</script>
+
+</body>
+</html>

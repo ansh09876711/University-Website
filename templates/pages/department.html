@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Departments</title>
+
+<style>
+*{box-sizing:border-box;font-family:Poppins,Arial}
+body{margin:0;background:#f5f7fb}
+
+.wrapper{display:flex;gap:25px;padding:25px}
+
+/* LEFT */
+.sidebar{
+width:260px;background:#fff;padding:20px;border-radius:20px
+}
+.sidebar h3{margin-bottom:15px}
+.sidebar button{
+width:100%;padding:12px;margin-bottom:12px;
+border:none;border-radius:12px;
+cursor:pointer;font-weight:600;
+background:#f1f1f1;text-align:left
+}
+.sidebar button:hover,
+.sidebar button.active{background:#ffb703;color:#000}
+
+/* RIGHT */
+.content{flex:1}
+
+/* HERO */
+.hero{
+position:relative;height:300px;border-radius:25px;
+overflow:hidden;margin-bottom:30px
+}
+.hero img{
+width:100%;height:100%;object-fit:cover
+}
+.overlay{
+position:absolute;bottom:25px;left:30px;color:white
+}
+.overlay h1{margin:0;font-size:32px}
+.overlay p{margin-top:6;font-size:16px}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px
+}
+.card{
+background:#fff;padding:22px;border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+font-weight:500
+}
+
+.download{
+margin-top:30px;
+padding:14px 32px;
+border:none;border-radius:14px;
+background:#ffb703;
+font-weight:700;
+cursor:pointer
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- LEFT MENU -->
+<div class="sidebar">
+<h3>Departments</h3>
+<button class="active" onclick="loadDept('cse',this)">💻 Computer Science</button>
+<button onclick="loadDept('it',this)">🌐 Information Technology</button>
+<button onclick="loadDept('ai',this)">🤖 AI & Data Science</button>
+<button onclick="loadDept('mech',this)">⚙ Mechanical</button>
+<button onclick="loadDept('civil',this)">🏗 Civil</button>
+<button onclick="loadDept('mba',this)">📊 Management (MBA)</button>
+</div>
+
+<!-- RIGHT CONTENT -->
+<div class="content">
+
+<div class="hero">
+<img id="heroImg" src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+<div class="overlay">
+<h1 id="title">Computer Science Engineering</h1>
+<p id="tagline">Building future-ready software engineers</p>
+</div>
+</div>
+
+<div class="cards">
+<div class="card" id="courses">📘 Courses<br>C, C++, Java, Python, DSA, DBMS</div>
+<div class="card" id="labs">🧪 Labs<br>AI Lab, Software Lab, Cloud Lab</div>
+<div class="card" id="faculty">👨‍🏫 Faculty<br>25+ Experienced Professors</div>
+<div class="card" id="placements">💼 Placements<br>Amazon, Infosys, TCS</div>
+</div>
+
+<button class="download">⬇ Download Syllabus</button>
+
+</div>
+</div>
+
+<script>
+const data={
+cse:{
+img:"https://images.unsplash.com/photo-1518770660439-4636190af475",
+title:"Computer Science Engineering",
+tag:"Building future-ready software engineers",
+courses:"C, C++, Java, Python, DSA, DBMS",
+labs:"AI Lab, Software Lab, Cloud Lab",
+faculty:"25+ Experienced Professors",
+placements:"Amazon, Infosys, TCS"
+},
+it:{
+img:"https://images.unsplash.com/photo-1526378722484-bd91ca387e72",
+title:"Information Technology",
+tag:"Experts in Web, Networks & Cyber Security",
+courses:"Web Dev, OS, Networks, Cyber Security",
+labs:"Networking Lab, Security Lab",
+faculty:"20+ Industry Experts",
+placements:"Wipro, Accenture, Capgemini"
+},
+ai:{
+img:"https://images.unsplash.com/photo-1555949963-aa79dcee981c",
+title:"AI & Data Science",
+tag:"Data-driven intelligence & machine learning",
+courses:"ML, AI, Python, Big Data",
+labs:"AI Lab, Analytics Lab",
+faculty:"15+ AI Specialists",
+placements:"Google, Amazon, Startups"
+},
+mech:{
+img:"https://images.unsplash.com/photo-1581092919535-7146f8aa90b2",
+title:"Mechanical Engineering",
+tag:"Innovation in machines & manufacturing",
+courses:"Thermodynamics, CAD, Robotics",
+labs:"Thermal Lab, Robotics Lab",
+faculty:"18+ Professors",
+placements:"L&T, Tata Motors"
+},
+civil:{
+img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e",
+title:"Civil Engineering",
+tag:"Building sustainable infrastructure",
+courses:"Structures, Surveying, Environment",
+labs:"Material Testing Lab",
+faculty:"16+ Professors",
+placements:"L&T, Govt Projects"
+},
+mba:{
+img:"https://images.unsplash.com/photo-1556761175-5973dc0f32e7",
+title:"Management (MBA)",
+tag:"Leaders for business & startups",
+courses:"HR, Finance, Marketing",
+labs:"Business Analytics Lab",
+faculty:"Industry Mentors",
+placements:"Deloitte, EY, Startups"
+}
+};
+
+function loadDept(key,btn){
+document.querySelectorAll(".sidebar button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+let d=data[key];
+heroImg.src=d.img;
+title.innerText=d.title;
+tagline.innerText=d.tag;
+courses.innerHTML="📘 Courses<br>"+d.courses;
+labs.innerHTML="🧪 Labs<br>"+d.labs;
+faculty.innerHTML="👨‍🏫 Faculty<br>"+d.faculty;
+placements.innerHTML="💼 Placements<br>"+d.placements;
+}
+</script>
+
+</body>
+</html>

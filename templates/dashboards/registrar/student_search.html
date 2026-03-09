@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Student Search</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:linear-gradient(135deg,#eef2ff,#dbeafe);
+padding:40px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.header h2{
+margin:0;
+color:#1e40af;
+}
+
+.back-btn{
+background:#1e40af;
+color:white;
+padding:8px 16px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+}
+
+.search-box{
+margin-bottom:20px;
+position:relative;
+}
+
+.search-box input{
+width:100%;
+padding:12px 15px;
+border-radius:10px;
+border:2px solid #dbeafe;
+outline:none;
+font-size:15px;
+transition:0.3s;
+}
+
+.search-box input:focus{
+border-color:#2563eb;
+box-shadow:0 0 8px rgba(37,99,235,0.3);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f1f5ff;
+transition:0.2s;
+}
+
+.no-data{
+text-align:center;
+padding:20px;
+color:#888;
+font-style:italic;
+}
+
+</style>
+
+<script>
+
+let timer;
+
+function searchStudent(){
+
+clearTimeout(timer);
+
+timer = setTimeout(()=>{
+
+let val = document.getElementById("search").value;
+
+fetch(`/registrar/search?q=${val}`)
+.then(res=>res.json())
+.then(data=>{
+
+let output="";
+
+if(data.length === 0){
+output = `<tr><td colspan="3" class="no-data">No students found</td></tr>`;
+}
+else{
+
+data.forEach(s=>{
+output += `<tr>
+<td>${s.id}</td>
+<td>${s.name}</td>
+<td>${s.course}</td>
+</tr>`;
+});
+
+}
+
+document.getElementById("result").innerHTML = output;
+
+});
+
+},300);
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h2>🔎 Live Student Search</h2>
+<a href="/registrar" class="back-btn">⬅ Back</a>
+</div>
+
+<div class="search-box">
+<input type="text"
+id="search"
+onkeyup="searchStudent()"
+placeholder="Search by student name...">
+</div>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Course</th>
+</tr>
+</thead>
+<tbody id="result">
+<tr>
+<td colspan="3" class="no-data">Start typing to search students...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</body>
+</html>

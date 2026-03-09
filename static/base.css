@@ -1,0 +1,247 @@
+/* =====================
+   GLOBAL RESET
+===================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial;
+    background:#f4f6f8;
+    padding:15px;
+}
+
+/* =====================
+   CONTAINER
+===================== */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* =====================
+   RESPONSIVE TABLE
+===================== */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+
+/* =====================
+   BUTTON
+===================== */
+
+button{
+    padding:6px 12px;
+    border:none;
+    border-radius:6px;
+    background:#2563eb;
+    color:white;
+}
+
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
+
+@media (max-width:768px){
+
+    body{
+        padding:10px;
+    }
+
+    h1,h2,h3{
+        font-size:18px;
+    }
+
+    input,select{
+        width:100%;
+        margin-bottom:8px;
+    }
+
+    button{
+        width:100%;
+    }
+
+    table{
+        font-size:12px;
+    }
+}
+/* ============================= */
+/* MOBILE RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 768px){
+
+/* HEADER */
+
+header{
+flex-direction:column;
+padding:10px;
+}
+
+nav{
+display:none;
+}
+
+/* HERO */
+
+.hero{
+height:300px;
+}
+
+/* ADMISSION */
+
+.admission-container{
+padding:20px;
+text-align:center;
+}
+
+.admission-container h1{
+font-size:24px;
+}
+
+.admission-buttons{
+flex-direction:column;
+gap:15px;
+}
+
+.download-btn{
+width:100%;
+}
+
+/* RESEARCH */
+
+.research-wrapper{
+flex-direction:column;
+padding:20px;
+}
+
+.research-track{
+flex-direction:column;
+}
+
+/* KNOWLEDGE SECTION */
+
+.knowledge-container{
+flex-direction:column;
+padding:20px;
+}
+
+.slider-track{
+flex-direction:column;
+gap:20px;
+}
+
+/* PLACEMENT */
+
+.placement-flex{
+flex-direction:column;
+}
+
+.placement-left{
+padding:20px;
+}
+
+.placement-right{
+width:100%;
+}
+
+/* DEPARTMENT GRID */
+
+.department-grid{
+grid-template-columns:1fr;
+gap:20px;
+padding:20px;
+}
+
+.department-card img{
+height:200px;
+}
+
+/* NEWS */
+
+.grid{
+grid-template-columns:1fr;
+}
+
+/* FOOTER */
+
+.footer-grid{
+grid-template-columns:1fr;
+gap:20px;
+padding:20px;
+}
+
+/* CHATBOT MOBILE */
+
+#chatbot-box{
+
+width:90%;
+right:5%;
+bottom:80px;
+height:400px;
+
+}
+
+#chatbot-btn{
+
+width:55px;
+height:55px;
+font-size:24px;
+
+}
+
+}
+
+/* ============================= */
+/* TABLET DESIGN */
+/* ============================= */
+
+@media (max-width: 1024px){
+
+.department-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.research-wrapper{
+
+flex-direction:column;
+
+}
+
+.placement-flex{
+
+flex-direction:column;
+
+}
+
+.footer-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}

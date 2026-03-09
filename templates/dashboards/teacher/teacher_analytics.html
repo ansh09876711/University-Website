@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Marks Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ✅ CHART SIZE CONTROL */
+.chart-box{
+width:600px;
+height:350px;
+margin:auto;
+}
+
+.chart-box canvas{
+width:100% !important;
+height:100% !important;
+}
+
+.back-btn{
+background:#2563eb;
+color:white;
+text-decoration:none;
+padding:8px 15px;
+border-radius:8px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+<h2>📊 Marks Analytics</h2>
+<a href="/teacher" class="back-btn">⬅ Back</a>
+</div>
+
+<div class="card">
+
+<div class="chart-box">
+<canvas id="marksChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<!-- 👇 Hidden JSON data (BEST METHOD) -->
+<script type="application/json" id="marksData">
+{
+    "subjects": {{ subjects | tojson }},
+    "marks": {{ marksValues | tojson }}
+}
+</script>
+
+<script>
+
+// ✅ SAFE JSON FETCH (No Jinja errors)
+const data = JSON.parse(document.getElementById("marksData").textContent);
+
+const subjects = data.subjects;
+const marksValues = data.marks;
+
+new Chart(document.getElementById("marksChart"), {
+
+type: "bar",
+
+data: {
+    labels: subjects,
+    datasets: [{
+        label: "Marks",
+        data: marksValues,
+        backgroundColor:"#2563eb"
+    }]
+},
+
+options:{
+    responsive:true,
+    maintainAspectRatio:false
+}
+
+});
+
+</script>
+
+</body>
+</html>

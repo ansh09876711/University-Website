@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: #020617;
+            color: #ffffff;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 6px;
+        }
+
+        .subtext {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 18px;
+            padding: 20px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border-color: #2563eb;
+        }
+
+        .subject-icon {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .subject-info {
+            font-size: 13px;
+            opacity: 0.75;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-core { background: #1d4ed8; }
+        .badge-elective { background: #9333ea; }
+        .badge-lab { background: #059669; }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 My Subjects</h1>
+    <div class="subtext">Subjects enrolled for this semester</div>
+
+    <div class="subjects-grid">
+
+        {% for s in subjects %}
+
+        <div class="subject-card">
+
+            <div class="subject-icon">📘</div>
+
+            <div class="subject-title">
+                {{ s.subject_name }}
+            </div>
+
+            <div class="subject-info">
+                Faculty: {{ s.faculty }}
+            </div>
+
+            <div class="meta">
+
+                {% if s.type == "Core" %}
+                    <span class="badge badge-core">Core</span>
+                {% elif s.type == "Elective" %}
+                    <span class="badge badge-elective">Elective</span>
+                {% elif s.type == "Lab" %}
+                    <span class="badge badge-lab">Lab</span>
+                {% endif %}
+
+                <span>Credits: {{ s.credits }}</span>
+            </div>
+
+        </div>
+
+        {% else %}
+            <p>No subjects assigned yet</p>
+        {% endfor %}
+
+    </div>
+
+    <a href="/student" class="back">⬅ Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

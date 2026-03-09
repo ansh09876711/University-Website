@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>My Attendance</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+<style>
+
+body{
+margin:0;
+background:#0f172a;
+color:#e5e7eb;
+font-family:"Segoe UI";
+}
+
+/* HEADER */
+
+.top-bar{
+background:linear-gradient(135deg,#2563eb,#1e40af);
+padding:16px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+/* CONTENT */
+
+.container{
+padding:18px;
+}
+
+.card{
+background:#020617;
+border-radius:14px;
+padding:18px;
+margin-bottom:16px;
+}
+
+/* SUMMARY */
+
+.summary{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:16px;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h2{
+color:#22c55e;
+font-size:30px;
+margin:0;
+}
+
+/* PROGRESS */
+
+.progress{
+background:#1e293b;
+border-radius:30px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress-bar{
+height:16px;
+background:linear-gradient(90deg,#22c55e,#16a34a);
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+text-align:left;
+}
+
+th{
+background:#1e293b;
+}
+
+.present{ color:#22c55e; }
+.absent{ color:#ef4444; }
+.card table td{
+color:#030609;
+font-weight:500;
+}
+
+.card table th{
+color:#ffffff;
+}
+
+/* CALENDAR */
+
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.day-header{
+text-align:center;
+font-weight:bold;
+background:#1e293b;
+padding:10px;
+border-radius:6px;
+}
+
+.day{
+padding:15px;
+text-align:center;
+border-radius:8px;
+background:#1e293b;
+}
+
+.day.present{
+background:#22c55e;
+color:black;
+}
+
+.day.absent{
+background:#ef4444;
+}
+
+.day.empty{
+background:transparent;
+}
+
+a.back{
+color:#93c5fd;
+text-decoration:none;
+}
+.day{
+padding:15px;
+background:#1e293b;
+color:white;
+text-align:center;
+border-radius:8px;
+font-weight:bold;
+}
+
+.day.present{
+background:#22c55e;
+}
+
+.day.absent{
+background:#ef4444;
+}
+
+.day.head{
+background:#334155;
+}
+
+.day.empty{
+background:transparent;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+<h2>📊 Attendance</h2>
+<a href="/student" class="back">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="card summary">
+
+<div class="stat">
+<h2>{{ percentage }}%</h2>
+<p>Overall Attendance</p>
+</div>
+
+<div class="stat">
+<h2>{{ total }}</h2>
+<p>Total Classes</p>
+</div>
+
+<div class="stat">
+<h2>{{ present }}</h2>
+<p>Present</p>
+</div>
+
+<div class="stat">
+<h2>{{ absent }}</h2>
+<p>Absent</p>
+</div>
+
+</div>
+
+<!-- ================= PROGRESS ================= -->
+
+<div class="card">
+
+<h3>Attendance Progress</h3>
+
+<div class="progress">
+<div class="progress-bar" style="width: {{ percentage }}%;"></div>
+</div>
+
+</div>
+
+<!-- ================= CALENDAR ================= -->
+<div class="calendar">
+
+<div class="day head">Sun</div>
+<div class="day head">Mon</div>
+<div class="day head">Tue</div>
+<div class="day head">Wed</div>
+<div class="day head">Thu</div>
+<div class="day head">Fri</div>
+<div class="day head">Sat</div>
+
+{% for week in calendar_data %}
+
+    {% for day in week %}
+
+        {% if day == 0 %}
+            <div class="day empty"></div>
+        {% else %}
+
+            <div class="day
+                {% if attendance.get(day)=='present' %}present{% endif %}
+                {% if attendance.get(day)=='absent' %}absent{% endif %}
+            ">
+
+            {{ day }}
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endfor %}
+
+</div>
+
+<!-- ================= DATE WISE ================= -->
+
+<div class="card">
+
+<h3>Date Wise Attendance</h3>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Status</th>
+</tr>
+
+{% for r in records %}
+
+<tr>
+
+<td>{{ r.date }}</td>
+
+<td class="{% if r.status=='present' %}present{% else %}absent{% endif %}">
+{{ r.status }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<!-- ================= MONTHLY STATS ================= -->
+
+<div class="card">
+
+<h3>Monthly Attendance</h3>
+
+<table>
+
+<tr>
+<th>Month</th>
+<th>Total</th>
+<th>Present</th>
+<th>Absent</th>
+</tr>
+
+{% for m in monthly %}
+
+<tr>
+<td>{{ m.month }}</td>
+<td>{{ m.total_days }}</td>
+<td>{{ m.present_days }}</td>
+<td>{{ m.absent_days }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

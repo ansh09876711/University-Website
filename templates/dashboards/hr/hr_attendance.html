@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ULTRA HR Attendance System</title>
+
+<style>
+
+body{
+background:#f1f5f9;
+font-family:Segoe UI;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.back-btn{
+display:inline-block;
+margin-bottom:15px;
+text-decoration:none;
+color:#2563eb;
+font-weight:600;
+background:#eff6ff;
+padding:8px 14px;
+border-radius:8px;
+}
+
+.summary{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+}
+
+.box{
+background:#f8fafc;
+padding:12px;
+border-radius:10px;
+font-weight:bold;
+}
+
+input, select{
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:14px;
+text-align:left;
+}
+
+td{
+padding:14px;
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f1f5f9;
+}
+
+.present{
+color:#16a34a;
+font-weight:bold;
+}
+
+.absent{
+color:#dc2626;
+font-weight:bold;
+}
+
+.btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.btn-red{
+background:#dc2626;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/hr" class="back-btn">⬅ Back to HR Dashboard</a>
+
+<h2>🔥 ULTRA HR Attendance System</h2>
+<p>Smart Attendance Management Dashboard</p>
+
+<div class="card">
+
+<div class="summary">
+<div class="box">Employees: {{ employees|length }}</div>
+<div class="box">Date: {{ today }}</div>
+</div>
+
+<input type="text" id="search" placeholder="Search employee...">
+
+<table id="table">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for e in employees %}
+
+<tr>
+
+<td>{{e.id}}</td>
+<td>{{e.name}}</td>
+<td>{{e.department}}</td>
+
+<td>
+
+{% if e.status == "present" %}
+<span class="present">Present</span>
+{% else %}
+<span class="absent">Absent</span>
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/hr/attendance/present/{{e.id}}">
+<button class="btn">Present</button>
+</a>
+
+<a href="/hr/attendance/absent/{{e.id}}">
+<button class="btn btn-red">Absent</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+/* LIVE SEARCH */
+
+document.getElementById("search").onkeyup = function(){
+
+let val = this.value.toLowerCase();
+
+document.querySelectorAll("#table tr").forEach((row,i)=>{
+
+if(i==0) return;
+
+row.style.display = row.innerText.toLowerCase().includes(val)
+? ""
+: "none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

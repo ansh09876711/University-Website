@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The University | EduStack University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Segoe UI, sans-serif;
+background:#f5f7fb;
+color:#111;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+z-index:1000;
+}
+
+header h2{
+margin:0;
+}
+
+nav a{
+text-decoration:none;
+margin-left:20px;
+color:#333;
+font-weight:500;
+}
+
+/* ===== HERO ===== */
+.hero{
+height:85vh;
+
+background:
+linear-gradient(rgba(15,23,42,0.75),rgba(15,23,42,0.75)),
+url("https://i.ibb.co/ynC2zbJW/Screenshot-2026-02-20-233333.png");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero-content{
+max-width:800px;
+padding:20px;
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:20px;
+letter-spacing:1px;
+}
+
+.hero p{
+font-size:20px;
+opacity:0.9;
+line-height:1.6;
+}
+/* ===== SECTION ===== */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:80px 20px;
+}
+
+.section h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 8px 30px rgba(0,0,0,0.05);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+/* ===== STATS ===== */
+
+.stats{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+gap:60px;
+padding:60px;
+flex-wrap:wrap;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:40px;
+color:#22c55e;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:20px;
+}
+header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+background:white;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+}
+
+.navbar{
+display:flex;
+align-items:center;
+gap:25px;   /* equal spacing */
+}
+
+.navbar a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+.about-section{
+padding:120px 20px;
+background:#f8fafc;
+display:flex;
+justify-content:center;
+}
+
+.about-box{
+
+max-width:900px;
+background:white;
+padding:60px 70px;
+border-radius:18px;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.06);
+
+text-align:center;
+}
+
+.about-box h2{
+font-size:38px;
+margin-bottom:25px;
+letter-spacing:1px;
+}
+
+.about-box p{
+font-size:18px;
+line-height:1.9;
+color:#444;
+margin-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h3>EDUSTACK UNIVERSITY</h3>
+<nav>
+<a href="{{ url_for('home') }}" class="nav-btn">
+    Home
+</a>
+
+<div class="menu">
+<a href="#" id="aboutBtn">About</a>
+
+<div class="mega">
+
+<div class="mega-inner">
+
+<div class="mega-left">
+
+<a href="/the-university" target="_blank">The University</a>
+<a href="/heritage" target="_blank">Edustack Heritage</a>
+<a href="/leadership" target="_blank">Leadership & Management</a>
+<a href="/director-message" target="_blank">Director’s Message</a>
+<a href="/dean-message" target="_blank">Dean’s Message</a>
+<a href="/awards" target="_blank">Awards & Rankings</a>
+<a href="/approvals" target="_blank">Approvals & Accreditations</a>
+<a href="/mandatory-disclosure" target="_blank">Mandatory Disclosure</a>
+</div>
+
+<div class="mega-right">
+
+<a href="/vision" target="_blank">Vision & Mission</a>
+<a href="/core-values" target="_blank">Core Values</a>
+<a href="/governance" target="_blank">Governance</a>
+<a href="/committees" target="_blank">Regulatory Committees</a>
+<a href="/regulations" target="_blank">University Regulations</a>
+<a href="/act" target="_blank">Act and Statutes or MoA</a>
+<a href="/development-plan" target="_blank">Institutional Development Plan</a>
+<a href="/collaboration" target="_blank">Collaboration Cell</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav>
+<a href="#">Academics</a>
+<a href="#">Faculty</a>
+<a href="/placementhome">Placements</a>
+<a href="#">Courses</a>
+<a href="/login">Login</a>
+</nav>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- 🔥 ULTRA MEGA HAMBURGER MENU -->
+
+<div id="sideMenu" class="side-menu">
+
+<span class="close-btn" onclick="toggleMenu()">← Back</span>
+
+<div class="menu-grid">
+
+<div>
+<h4><u>Why Us?</u></h4>
+<p>University at Glance</p>
+<p>Life at EU</p>
+<p>Faculty</p>
+<p>Placements</p>
+<p>Club & Societies</p>
+<p>Student Testimonial</p>
+<p>Centre of Excellence</p>
+<p>Incubation Center</p>
+<p>Awards & Rankings</p>
+<p>Teaching Practices & Pedagogy</p>
+<p>Virtual Tour</p>
+<p>Flashes</p>
+
+<h4><u>Student Life</u></h4>
+<p>Sports facilities</p>
+<p>Hostel details</p>
+<p>Placement Cell</p>
+<p>Health facilities</p>
+<p>Anti Ragging Cell</p>
+</div>
+
+<div>
+<h4><u>Facilities</u></h4>
+<p>Academic Facilities</p>
+<p>Campus Facilities</p>
+<p>Sport & Gym</p>
+<p>Other Facilities</p>
+
+<h4><u>Alumni</u></h4>
+<p>Overview</p>
+<p>Alumni Testimonials</p>
+<p>Distinguished Alumni</p>
+<p>City Chapters</p>
+<p>Connect</p>
+</div>
+
+
+<div>
+<h4><u>Clubs</u></h4>
+<p>Coding Club</p>
+<p>UBA</p>
+<p>IOT@ Tech-Crafters</p>
+<p>Industry Institute Interaction Cell</p>
+<p>Parakh</p>
+<p>English Club</p>
+<p>Udaan</p>
+<p>Aaroham (Cultural Club)</p>
+<p>Parakram (Sports & Yoga Club)</p>
+<p>Paravartan (Industry Interface & Innovation Club)</p>
+<p>Kalakruti (Creativity Club)</p>
+<p>Pravaah (ERP Club)</p>
+<p>Linguasphere (Foreign Language Club)</p>
+<p>Sanwaran (Discipline Club)</p>
+<p>Vaani (Literature & Communication Club)</p>
+</div>
+
+<div>
+<h4><u>Internationalism & Collaboration</u></h4>
+<p>Internationalism Overview</p>
+<p>Ongoing Programs</p>
+
+<h4><u>Happenings</u></h4>
+<p>Events</p>
+<p>Media Coverage</p>
+<p>News</p>
+
+<h4><u>Gallery</u></h4>
+<p>Photo gallery</p>
+<p>Video Gallery</p>
+</div>
+
+</div>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+    <h1>The University</h1>
+    <p>
+        Empowering innovation, leadership, and academic excellence
+        through modern education.
+    </p>
+</div>
+
+</section>
+<!-- ABOUT -->
+
+<section class="about-section">
+
+<div class="about-box">
+
+<h2>About EduStack University</h2>
+
+<p>
+EduStack University is a premier institution dedicated to academic excellence,
+innovation-driven learning, and career-focused education. With a strong commitment
+to shaping future leaders, we create an environment where knowledge, creativity,
+and technology come together to inspire growth and success.
+</p>
+
+<p>
+Our academic programs combine strong theoretical foundations with practical,
+hands-on experience through live projects, internships, research opportunities,
+and industry collaborations.
+</p>
+
+<p>
+Beyond academics, we promote holistic development through technical events,
+cultural activities, entrepreneurship initiatives, and leadership programs.
+At EduStack University, we don’t just build careers — we build futures.
+</p>
+
+</div>
+
+</section>
+
+<!-- CAMPUS FEATURES -->
+
+<section class="section">
+
+<h2>Campus & Facilities</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d">
+<div class="card-content">
+<h3>Modern Infrastructure</h3>
+<p>Smart classrooms, digital labs, and innovation centers.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+<div class="card-content">
+<h3>Student Life</h3>
+<p>Clubs, events, cultural activities, and leadership opportunities.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<div class="card-content">
+<h3>Research Labs</h3>
+<p>Advanced research facilities for future-ready innovation.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat">
+<h3>5000+</h3>
+<p>Students</p>
+</div>
+
+<div class="stat">
+<h3>150+</h3>
+<p>Faculty</p>
+</div>
+
+<div class="stat">
+<h3>300+</h3>
+<p>Recruiters</p>
+</div>
+
+<div class="stat">
+<h3>95%</h3>
+<p>Placement Rate</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 EduStack University | All Rights Reserved
+</footer>
+
+<script>
+/* 🔥 HAMBURGER WORKING */
+
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+
+let menu = document.getElementById("sideMenu");
+let hamburger = document.querySelector(".hamburger");
+
+if(menu.classList.contains("active") &&
+   !menu.contains(e.target) &&
+   !hamburger.contains(e.target)){
+
+menu.classList.remove("active");
+
+}
+
+});
+
+/* 🔥 ULTRA MEGA MENU CLICK SYSTEM */
+
+const aboutBtn = document.getElementById("aboutBtn");
+const megaMenu = document.querySelector(".mega");
+
+aboutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    megaMenu.classList.toggle("active");
+});
+
+/* click outside close */
+
+document.addEventListener("click", function(e){
+
+if(!aboutBtn.contains(e.target) && !megaMenu.contains(e.target)){
+    megaMenu.classList.remove("active");
+}
+
+});
+</script>
+
+<script>
+
+let slider = document.getElementById("placementSlider");
+
+document.getElementById("nextBtn").onclick = () => {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+};
+
+document.getElementById("prevBtn").onclick = () => {
+    slider.scrollBy({ left: -280, behavior: "smooth" });
+};
+
+</script>
+</body>
+
+</html>

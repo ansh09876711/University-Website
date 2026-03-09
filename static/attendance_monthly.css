@@ -1,0 +1,47 @@
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+/* Layout full width */
+body{
+    padding:10px;
+}
+
+/* Container full width */
+.container,
+.wrapper,
+.main,
+.section,
+.card{
+    width:100% !important;
+    max-width:100% !important;
+}
+
+/* Forms full width */
+input,
+select,
+button{
+    width:100% !important;
+    margin-bottom:10px;
+}
+
+/* Flex layout vertical */
+.form-row,
+.actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* Buttons big */
+button{
+    padding:14px;
+    font-size:16px;
+}
+
+/* Back button spacing */
+.back-btn{
+    margin-bottom:15px;
+}
+
+}

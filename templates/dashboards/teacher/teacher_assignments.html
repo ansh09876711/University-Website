@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Dashboard</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f1f5f9;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+margin-bottom:20px;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.delete{
+background:red;
+margin-top:10px;
+}
+
+.assignment{
+background:#f9fafb;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+.assignment:hover{
+transform:translateY(-2px);
+transition:0.3s;
+}
+.back-btn{
+text-decoration:none;
+background:#2563eb;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="topbar">
+
+<h2>🧑‍🏫 Teacher Dashboard</h2>
+
+<a href="/teacher" class="back-btn">⬅ Back</a>
+
+</div>
+
+
+
+<!-- ADD ASSIGNMENT -->
+<div class="card">
+
+<h3>Add Assignment</h3>
+
+<form method="POST" enctype="multipart/form-data">
+
+<input name="title" placeholder="Title" required>
+
+<input name="subject" placeholder="Subject" required>
+
+<textarea name="description" placeholder="Description"></textarea>
+
+<input type="datetime-local" name="deadline" required>
+
+<input type="file" name="file">
+
+<button>Add Assignment</button>
+
+</form>
+
+</div>
+
+
+<!-- ASSIGNMENT LIST -->
+<div class="card">
+
+<h3>All Assignments</h3>
+
+{% for a in assignments %}
+
+<div class="assignment">
+
+<h4>{{ a.title }}</h4>
+
+<p><b>Subject:</b> {{ a.subject }}</p>
+
+<p>{{ a.description }}</p>
+
+<p><b>Deadline:</b> {{ a.deadline }}</p>
+
+{% if a.file_path %}
+<a href="/static/uploads/{{a.file_path}}" target="_blank">
+📄 Open File
+</a>
+{% endif %}
+
+<form action="/teacher/delete_assignment/{{a.id}}" method="POST">
+<button class="delete">Delete</button>
+</form>
+
+</div>
+
+{% else %}
+
+<p>No assignments yet</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>School of Management | EduStack University</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#ffffff;
+color:#1e293b;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0f172a;
+color:white;
+z-index:1000;
+}
+
+header nav a{
+color:#cbd5e1;
+margin-left:30px;
+text-decoration:none;
+}
+
+header nav a:hover{color:#38bdf8;}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+background:linear-gradient(to bottom,#0f172a,#1e293b);
+color:white;
+overflow:hidden;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+padding:0 20px;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+color:#cbd5e1;
+font-size:18px;
+}
+
+/* CANVAS */
+#bg{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:1;
+}
+
+/* WHITE SECTIONS */
+.section{
+padding:100px 80px;
+max-width:1100px;
+margin:auto;
+background:white;
+}
+
+.section h2{
+font-size:36px;
+margin-bottom:30px;
+color:#0f172a;
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#f8fafc;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.stats{
+display:flex;
+gap:80px;
+flex-wrap:wrap;
+margin-top:40px;
+justify-content:center;
+}
+
+.stat{text-align:center;}
+.stat h3{font-size:40px;color:#0f172a;}
+
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+@media(max-width:768px){
+.hero h1{font-size:38px;}
+.section{padding:80px 30px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>EDUSTACK UNIVERSITY</h2>
+<nav>
+<a href="#">Home</a>
+<a href="#">Academics</a>
+<a href="#">Research</a>
+<a href="#">Placements</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>School of Management</h1>
+<p>
+Empowering future business leaders through Strategic Management,
+Finance, Marketing, Entrepreneurship and Global Analytics.
+</p>
+</div>
+<canvas id="bg"></canvas>
+</section>
+
+<!-- PROGRAMS -->
+<section class="section">
+<h2>Programs Offered</h2>
+<div class="grid">
+<div class="card">
+<h3>MBA (General)</h3>
+<p>Comprehensive program covering finance, marketing and operations management.</p>
+</div>
+<div class="card">
+<h3>MBA – Finance</h3>
+<p>Investment banking, financial modeling and corporate finance.</p>
+</div>
+<div class="card">
+<h3>MBA – Marketing</h3>
+<p>Brand strategy, digital marketing and consumer analytics.</p>
+</div>
+<div class="card">
+<h3>MBA – HR & Operations</h3>
+<p>Leadership, talent management and business process optimization.</p>
+</div>
+</div>
+</section>
+
+<!-- PLACEMENTS -->
+<section class="section">
+<h2>Placement Highlights</h2>
+<div class="stats">
+<div class="stat"><h3 id="students">0</h3><p>Students</p></div>
+<div class="stat"><h3 id="faculty">0</h3><p>Faculty</p></div>
+<div class="stat"><h3 id="recruiters">0</h3><p>Corporate Recruiters</p></div>
+</div>
+</section>
+
+<footer>
+© 2026 EduStack University | School of Management
+</footer>
+
+<script>
+
+/* 3D STOCK MARKET LINE GRAPH */
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+);
+
+const renderer = new THREE.WebGLRenderer({
+canvas:document.getElementById("bg"),
+alpha:true,
+antialias:true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+camera.position.z = 8;
+
+/* CREATE STOCK LINE */
+
+const segments = 120;
+const points = [];
+
+for(let i=0;i<segments;i++){
+points.push(new THREE.Vector3(
+(i - segments/2) * 0.12,
+Math.sin(i * 0.3) * 0.8,
+0
+));
+}
+
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+const material = new THREE.LineBasicMaterial({
+color:0x38bdf8
+});
+
+const line = new THREE.Line(geometry, material);
+scene.add(line);
+
+/* ANIMATION */
+
+function animate(){
+requestAnimationFrame(animate);
+
+const time = Date.now() * 0.002;
+const positions = geometry.attributes.position.array;
+
+for(let i=0;i<segments;i++){
+positions[i*3 + 1] =
+Math.sin(i*0.3 + time) * 0.8 +
+Math.cos(i*0.15 + time) * 0.4;
+}
+
+geometry.attributes.position.needsUpdate = true;
+
+line.rotation.y += 0.002;
+
+renderer.render(scene,camera);
+}
+
+animate();
+
+/* COUNTER */
+
+function animateCounter(id,target){
+let count=0;
+const el=document.getElementById(id);
+const interval=setInterval(()=>{
+count+=Math.ceil(target/100);
+if(count>=target){count=target;clearInterval(interval);}
+el.innerText=count;
+},20);
+}
+
+window.onload=function(){
+animateCounter("students",520);
+animateCounter("faculty",38);
+animateCounter("recruiters",140);
+};
+
+</script>
+
+</body>
+</html>
